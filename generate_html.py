@@ -1757,13 +1757,26 @@ HTML_TEMPLATE = """<!DOCTYPE html>
                 rel.recipient_id && rel.recipient_id.includes(objectId)
             );
             
+            // Separate "in between" relationships - only when selected object is the middle node (subject)
+            let inBetween = [];
+            
+            // Only from outgoing: subject is the selected object, and it's "in between" two others
+            const outgoingBetween = outgoing.filter(rel => 
+                rel.name.toLowerCase().includes('between') && rel.recipient_id && rel.recipient_id.length >= 2
+            );
+            inBetween.push(...outgoingBetween);
+            
+            // Remove "in between" from outgoing (but keep them in incoming if selected object is an endpoint)
+            outgoing = outgoing.filter(rel => !outgoingBetween.includes(rel));
+            
             // Apply relationship type filters
             if (selectedRelTypeFilters.size > 0) {
                 outgoing = outgoing.filter(rel => selectedRelTypeFilters.has(rel.name));
                 incoming = incoming.filter(rel => selectedRelTypeFilters.has(rel.name));
+                inBetween = inBetween.filter(rel => selectedRelTypeFilters.has(rel.name));
             }
 
-            if (outgoing.length === 0 && incoming.length === 0) {
+            if (outgoing.length === 0 && incoming.length === 0 && inBetween.length === 0) {
                 const msg = selectedRelTypeFilters.size > 0 
                     ? '<div style="color: #999; font-size: 12px;">No relationships match the selected filters</div>'
                     : '<div style="color: #999; font-size: 12px;">No relationships found</div>';
@@ -1775,12 +1788,10 @@ HTML_TEMPLATE = """<!DOCTYPE html>
             
             // Show filter status if filters are active
             if (selectedRelTypeFilters.size > 0) {
-                const totalOutgoing = sceneGraphData.relationships.filter(rel => rel.subject_id === objectId).length;
-                const totalIncoming = sceneGraphData.relationships.filter(rel => 
-                    rel.recipient_id && rel.recipient_id.includes(objectId)
+                const totalAll = sceneGraphData.relationships.filter(rel => 
+                    rel.subject_id === objectId || (rel.recipient_id && rel.recipient_id.includes(objectId))
                 ).length;
-                const totalDisplayed = outgoing.length + incoming.length;
-                const totalAll = totalOutgoing + totalIncoming;
+                const totalDisplayed = outgoing.length + incoming.length + inBetween.length;
                 
                 html += `<div style="padding: 8px; font-size: 11px; color: #666; background: #f0f0f0; border-radius: 3px; margin-bottom: 8px;">
                     Showing ${totalDisplayed} of ${totalAll} relationships
@@ -1820,6 +1831,46 @@ HTML_TEMPLATE = """<!DOCTYPE html>
                     html += `<div class="relationship-item">
                         <span class="rel-target" ${style} onclick="highlightRelatedObject(${rel.subject_id})">${sourceLabel}</span> → 
                         <span class="rel-name">${rel.name}</span>
+                    </div>`;
+                });
+            }
+            
+            if (inBetween.length > 0) {
+                html += '<div style="font-weight: bold; margin: 10px 0 5px 0; font-size: 12px;">In Between:</div>';
+                inBetween.forEach(rel => {
+                    const targetIds = rel.recipient_id || [];
+                    const subjectId = rel.subject_id;
+                    
+                    const subjectObj = sceneGraphData.objects.find(o => o.id === subjectId);
+                    const target1Obj = sceneGraphData.objects.find(o => o.id === targetIds[0]);
+                    const target2Obj = sceneGraphData.objects.find(o => o.id === targetIds[1]);
+                    
+                    const subjectLabel = subjectObj ? (subjectObj.labels[0] || `Object ${subjectId}`) : `Object ${subjectId}`;
+                    const target1Label = target1Obj ? (target1Obj.labels[0] || `Object ${targetIds[0]}`) : `Object ${targetIds[0]}`;
+                    const target2Label = target2Obj ? (target2Obj.labels[0] || `Object ${targetIds[1]}`) : `Object ${targetIds[1]}`;
+                    
+                    let styleSubject = '';
+                    let style1 = '';
+                    let style2 = '';
+                    
+                    if (highlightedObjectIds.has(subjectId)) {
+                        const color = highlightedObjectIds.get(subjectId);
+                        styleSubject = `style="background: ${color.css}; color: white; font-weight: bold; border: 2px solid ${color.border}; padding: 2px 6px; border-radius: 3px; box-shadow: 0 2px 4px rgba(0,0,0,0.2);"`;
+                    }
+                    if (highlightedObjectIds.has(targetIds[0])) {
+                        const color = highlightedObjectIds.get(targetIds[0]);
+                        style1 = `style="background: ${color.css}; color: white; font-weight: bold; border: 2px solid ${color.border}; padding: 2px 6px; border-radius: 3px; box-shadow: 0 2px 4px rgba(0,0,0,0.2);"`;
+                    }
+                    if (highlightedObjectIds.has(targetIds[1])) {
+                        const color = highlightedObjectIds.get(targetIds[1]);
+                        style2 = `style="background: ${color.css}; color: white; font-weight: bold; border: 2px solid ${color.border}; padding: 2px 6px; border-radius: 3px; box-shadow: 0 2px 4px rgba(0,0,0,0.2);"`;
+                    }
+                    
+                    html += `<div class="relationship-item">
+                        <span class="rel-target" ${styleSubject} onclick="highlightRelatedObject(${subjectId})">${subjectLabel}</span>
+                        <span class="rel-name"> ${rel.name} </span>
+                        <span class="rel-target" ${style1} onclick="highlightRelatedObject(${targetIds[0]})">${target1Label}</span> and 
+                        <span class="rel-target" ${style2} onclick="highlightRelatedObject(${targetIds[1]})">${target2Label}</span>
                     </div>`;
                 });
             }
