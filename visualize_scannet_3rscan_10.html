@@ -6,6 +6,8 @@
     <title>ScanNet Scene Graph Viewer</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/mrdoob/three.js@r128/examples/js/controls/OrbitControls.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/mrdoob/three.js@r128/examples/js/loaders/MTLLoader.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/mrdoob/three.js@r128/examples/js/loaders/OBJLoader.js"></script>
     <style>
         * {
             margin: 0;
@@ -960,7 +962,7 @@
                 <button class="mode-btn" id="mode-relationship" onclick="setAnnotationMode('relationship')">Relationship</button>
             </div>
             <div id="annotation-info" style="font-size: 11px; color: #ccc; margin-top: 5px; display: none;"></div>
-            <button id="export-annotations" style="margin-top: 5px; padding: 5px 10px; display: none;">Export Annotations</button>
+            <button id="export-annotations" style="margin-top: 5px; padding: 5px 10px;">Export All Annotations</button>
         </div>
     </div>
 
@@ -1599,7 +1601,7 @@
         let currentDataset = 'scannet'; // 'scannet', 'multiscan', or '3rscan'
         
 
-        availableScenes = ["02b33dfb-be2b-2d54-92d2-cd012b2b3c40", "02b33e01-be2b-2d54-93fb-4145a709cec5", "095821f7-e2c2-2de1-9568-b9ce59920e29", "0958220d-e2c2-2de1-9710-c37018da1883", "09582212-e2c2-2de1-9700-fa44b14fbded", "09582225-e2c2-2de1-9564-f6681ef5e511", "09582244-e2c2-2de1-956c-357092d949d1", "0958224e-e2c2-2de1-943b-38e36345e2e7", "0988ea72-eb32-2e61-8344-99e2283c2728", "0ad2d382-79e2-2212-98b3-641bf9d552c1", "scene0000_00", "scene0001_00", "scene0002_00", "scene0003_00", "scene0004_00", "scene0005_00", "scene0006_00", "scene0007_00", "scene0008_00", "scene0009_00"];
+        availableScenes = ["02b33dfb-be2b-2d54-92d2-cd012b2b3c40", "02b33e01-be2b-2d54-93fb-4145a709cec5", "095821f7-e2c2-2de1-9568-b9ce59920e29", "0958220d-e2c2-2de1-9710-c37018da1883", "09582212-e2c2-2de1-9700-fa44b14fbded", "09582225-e2c2-2de1-9564-f6681ef5e511", "09582244-e2c2-2de1-956c-357092d949d1", "0958224e-e2c2-2de1-943b-38e36345e2e7", "0988ea72-eb32-2e61-8344-99e2283c2728", "0ad2d382-79e2-2212-98b3-641bf9d552c1", "scene0000_00", "scene0001_00", "scene0002_00", "scene0003_00", "scene0004_00", "scene0005_00", "scene0006_00", "scene0007_00", "scene0008_00", "scene0009_00", "scene_00002_00", "scene_00004_00", "scene_00007_00", "scene_00023_00", "scene_00052_00", "scene_00078_00", "scene_00084_00"];
         allPredicates = ["above", "below", "contains", "embedded in", "embeds", "far from", "hanging on", "has", "higher than", "in", "in between", "in center of", "in corner of", "inside", "is aligned with", "leaning on", "lower than", "near", "next to", "of", "on", "over", "supports", "under"];
         // Detect dataset from scene ID pattern
         function getDatasetFromSceneId(sceneId) {
@@ -1662,6 +1664,16 @@
 
             scene = new THREE.Scene();
             scene.background = new THREE.Color(0x1a1a1a);
+
+            // Basic lighting for textured meshes (OBJ/MTL materials need lights)
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+            scene.add(ambientLight);
+            const dirLight = new THREE.DirectionalLight(0xffffff, 0.8);
+            dirLight.position.set(5, 10, 7);
+            scene.add(dirLight);
+            const fillLight = new THREE.DirectionalLight(0xffffff, 0.5);
+            fillLight.position.set(-5, -6, -4);
+            scene.add(fillLight);
 
             camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
             camera.position.set(5, 5, 5);
@@ -1769,6 +1781,91 @@
             }
         });
 
+        function disposeObject(object) {
+            if (!object) return;
+            object.traverse(child => {
+                if (child.geometry) {
+                    child.geometry.dispose();
+                }
+                if (child.material) {
+                    if (Array.isArray(child.material)) {
+                        child.material.forEach(m => m && m.dispose && m.dispose());
+                    } else if (child.material.dispose) {
+                        child.material.dispose();
+                    }
+                }
+                if (child.texture && child.texture.dispose) {
+                    child.texture.dispose();
+                }
+            });
+        }
+
+        async function loadTexturedMesh(candidate) {
+            // candidate: { obj, mtl }
+            const resourcePath = candidate.obj.substring(0, candidate.obj.lastIndexOf('/') + 1);
+            console.log('Attempting textured mesh load:', candidate.obj);
+
+            // Remove existing geometry
+            if (pointCloud) {
+                scene.remove(pointCloud);
+                disposeObject(pointCloud);
+            }
+
+            let materials = null;
+            if (candidate.mtl) {
+                const mtlLoader = new THREE.MTLLoader();
+                mtlLoader.setResourcePath(resourcePath);
+                mtlLoader.setPath(resourcePath);
+                materials = await new Promise((resolve, reject) => {
+                    mtlLoader.load(candidate.mtl.replace(resourcePath, ''), resolve, undefined, reject);
+                });
+                materials.preload();
+            }
+
+            const objLoader = new THREE.OBJLoader();
+            if (materials) objLoader.setMaterials(materials);
+            objLoader.setPath(resourcePath);
+            objLoader.setResourcePath(resourcePath); // for texture lookups referenced in OBJ/MTL
+            const object = await new Promise((resolve, reject) => {
+                objLoader.load(candidate.obj.replace(resourcePath, ''), resolve, undefined, reject);
+            });
+
+            pointCloud = object;
+
+            // Ensure materials render in current lighting and show both sides
+            pointCloud.traverse(node => {
+                if (node.isMesh) {
+                    if (node.material) {
+                        const mats = Array.isArray(node.material) ? node.material : [node.material];
+                        mats.forEach(m => {
+                            if (!m) return;
+                            m.side = THREE.DoubleSide;
+                            if ('map' in m && m.map) {
+                                m.map.encoding = THREE.sRGBEncoding;
+                            } else if (!m.color || (m.color.r === 0 && m.color.g === 0 && m.color.b === 0)) {
+                                // Default to a mid-gray if no texture/color
+                                m.color = new THREE.Color(0x888888);
+                            }
+                            m.needsUpdate = true;
+                        });
+                    } else {
+                        node.material = new THREE.MeshStandardMaterial({ color: 0x888888, side: THREE.DoubleSide });
+                    }
+                }
+            });
+
+            // Hide point size control for mesh
+            const pointSizeControl = document.getElementById('point-size-control');
+            if (pointSizeControl) pointSizeControl.style.display = 'none';
+
+            // Ensure the visibility toggle stays in sync
+            const showPointsCheckbox = document.getElementById('show-points');
+            if (showPointsCheckbox) showPointsCheckbox.checked = true;
+
+            scene.add(pointCloud);
+            console.log('Textured mesh added to scene from', candidate.obj);
+        }
+
         async function loadPointCloudFile(file) {
             document.getElementById('loading').classList.remove('hidden');
             
@@ -1809,8 +1906,7 @@
             // Remove existing point cloud/mesh
             if (pointCloud) {
                 scene.remove(pointCloud);
-                pointCloud.geometry.dispose();
-                pointCloud.material.dispose();
+                disposeObject(pointCloud);
             }
 
             const points = data.points;
@@ -2457,81 +2553,66 @@
             const exportData = {
                 scene_id: sceneGraphData?.id || currentSceneId,
                 timestamp: new Date().toISOString(),
-                annotation_type: annotationMode
+                annotation_type: annotationMode || 'all'
             };
             
-            let filePrefix = 'annotations';
-            
-            // Export similarity annotations in similarity mode
-            if (annotationMode === 'similarity') {
-                if (similarityAnnotations.length === 0) {
-                    alert('No similarity annotations to export');
-                    return;
+            // Similarity (always include)
+            exportData.similarity = {
+                annotations: similarityAnnotations,
+                summary: {
+                    total: similarityAnnotations.length
                 }
-                exportData.similarity = {
-                    annotations: similarityAnnotations,
-                    summary: {
-                        total: similarityAnnotations.length
-                    }
-                };
-                filePrefix = 'similarity_annotations';
-            }
+            };
             
-            // Export attributes in attribute mode
-            if (annotationMode === 'attribute') {
-                const predictedAttrs = sceneGraphData.attributes || [];
-                exportData.attributes = {
-                    predicted: {
-                        total: predictedAttrs.length,
-                        items: predictedAttrs.map(attr => ({
-                            id: attr.id,
-                            object_id: attr.object_id,
-                            name: attr.name,
-                            type: attr.type || null,
-                            validation: attributeValidations[attr.id] || null
-                        }))
-                    },
-                    added: additionalAttributes,
-                    summary: {
-                        predicted_total: predictedAttrs.length,
-                        correct: Object.values(attributeValidations).filter(v => v === 'correct').length,
-                        incorrect: Object.values(attributeValidations).filter(v => v === 'incorrect').length,
-                        added: additionalAttributes.length
-                    }
-                };
-                filePrefix = 'attr_annotations';
-            }
+            // Attributes (always include)
+            const predictedAttrs = sceneGraphData?.attributes || [];
+            exportData.attributes = {
+                predicted: {
+                    total: predictedAttrs.length,
+                    items: predictedAttrs.map(attr => ({
+                        id: attr.id,
+                        object_id: attr.object_id,
+                        name: attr.name,
+                        type: attr.type || null,
+                        validation: attributeValidations[attr.id] || null
+                    }))
+                },
+                added: additionalAttributes,
+                summary: {
+                    predicted_total: predictedAttrs.length,
+                    correct: Object.values(attributeValidations).filter(v => v === 'correct').length,
+                    incorrect: Object.values(attributeValidations).filter(v => v === 'incorrect').length,
+                    added: additionalAttributes.length
+                }
+            };
             
-            // Export relationships in relationship mode
-            if (annotationMode === 'relationship') {
-                const predictedRels = sceneGraphData.relationships || [];
-                exportData.relationships = {
-                    predicted: {
-                        total: predictedRels.length,
-                        items: predictedRels.map((rel, idx) => ({
-                            index: idx,
-                            subject_id: rel.subject_id,
-                            predicate: rel.name,
-                            object_ids: rel.recipient_id || [],
-                            validation: relationshipValidations[idx] || null
-                        }))
-                    },
-                    added: additionalRelationships,
-                    summary: {
-                        predicted_total: predictedRels.length,
-                        correct: Object.values(relationshipValidations).filter(v => v === 'correct').length,
-                        incorrect: Object.values(relationshipValidations).filter(v => v === 'incorrect').length,
-                        added: additionalRelationships.length
-                    }
-                };
-                filePrefix = 'rel_annotations';
-            }
+            // Relationships (always include)
+            const predictedRels = sceneGraphData?.relationships || [];
+            exportData.relationships = {
+                predicted: {
+                    total: predictedRels.length,
+                    items: predictedRels.map((rel, idx) => ({
+                        index: idx,
+                        subject_id: rel.subject_id,
+                        predicate: rel.name,
+                        object_ids: rel.recipient_id || [],
+                        validation: relationshipValidations[idx] || null
+                    }))
+                },
+                added: additionalRelationships,
+                summary: {
+                    predicted_total: predictedRels.length,
+                    correct: Object.values(relationshipValidations).filter(v => v === 'correct').length,
+                    incorrect: Object.values(relationshipValidations).filter(v => v === 'incorrect').length,
+                    added: additionalRelationships.length
+                }
+            };
             
             const blob = new Blob([JSON.stringify(exportData, null, 2)], { type: 'application/json' });
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = `${filePrefix}_${sceneGraphData.id || currentSceneId}_${Date.now()}.json`;
+            a.download = `annotations_${sceneGraphData?.id || currentSceneId}_${Date.now()}.json`;
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
@@ -3237,23 +3318,17 @@
             
             // Update info text based on mode
             const infoEl = document.getElementById('annotation-info');
-            const exportBtn = document.getElementById('export-annotations');
-            
             if (mode === 'similarity') {
                 infoEl.textContent = 'Select two objects to mark as similar';
                 infoEl.style.display = 'block';
-                exportBtn.style.display = 'block';
             } else if (mode === 'attribute') {
                 infoEl.textContent = 'Validate attributes (✓/✗) or add new ones';
                 infoEl.style.display = 'block';
-                exportBtn.style.display = 'block';
             } else if (mode === 'relationship') {
                 infoEl.textContent = 'Validate relationships (✓/✗) or add new ones';
                 infoEl.style.display = 'block';
-                exportBtn.style.display = 'block';
             } else {
                 infoEl.style.display = 'none';
-                exportBtn.style.display = 'none';
             }
             
             // Show/hide relationship filters (hidden in similarity mode)
@@ -3431,94 +3506,126 @@
                 additionalRelationships = [];
                 updateValidationStats();
                 
-                // Load point cloud - try various naming patterns
-                let plyLoaded = false;
-                
-                for (const plyUrl of plyUrls) {
+                // Try textured mesh first for multiscan / 3rscan, then fall back to PLY
+                let meshLoaded = false;
+                const meshCandidates = [];
+                if (currentDataset === 'multiscan') {
+                    meshCandidates.push({
+                        obj: `data/multiscan/${sceneId}/textured_mesh/${sceneId}.obj`,
+                        mtl: `data/multiscan/${sceneId}/textured_mesh/${sceneId}.mtl`
+                    });
+                } else if (currentDataset === '3rscan') {
+                    meshCandidates.push({
+                        obj: `data/3rscan/download/${sceneId}/mesh.refined.obj`,
+                        mtl: `data/3rscan/download/${sceneId}/mesh.refined.mtl`
+                    });
+                    meshCandidates.push({
+                        obj: `data/3rscan/download/${sceneId}/textured_mesh/${sceneId}.obj`,
+                        mtl: `data/3rscan/download/${sceneId}/textured_mesh/${sceneId}.mtl`
+                    });
+                }
+
+                for (const mesh of meshCandidates) {
                     try {
-                        console.log('Attempting to fetch:', plyUrl);
-                        const plyResponse = await fetch(plyUrl);
-                        console.log('Fetch response status:', plyResponse.status, plyResponse.statusText);
-                        if (!plyResponse.ok) {
-                            throw new Error(`HTTP ${plyResponse.status}: ${plyResponse.statusText}`);
-                        }
-                        console.log('Loading PLY from:', plyUrl);
-                        const plyArrayBuffer = await plyResponse.arrayBuffer();
-                        console.log('PLY file loaded, size:', plyArrayBuffer.byteLength, 'bytes');
-                        const pcData = await parsePLY(plyArrayBuffer);
-                        console.log('Parsed PLY - points:', pcData.points.length / 3, 'hasColors:', pcData.hasColors);
-                        
-                        if (!pcData.points || pcData.points.length === 0) {
-                            throw new Error('No points found in PLY file');
-                        }
-                        
-                        // For multiscan/3rscan: Check if we need coordinate transforms
-                        // The annotations use Z-up coordinate system (based on "up": [0, 0, 1] in bbox)
-                        // Log info to help debug coordinate alignment
-                        if (currentDataset === 'multiscan' || currentDataset === '3rscan') {
-                            console.log(currentDataset + ' PLY loaded without transform - checking alignment');
-                            console.log('Raw mesh first vertex:', pcData.points[0].toFixed(4), pcData.points[1].toFixed(4), pcData.points[2].toFixed(4));
-                        }
-                        
-                        // For 3RScan: try to load real colors from separate file
-                        if (colorUrl && currentDataset === '3rscan') {
-                            try {
-                                console.log('Attempting to load real colors from:', colorUrl);
-                                const colorResponse = await fetch(colorUrl);
-                                if (colorResponse.ok) {
-                                    const colorArrayBuffer = await colorResponse.arrayBuffer();
-                                    const colorData = await parsePLY(colorArrayBuffer);
-                                    // Only use if vertex count matches
-                                    if (colorData.points.length === pcData.points.length && colorData.hasColors) {
-                                        console.log('Applying real colors from color.align.ply');
-                                        pcData.colors = colorData.colors;
-                                        pcData.hasColors = true;
-                                    } else {
-                                        console.warn('Color file vertex count mismatch:', colorData.points.length / 3, 'vs', pcData.points.length / 3);
-                                    }
-                                }
-                            } catch (colorErr) {
-                                console.warn('Could not load real colors:', colorErr.message);
+                        await loadTexturedMesh(mesh);
+                        meshLoaded = true;
+                        console.log('Loaded textured mesh:', mesh.obj);
+                        break;
+                    } catch (meshErr) {
+                        console.warn('Failed to load textured mesh', mesh.obj, '-', meshErr.message || meshErr);
+                    }
+                }
+
+                // Load point cloud - try various naming patterns if mesh was not loaded
+                let plyLoaded = meshLoaded;
+                
+                if (!meshLoaded) {
+                    for (const plyUrl of plyUrls) {
+                        try {
+                            console.log('Attempting to fetch:', plyUrl);
+                            const plyResponse = await fetch(plyUrl);
+                            console.log('Fetch response status:', plyResponse.status, plyResponse.statusText);
+                            if (!plyResponse.ok) {
+                                throw new Error(`HTTP ${plyResponse.status}: ${plyResponse.statusText}`);
                             }
-                        }
-                        
-                        // Sample if too many points (only if no faces, as sampling would break face indices)
-                        if (!pcData.hasFaces) {
-                            const maxPoints = 200000;
-                            const numVertices = pcData.points.length / 3;
-                            if (numVertices > maxPoints) {
-                                console.log('Sampling point cloud from', numVertices, 'to', maxPoints, 'points');
-                                const step = Math.floor(numVertices / maxPoints);
-                                const sampledPoints = [];
-                                const sampledColors = [];
-                                for (let v = 0; v < numVertices; v += step) {
-                                    const idx = v * 3;
-                                    sampledPoints.push(pcData.points[idx], pcData.points[idx+1], pcData.points[idx+2]);
-                                    if (pcData.hasColors && pcData.colors) {
-                                        const colorIdx = v * 3;
-                                        sampledColors.push(pcData.colors[colorIdx], pcData.colors[colorIdx+1], pcData.colors[colorIdx+2]);
-                                    }
-                                }
-                                pcData.points = sampledPoints;
-                                pcData.colors = sampledColors;
-                                console.log('Sampled to', sampledPoints.length / 3, 'points');
+                            console.log('Loading PLY from:', plyUrl);
+                            const plyArrayBuffer = await plyResponse.arrayBuffer();
+                            console.log('PLY file loaded, size:', plyArrayBuffer.byteLength, 'bytes');
+                            const pcData = await parsePLY(plyArrayBuffer);
+                            console.log('Parsed PLY - points:', pcData.points.length / 3, 'hasColors:', pcData.hasColors);
+                            
+                            if (!pcData.points || pcData.points.length === 0) {
+                                throw new Error('No points found in PLY file');
                             }
+                            
+                            // For multiscan/3rscan: Check if we need coordinate transforms
+                            // The annotations use Z-up coordinate system (based on "up": [0, 0, 1] in bbox)
+                            // Log info to help debug coordinate alignment
+                            if (currentDataset === 'multiscan' || currentDataset === '3rscan') {
+                                console.log(currentDataset + ' PLY loaded without transform - checking alignment');
+                                console.log('Raw mesh first vertex:', pcData.points[0].toFixed(4), pcData.points[1].toFixed(4), pcData.points[2].toFixed(4));
+                            }
+                            
+                            // For 3RScan: try to load real colors from separate file
+                            if (colorUrl && currentDataset === '3rscan') {
+                                try {
+                                    console.log('Attempting to load real colors from:', colorUrl);
+                                    const colorResponse = await fetch(colorUrl);
+                                    if (colorResponse.ok) {
+                                        const colorArrayBuffer = await colorResponse.arrayBuffer();
+                                        const colorData = await parsePLY(colorArrayBuffer);
+                                        // Only use if vertex count matches
+                                        if (colorData.points.length === pcData.points.length && colorData.hasColors) {
+                                            console.log('Applying real colors from color.align.ply');
+                                            pcData.colors = colorData.colors;
+                                            pcData.hasColors = true;
+                                        } else {
+                                            console.warn('Color file vertex count mismatch:', colorData.points.length / 3, 'vs', pcData.points.length / 3);
+                                        }
+                                    }
+                                } catch (colorErr) {
+                                    console.warn('Could not load real colors:', colorErr.message);
+                                }
+                            }
+                            
+                            // Sample if too many points (only if no faces, as sampling would break face indices)
+                            if (!pcData.hasFaces) {
+                                const maxPoints = 200000;
+                                const numVertices = pcData.points.length / 3;
+                                if (numVertices > maxPoints) {
+                                    console.log('Sampling point cloud from', numVertices, 'to', maxPoints, 'points');
+                                    const step = Math.floor(numVertices / maxPoints);
+                                    const sampledPoints = [];
+                                    const sampledColors = [];
+                                    for (let v = 0; v < numVertices; v += step) {
+                                        const idx = v * 3;
+                                        sampledPoints.push(pcData.points[idx], pcData.points[idx+1], pcData.points[idx+2]);
+                                        if (pcData.hasColors && pcData.colors) {
+                                            const colorIdx = v * 3;
+                                            sampledColors.push(pcData.colors[colorIdx], pcData.colors[colorIdx+1], pcData.colors[colorIdx+2]);
+                                        }
+                                    }
+                                    pcData.points = sampledPoints;
+                                    pcData.colors = sampledColors;
+                                    console.log('Sampled to', sampledPoints.length / 3, 'points');
+                                }
+                            }
+                            
+                        loadPointCloud(pcData);
+                        plyLoaded = true;
+                        console.log('Point cloud loaded successfully from:', plyUrl);
+                        break; // Success, exit the loop
+                        } catch (plyError) {
+                            console.warn('Failed to load from', plyUrl, '- Error:', plyError.message || plyError);
+                            // Try next URL
+                            continue;
                         }
-                        
-                    loadPointCloud(pcData);
-                    plyLoaded = true;
-                    console.log('Point cloud loaded successfully from:', plyUrl);
-                    break; // Success, exit the loop
-                    } catch (plyError) {
-                        console.warn('Failed to load from', plyUrl, '- Error:', plyError.message || plyError);
-                        // Try next URL
-                        continue;
                     }
                 }
                 
                 if (!plyLoaded) {
-                    console.error('Could not load PLY file from any location');
-                    alert('Warning: Could not load point cloud. Bounding boxes will be shown, but no point cloud data.');
+                    console.error('Could not load mesh or PLY file from any location');
+                    alert('Warning: Could not load geometry. Bounding boxes will be shown, but no mesh/point cloud data.');
                 }
             } catch (error) {
                 console.error('Error loading scene:', error);
