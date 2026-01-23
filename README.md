@@ -1,12 +1,16 @@
-# ScanNet Scene Graph Viewer
+# Scene Graph Viewer
 
-Interactive 3D viewer for ScanNet scene graphs with filtering and annotation capabilities.
+Interactive 3D viewer for ScanNet and MultiScan scene graphs with filtering and annotation capabilities.
 
 ## Quick Start
 
 ```bash
 # 1. Generate the viewer
-python generate_html.py
+# For ScanNet:
+python generate_html.py --dataset scannet
+
+# For MultiScan:
+python generate_html.py --dataset multiscan
 
 # 2. Start HTTP server
 python -m http.server 8000
@@ -15,9 +19,22 @@ python -m http.server 8000
 # http://localhost:8000/viewer.html
 ```
 
+## Command Line Options
+
+```bash
+python generate_html.py [OPTIONS]
+
+Options:
+  -o, --output PATH          Output HTML file path (default: viewer.html)
+  -d, --dataset DATASET      Dataset type: scannet or multiscan (default: scannet)
+  --multiscan-base PATH      Base path to multiscan data (default: data/multiscan)
+  --scene-graph-url URL      Auto-load scene graph from URL
+  --ply-url URL              Auto-load PLY file from URL
+```
+
 ## Features
 
-- **3D Visualization** - View ScanNet scenes with point clouds/meshes and bounding boxes
+- **3D Visualization** - View ScanNet and MultiScan scenes with point clouds/meshes and bounding boxes
 - **Object Filtering** - Filter objects by attributes (e.g., show only "wooden" objects)
 - **Relationship Filtering** - Filter relationships by type (e.g., "above", "below")
 - **Relationship Lines** - Click related objects to visualize connections
@@ -65,6 +82,8 @@ python -m http.server 8000
 
 ## Data Structure
 
+### ScanNet
+
 ```
 data/
   scenegraphs/scannet/
@@ -75,7 +94,21 @@ data/
       scene0000_00_vh_clean_2.ply
 ```
 
-### Scene Graph Format
+### MultiScan
+
+```
+data/
+  multiscan/
+    scene_00000_00/
+      scene_00000_00.annotations.json
+      scene_00000_00.ply
+      textured_mesh/
+        scene_00000_00.obj
+        scene_00000_00.mtl
+        *.png
+```
+
+### Scene Graph Format (ScanNet)
 
 ```json
 {
@@ -96,6 +129,25 @@ data/
   "attributes": [{
     "object_id": 0,
     "name": "wooden"
+  }]
+}
+```
+
+### Annotations Format (MultiScan)
+
+MultiScan annotations are automatically converted to scene graph format. The original format includes:
+
+```json
+{
+  "scanId": "scene_00000_00",
+  "objects": [{
+    "objectId": 1,
+    "label": "wall_cabinet.1",
+    "obb": {
+      "centroid": [x, y, z],
+      "axesLengths": [width, height, depth],
+      "normalizedAxes": [...]
+    }
   }]
 }
 ```

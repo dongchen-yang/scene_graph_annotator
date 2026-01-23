@@ -1,247 +1,4 @@
-#!/usr/bin/env python3
-"""
-Generate standalone HTML viewer for ScanNet scene graphs.
-"""
-
-import os
-import json
-from pathlib import Path
-
-
-def list_available_scenes(scenegraph_base="data/scenegraphs/scannet"):
-    """
-    List all available scenes in the scenegraph directory.
-    
-    Args:
-        scenegraph_base: Base path to scene graph data directory
-        
-    Returns:
-        List of scene IDs (e.g., ['scene0000_00', 'scene0001_00', ...])
-    """
-    base_path = Path(scenegraph_base)
-    if not base_path.exists():
-        return []
-    
-    scenes = []
-    for scene_dir in sorted(base_path.iterdir()):
-        if scene_dir.is_dir():
-            scene_graph_file = scene_dir / "scene_graph.json"
-            if scene_graph_file.exists():
-                scenes.append(scene_dir.name)
-    
-    return scenes
-
-
-def list_multiscan_scenes(multiscan_base="data/multiscan"):
-    """
-    List all available multiscan scenes that have scene graph data.
-    
-    Args:
-        multiscan_base: Base path to multiscan data directory (used for PLY files)
-        
-    Returns:
-        List of scene IDs (e.g., ['scene_00000_00', 'scene_00001_00', ...])
-    """
-    # Look for scenes in the scenegraphs directory (has proper relationships & attributes)
-    scenegraph_path = Path("data/scenegraphs/multiscan")
-    if not scenegraph_path.exists():
-        return []
-    
-    scenes = []
-    for scene_dir in sorted(scenegraph_path.iterdir()):
-        if scene_dir.is_dir() and scene_dir.name.startswith('scene_'):
-            # Check for scene_graph.json file
-            scene_graph_file = scene_dir / "scene_graph.json"
-            if scene_graph_file.exists():
-                scenes.append(scene_dir.name)
-    
-    return scenes
-
-
-def list_3rscan_scenes(rscan_base="data/3rscan/download"):
-    """
-    List all available 3RScan scenes that have scene graph data.
-    
-    Args:
-        rscan_base: Base path to 3RScan data directory (used for mesh files)
-        
-    Returns:
-        List of scene IDs (UUIDs like '02b33dfb-be2b-2d54-92d2-cd012b2b3c40')
-    """
-    # Look for scenes in the scenegraphs directory
-    scenegraph_path = Path("data/scenegraphs/3rscan")
-    if not scenegraph_path.exists():
-        return []
-    
-    scenes = []
-    for scene_dir in sorted(scenegraph_path.iterdir()):
-        if scene_dir.is_dir():
-            # 3RScan scene IDs are UUIDs (8-4-4-4-12 hex format)
-            scene_id = scene_dir.name
-            # Check for scene_graph.json file
-            scene_graph_file = scene_dir / "scene_graph.json"
-            if scene_graph_file.exists():
-                scenes.append(scene_id)
-    
-    return scenes
-
-
-PREDICATES_CACHE_FILE = Path("data/predicates_cache.json")
-
-def collect_all_predicates(force_refresh=False):
-    """
-    Collect all unique relationship predicates from all scene graphs.
-    Uses a cache file to avoid re-scanning all scenes every time.
-    
-    Args:
-        force_refresh: If True, ignore cache and rescan all scenes
-    
-    Returns:
-        Sorted list of unique predicate strings
-    """
-    # Check if cache exists and use it
-    if not force_refresh and PREDICATES_CACHE_FILE.exists():
-        try:
-            with open(PREDICATES_CACHE_FILE, 'r') as f:
-                cached = json.load(f)
-            print(f"Using cached predicates from {PREDICATES_CACHE_FILE}")
-            return cached
-        except:
-            pass
-    
-    print("Scanning all scene graphs for predicates (this may take a while)...")
-    predicates = set()
-    
-    # Collect from ScanNet scenes
-    scannet_path = Path("data/scenegraphs/scannet")
-    if scannet_path.exists():
-        for scene_dir in scannet_path.iterdir():
-            if scene_dir.is_dir():
-                sg_file = scene_dir / "scene_graph.json"
-                if sg_file.exists():
-                    try:
-                        with open(sg_file, 'r') as f:
-                            data = json.load(f)
-                        for rel in data.get('relationships', []):
-                            if rel.get('name'):
-                                predicates.add(rel['name'])
-                    except:
-                        pass
-    
-    # Collect from MultiScan scenes
-    multiscan_path = Path("data/scenegraphs/multiscan")
-    if multiscan_path.exists():
-        for scene_dir in multiscan_path.iterdir():
-            if scene_dir.is_dir():
-                sg_file = scene_dir / "scene_graph.json"
-                if sg_file.exists():
-                    try:
-                        with open(sg_file, 'r') as f:
-                            data = json.load(f)
-                        for rel in data.get('relationships', []):
-                            if rel.get('name'):
-                                predicates.add(rel['name'])
-                    except:
-                        pass
-    
-    # Collect from 3RScan scenes
-    rscan_path = Path("data/scenegraphs/3rscan")
-    if rscan_path.exists():
-        for scene_dir in rscan_path.iterdir():
-            if scene_dir.is_dir():
-                sg_file = scene_dir / "scene_graph.json"
-                if sg_file.exists():
-                    try:
-                        with open(sg_file, 'r') as f:
-                            data = json.load(f)
-                        for rel in data.get('relationships', []):
-                            if rel.get('name'):
-                                predicates.add(rel['name'])
-                    except:
-                        pass
-    
-    result = sorted(predicates)
-    
-    # Save to cache
-    try:
-        PREDICATES_CACHE_FILE.parent.mkdir(parents=True, exist_ok=True)
-        with open(PREDICATES_CACHE_FILE, 'w') as f:
-            json.dump(result, f, indent=2)
-        print(f"Cached predicates to {PREDICATES_CACHE_FILE}")
-    except Exception as e:
-        print(f"Warning: Could not cache predicates: {e}")
-    
-    return result
-
-
-def convert_multiscan_to_scenegraph(annotations_file):
-    """
-    Convert multiscan annotations format to scene graph format.
-    
-    Args:
-        annotations_file: Path to multiscan annotations.json file
-        
-    Returns:
-        Dict with scene graph format (objects, relationships, attributes)
-    """
-    with open(annotations_file, 'r') as f:
-        data = json.load(f)
-    
-    scene_id = data.get('scanId', 'unknown')
-    objects = []
-    
-    # Convert multiscan objects to scene graph objects
-    for obj in data.get('objects', []):
-        obj_id = obj.get('objectId')
-        label = obj.get('label', 'unknown')
-        obb = obj.get('obb', {})
-        
-        # Extract OBB parameters
-        centroid = obb.get('centroid', [0, 0, 0])
-        axes_lengths = obb.get('axesLengths', [1, 1, 1])
-        normalized_axes = obb.get('normalizedAxes', [1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1])
-        
-        # Convert normalized axes (3x3 matrix) to quaternion
-        # The normalized axes are stored as a flattened 4x4 matrix (row-major)
-        # Extract the 3x3 rotation matrix
-        m = normalized_axes
-        rotation_matrix = [
-            [m[0], m[1], m[2]],
-            [m[4], m[5], m[6]],
-            [m[8], m[9], m[10]]
-        ]
-        
-        # Convert rotation matrix to quaternion (simplified - assumes identity for now)
-        # For proper conversion, we'd use a full matrix to quaternion converter
-        # For now, use identity quaternion
-        rotation = [0, 0, 0, 1]  # [qx, qy, qz, qw]
-        
-        # Half dimensions (multiscan uses full lengths)
-        half_dims = [d / 2 for d in axes_lengths]
-        
-        scene_obj = {
-            'id': obj_id,
-            'labels': [label],
-            'bbox': {
-                'center': centroid,
-                'half_dims': half_dims,
-                'rotation': rotation
-            }
-        }
-        objects.append(scene_obj)
-    
-    # Create scene graph structure
-    scene_graph = {
-        'id': scene_id,
-        'objects': objects,
-        'relationships': [],  # Multiscan doesn't have relationships by default
-        'attributes': {}       # Multiscan doesn't have attributes by default
-    }
-    
-    return scene_graph
-
-
-HTML_TEMPLATE = """<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -1271,7 +1028,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
             let text, arrayBuffer;
             if (data instanceof ArrayBuffer) {
                 arrayBuffer = data;
-                // Read entire header as text (up to first \\n\\n after end_header)
+                // Read entire header as text (up to first \n\n after end_header)
                 const headerBytes = new Uint8Array(arrayBuffer, 0, Math.min(2000, arrayBuffer.byteLength));
                 let headerText = '';
                 let endHeaderFound = false;
@@ -1294,7 +1051,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
                 arrayBuffer = null;
             }
             
-            const lines = text.split('\\n');
+            const lines = text.split('\n');
             let vertexCount = 0;
             let faceCount = 0;
             let headerEnd = 0;
@@ -1374,7 +1131,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
                 }
                 if (line === 'end_header') {
                     headerEnd = i + 1;
-                    // Calculate header length in bytes - find the byte position after end_header\\n
+                    // Calculate header length in bytes - find the byte position after end_header\n
                     if (arrayBuffer) {
                         // Search for "end_header" followed by newline in the raw bytes
                         const headerBytes = new Uint8Array(arrayBuffer, 0, Math.min(2000, arrayBuffer.byteLength));
@@ -1389,7 +1146,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
                                 }
                             }
                             if (match && headerBytes[j + endHeaderStr.length] === 10) {
-                                // Found "end_header\\n", header ends at j + endHeaderStr.length + 1
+                                // Found "end_header\n", header ends at j + endHeaderStr.length + 1
                                 headerLength = j + endHeaderStr.length + 1;
                                 foundEnd = true;
                                 break;
@@ -1397,7 +1154,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
                         }
                         if (!foundEnd) {
                             // Fallback: calculate from text
-                            const headerTextUpToEnd = lines.slice(0, i + 1).join('\\n') + '\\n';
+                            const headerTextUpToEnd = lines.slice(0, i + 1).join('\n') + '\n';
                             headerLength = new TextEncoder().encode(headerTextUpToEnd).length;
                         }
                     }
@@ -1434,7 +1191,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
         }
         
         function parseASCIIPLY(text, headerEnd, vertexCount, faceCount, hasColors) {
-            const lines = text.split('\\n');
+            const lines = text.split('\n');
             const points = [];
             const colors = [];
             const indices = [];
@@ -1443,7 +1200,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
             const dataLines = lines.slice(headerEnd, headerEnd + vertexCount);
             dataLines.forEach(line => {
                 if (!line.trim()) return;
-                const parts = line.trim().split(/\\s+/);
+                const parts = line.trim().split(/\s+/);
                 if (parts.length >= 3) {
                     let x = parseFloat(parts[0]);
                     let y = parseFloat(parts[1]);
@@ -1475,7 +1232,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
                 const maxVertex = (points.length / 3) - 1;
                 faceLines.forEach(line => {
                     if (!line.trim()) return;
-                    const parts = line.trim().split(/\\s+/);
+                    const parts = line.trim().split(/\s+/);
                     const numVerts = parseInt(parts[0]);
                     if (numVerts === 3 && parts.length >= 4) {
                         // Triangle - validate indices
@@ -1841,6 +1598,9 @@ HTML_TEMPLATE = """<!DOCTYPE html>
         let currentSceneId = null;
         let currentDataset = 'scannet'; // 'scannet', 'multiscan', or '3rscan'
         
+
+        availableScenes = ["02b33dfb-be2b-2d54-92d2-cd012b2b3c40", "02b33e01-be2b-2d54-93fb-4145a709cec5", "095821f7-e2c2-2de1-9568-b9ce59920e29", "0958220d-e2c2-2de1-9710-c37018da1883", "09582212-e2c2-2de1-9700-fa44b14fbded", "09582225-e2c2-2de1-9564-f6681ef5e511", "09582244-e2c2-2de1-956c-357092d949d1", "0958224e-e2c2-2de1-943b-38e36345e2e7", "0988ea72-eb32-2e61-8344-99e2283c2728", "0ad2d382-79e2-2212-98b3-641bf9d552c1", "scene0000_00", "scene0001_00", "scene0002_00", "scene0003_00", "scene0004_00", "scene0005_00", "scene0006_00", "scene0007_00", "scene0008_00", "scene0009_00"];
+        allPredicates = ["above", "below", "contains", "embedded in", "embeds", "far from", "hanging on", "has", "higher than", "in", "in between", "in center of", "in corner of", "inside", "is aligned with", "leaning on", "lower than", "near", "next to", "of", "on", "over", "supports", "under"];
         // Detect dataset from scene ID pattern
         function getDatasetFromSceneId(sceneId) {
             // MultiScan scenes use underscore after "scene": scene_00000_00
@@ -3774,216 +3534,3 @@ HTML_TEMPLATE = """<!DOCTYPE html>
     </script>
 </body>
 </html>
-"""
-
-
-def generate_html(output_path="viewer.html", scene_graph_url=None, ply_url=None, 
-                  scenegraph_base="data/scenegraphs/scannet",
-                  multiscan_base="data/multiscan",
-                  rscan_base="data/3rscan/download",
-                  refresh_predicates=False,
-                  max_scannet_scenes=None,
-                  max_multiscan_scenes=None,
-                  max_rscan_scenes=None):
-    """
-    Generate the standalone HTML viewer file with ScanNet, MultiScan, and 3RScan datasets.
-    
-    Args:
-        output_path: Path where to save the HTML file
-        scene_graph_url: Optional URL/path to scene graph JSON (auto-loads if provided)
-        ply_url: Optional URL/path to PLY file (auto-loads if provided)
-        scenegraph_base: Base path to scene graph data directory
-        multiscan_base: Base path to multiscan data directory
-        rscan_base: Base path to 3RScan data directory
-        max_scannet_scenes: Optional limit on number of ScanNet scenes to include
-        max_multiscan_scenes: Optional limit on number of MultiScan scenes to include
-        max_rscan_scenes: Optional limit on number of 3RScan scenes to include
-    """
-    output_path = Path(output_path)
-    
-    # Get available scenes from ALL datasets
-    scannet_scenes = list_available_scenes(scenegraph_base)
-    multiscan_scenes = list_multiscan_scenes(multiscan_base)
-    rscan_scenes = list_3rscan_scenes(rscan_base)
-    
-    # Apply limits if specified
-    if max_scannet_scenes is not None:
-        scannet_scenes = sorted(scannet_scenes)[:max_scannet_scenes]
-    if max_multiscan_scenes is not None:
-        multiscan_scenes = sorted(multiscan_scenes)[:max_multiscan_scenes]
-    if max_rscan_scenes is not None:
-        rscan_scenes = sorted(rscan_scenes)[:max_rscan_scenes]
-    
-    # Combine all scenes into a single sorted list
-    all_scenes = sorted(scannet_scenes + multiscan_scenes + rscan_scenes)
-    
-    # Collect all unique predicates from all scene graphs (uses cache if available)
-    all_predicates = collect_all_predicates(force_refresh=refresh_predicates)
-    print(f"Found {len(all_predicates)} unique predicates")
-    
-    # Modify template
-    template = HTML_TEMPLATE
-    
-    # Embed scene list and predicates as JavaScript
-    scenes_json = json.dumps(all_scenes)
-    predicates_json = json.dumps(all_predicates)
-    scenes_script = f'\n        availableScenes = {scenes_json};\n        allPredicates = {predicates_json};\n'
-    
-    # Insert scene list after global variables declaration  
-    global_vars_marker = '        // Detect dataset from scene ID pattern\n        function getDatasetFromSceneId'
-    if global_vars_marker in template:
-        template = template.replace(global_vars_marker, 
-                                   scenes_script + global_vars_marker)
-    else:
-        # Fallback: insert before Initialize Three.js comment
-        template = template.replace('        // Initialize Three.js', 
-                                   scenes_script + '        // Initialize Three.js')
-    
-    if scene_graph_url or ply_url:
-        # Add auto-load functionality
-        auto_load_script = """
-        // Auto-load files if URLs provided
-        (async function() {
-            const sceneGraphUrl = """ + (f'"{scene_graph_url}"' if scene_graph_url else 'null') + """;
-            const plyUrl = """ + (f'"{ply_url}"' if ply_url else 'null') + """;
-            
-            if (sceneGraphUrl) {
-                try {
-                    const response = await fetch(sceneGraphUrl);
-                    const text = await response.text();
-                    sceneGraphData = JSON.parse(text);
-                    document.getElementById('sg-status').textContent = `Loaded: ${sceneGraphUrl}`;
-                    document.getElementById('sg-status').className = 'file-status loaded';
-                    updateSceneInfo();
-                    loadBoundingBoxes();
-                    updateObjectsList();
-                } catch (error) {
-                    console.error('Error loading scene graph:', error);
-                    document.getElementById('sg-status').textContent = `Error loading: ${error.message}`;
-                }
-            }
-            
-            if (plyUrl) {
-                try {
-                    const response = await fetch(plyUrl);
-                    const arrayBuffer = await response.arrayBuffer();
-                    const pcData = await parsePLY(arrayBuffer);
-                    
-                    // Sample if too many points (only if no faces, as sampling would break face indices)
-                    if (!pcData.hasFaces) {
-                        const maxPoints = 200000;
-                        const numVertices = pcData.points.length / 3;
-                        if (numVertices > maxPoints) {
-                            console.log('Sampling point cloud from', numVertices, 'to', maxPoints, 'points');
-                            const step = Math.floor(numVertices / maxPoints);
-                            const sampledPoints = [];
-                            const sampledColors = [];
-                            for (let v = 0; v < numVertices; v += step) {
-                                const idx = v * 3;
-                                sampledPoints.push(pcData.points[idx], pcData.points[idx+1], pcData.points[idx+2]);
-                                if (pcData.hasColors && pcData.colors) {
-                                    const colorIdx = v * 3;
-                                    sampledColors.push(pcData.colors[colorIdx], pcData.colors[colorIdx+1], pcData.colors[colorIdx+2]);
-                                }
-                            }
-                            pcData.points = sampledPoints;
-                            pcData.colors = sampledColors;
-                            console.log('Sampled to', sampledPoints.length / 3, 'points');
-                        }
-                    }
-                    
-                    loadPointCloud(pcData);
-                    document.getElementById('ply-status').textContent = `Loaded: ${plyUrl}`;
-                    document.getElementById('ply-status').className = 'file-status loaded';
-                } catch (error) {
-                    console.error('Error loading PLY:', error);
-                    document.getElementById('ply-status').textContent = `Error loading: ${error.message}`;
-                }
-            }
-        })();
-"""
-        
-        # Insert before initViewer() call - find the exact marker with actual newline
-        init_marker = '        // Initialize\n        initViewer();'
-        if init_marker in template:
-            template = template.replace(init_marker, auto_load_script + init_marker)
-        else:
-            # Fallback: insert before closing script tag
-            template = template.replace('    </script>', auto_load_script + '    </script>')
-    
-    with open(output_path, 'w', encoding='utf-8') as f:
-        f.write(template)
-    
-    print(f"Generated HTML viewer: {output_path.absolute()}")
-    print(f"Found {len(scannet_scenes)} ScanNet scenes, {len(multiscan_scenes)} MultiScan scenes, {len(rscan_scenes)} 3RScan scenes ({len(all_scenes)} total)")
-    if scene_graph_url or ply_url:
-        print(f"Auto-loading configured:")
-        if scene_graph_url:
-            print(f"  Scene graph: {scene_graph_url}")
-        if ply_url:
-            print(f"  PLY file: {ply_url}")
-        print("Note: Auto-loading only works when HTML is served via HTTP (not file://)")
-    else:
-        print("Open this file in your browser to use the viewer.")
-        print("Note: To load scenes, serve the HTML via HTTP (e.g., python -m http.server)")
-        print("      Scenes will be listed and clickable when served via HTTP.")
-
-
-if __name__ == "__main__":
-    import argparse
-    
-    parser = argparse.ArgumentParser(description="Generate standalone HTML viewer for scene graphs (supports ScanNet, MultiScan, and 3RScan)")
-    parser.add_argument(
-        "--output", "-o",
-        default="viewer.html",
-        help="Output HTML file path (default: viewer.html)"
-    )
-    parser.add_argument(
-        "--scene-graph-url",
-        help="URL/path to scene graph JSON file (auto-loads when HTML is served via HTTP)"
-    )
-    parser.add_argument(
-        "--ply-url",
-        help="URL/path to PLY file (auto-loads when HTML is served via HTTP)"
-    )
-    parser.add_argument(
-        "--multiscan-base",
-        default="data/multiscan",
-        help="Base path to multiscan data directory (default: data/multiscan)"
-    )
-    parser.add_argument(
-        "--3rscan-base",
-        dest="rscan_base",
-        default="data/3rscan/download",
-        help="Base path to 3RScan data directory (default: data/3rscan/download)"
-    )
-    parser.add_argument(
-        "--refresh-predicates",
-        action="store_true",
-        help="Force refresh the predicates cache (rescan all scene graphs)"
-    )
-    parser.add_argument(
-        "--max-scannet-scenes",
-        type=int,
-        help="Maximum number of ScanNet scenes to include"
-    )
-    parser.add_argument(
-        "--max-multiscan-scenes",
-        type=int,
-        help="Maximum number of MultiScan scenes to include"
-    )
-    parser.add_argument(
-        "--max-rscan-scenes",
-        type=int,
-        help="Maximum number of 3RScan scenes to include"
-    )
-    
-    args = parser.parse_args()
-    generate_html(args.output, args.scene_graph_url, args.ply_url, 
-                  multiscan_base=args.multiscan_base,
-                  rscan_base=args.rscan_base,
-                  refresh_predicates=args.refresh_predicates,
-                  max_scannet_scenes=args.max_scannet_scenes,
-                  max_multiscan_scenes=args.max_multiscan_scenes,
-                  max_rscan_scenes=args.max_rscan_scenes)
-
