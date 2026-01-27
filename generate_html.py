@@ -1205,7 +1205,11 @@ HTML_TEMPLATE = """<!DOCTYPE html>
                 <button class="mode-btn" id="mode-relationship" onclick="setAnnotationMode('relationship')">Relationship</button>
             </div>
             <div id="annotation-info" style="font-size: 11px; color: #ccc; margin-top: 5px; display: none;"></div>
-            <button id="export-annotations" style="margin-top: 5px; padding: 5px 10px;">Export All Annotations</button>
+            <div style="margin-top: 5px; display: flex; gap: 5px;">
+                <button id="export-annotations" style="padding: 5px 10px;">Export Annotations</button>
+                <button id="load-annotations" style="padding: 5px 10px;">Load Annotations</button>
+            </div>
+            <input type="file" id="annotations-file" accept=".json" style="display: none;">
         </div>
     </div>
 
@@ -2859,6 +2863,87 @@ HTML_TEMPLATE = """<!DOCTYPE html>
             URL.revokeObjectURL(url);
         }
         
+        function loadAnnotations() {
+            const fileInput = document.getElementById('annotations-file');
+            fileInput.click();
+        }
+        
+        function processAnnotationFile(file) {
+            if (!file) return;
+            
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                try {
+                    const data = JSON.parse(e.target.result);
+                    
+                    // Check if the scene matches (optional warning)
+                    if (data.scene_id && sceneGraphData && data.scene_id !== sceneGraphData.id) {
+                        if (!confirm(`Warning: This annotation file is for scene "${data.scene_id}" but you have "${sceneGraphData.id}" loaded.\n\nLoad annotations anyway?`)) {
+                            return;
+                        }
+                    }
+                    
+                    // Load similarity annotations
+                    if (data.similarity && data.similarity.annotations) {
+                        similarityAnnotations = data.similarity.annotations;
+                        console.log(`Loaded ${similarityAnnotations.length} similarity annotations`);
+                    }
+                    
+                    // Load attribute validations
+                    if (data.attributes) {
+                        if (data.attributes.predicted && data.attributes.predicted.items) {
+                            attributeValidations = {};
+                            data.attributes.predicted.items.forEach(attr => {
+                                if (attr.validation) {
+                                    attributeValidations[attr.id] = attr.validation;
+                                }
+                            });
+                            console.log(`Loaded ${Object.keys(attributeValidations).length} attribute validations`);
+                        }
+                        
+                        if (data.attributes.added) {
+                            additionalAttributes = data.attributes.added;
+                            console.log(`Loaded ${additionalAttributes.length} additional attributes`);
+                        }
+                    }
+                    
+                    // Load relationship validations
+                    if (data.relationships) {
+                        if (data.relationships.predicted && data.relationships.predicted.items) {
+                            relationshipValidations = {};
+                            data.relationships.predicted.items.forEach(rel => {
+                                if (rel.validation) {
+                                    relationshipValidations[rel.index] = rel.validation;
+                                }
+                            });
+                            console.log(`Loaded ${Object.keys(relationshipValidations).length} relationship validations`);
+                        }
+                        
+                        if (data.relationships.added) {
+                            additionalRelationships = data.relationships.added;
+                            console.log(`Loaded ${additionalRelationships.length} additional relationships`);
+                        }
+                    }
+                    
+                    // Update the UI
+                    updateObjectsList();
+                    updateRelationshipsDisplay(selectedObjectId);
+                    updateValidationStats();
+                    
+                    alert(`Annotations loaded successfully!\n\nScene: ${data.scene_id || 'unknown'}\nTimestamp: ${data.timestamp || 'unknown'}`);
+                    
+                } catch (error) {
+                    console.error('Error loading annotations:', error);
+                    alert('Error loading annotation file: ' + error.message);
+                }
+                
+                // Reset file input
+                fileInput.value = '';
+            };
+            
+            reader.readAsText(file);
+        }
+        
         function clearAttributeValidations() {
             attributeValidations = {};
             additionalAttributes = [];
@@ -3112,11 +3197,8 @@ HTML_TEMPLATE = """<!DOCTYPE html>
             
             const relationships = sceneGraphData.relationships || [];
 
-            // Find relationships where this object is the subject or recipient
+            // Find relationships where this object is the subject (outgoing only, no incoming since they're reciprocal)
             let outgoing = relationships.filter(rel => rel.subject_id === objectId);
-            let incoming = relationships.filter(rel => 
-                rel.recipient_id && rel.recipient_id.includes(objectId)
-            );
             
             // Separate "in between" relationships - only when selected object is the middle node
             let inBetween = [];
@@ -3130,11 +3212,6 @@ HTML_TEMPLATE = """<!DOCTYPE html>
             // Remove "in between" from outgoing
             outgoing = outgoing.filter(rel => !outgoingBetween.includes(rel));
             
-            // Remove "in between" from incoming as well
-            incoming = incoming.filter(rel => 
-                !(rel.name.toLowerCase().includes('between') && rel.recipient_id && rel.recipient_id.length >= 2)
-            );
-            
             // Get added relationships for this object
             const addedRels = additionalRelationships.filter(rel => 
                 rel.subject_id === objectId || rel.object_id === objectId
@@ -3143,11 +3220,10 @@ HTML_TEMPLATE = """<!DOCTYPE html>
             // Apply relationship type filters
             if (selectedRelTypeFilters.size > 0) {
                 outgoing = outgoing.filter(rel => selectedRelTypeFilters.has(rel.name));
-                incoming = incoming.filter(rel => selectedRelTypeFilters.has(rel.name));
                 inBetween = inBetween.filter(rel => selectedRelTypeFilters.has(rel.name));
             }
 
-            const hasRelationships = outgoing.length > 0 || incoming.length > 0 || inBetween.length > 0 || addedRels.length > 0;
+            const hasRelationships = outgoing.length > 0 || inBetween.length > 0 || addedRels.length > 0;
             
             if (!hasRelationships) {
                 const msg = selectedRelTypeFilters.size > 0 
@@ -3161,10 +3237,8 @@ HTML_TEMPLATE = """<!DOCTYPE html>
             
             // Show filter status if filters are active
             if (selectedRelTypeFilters.size > 0) {
-                const totalAll = relationships.filter(rel => 
-                    rel.subject_id === objectId || (rel.recipient_id && rel.recipient_id.includes(objectId))
-                ).length;
-                const totalDisplayed = outgoing.length + incoming.length + inBetween.length;
+                const totalAll = relationships.filter(rel => rel.subject_id === objectId).length;
+                const totalDisplayed = outgoing.length + inBetween.length;
                 
                 html += `<div style="padding: 8px; font-size: 11px; color: #666; background: #f0f0f0; border-radius: 3px; margin-bottom: 8px;">
                     Showing ${totalDisplayed} of ${totalAll} relationships
@@ -3191,7 +3265,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
             }
             
             if (outgoing.length > 0) {
-                html += '<div style="font-weight: bold; margin-bottom: 5px; font-size: 12px;">Outgoing:</div>';
+                html += '<div style="font-weight: bold; margin-bottom: 5px; font-size: 12px;">Relationships:</div>';
                 outgoing.forEach(rel => {
                     const relIndex = relationships.indexOf(rel);
                     const targetIds = rel.recipient_id || [];
@@ -3211,27 +3285,6 @@ HTML_TEMPLATE = """<!DOCTYPE html>
                             ${getRelValidationButtons(relIndex)}
                         </div>`;
                     });
-                });
-            }
-
-            if (incoming.length > 0) {
-                html += '<div style="font-weight: bold; margin: 10px 0 5px 0; font-size: 12px;">Incoming:</div>';
-                incoming.forEach(rel => {
-                    const relIndex = relationships.indexOf(rel);
-                    const sourceObj = sceneGraphData.objects.find(o => o.id === rel.subject_id);
-                    const sourceLabel = sourceObj ? (sourceObj.labels[0] || `Object ${rel.subject_id}`) : `Object ${rel.subject_id}`;
-                    let style = '';
-                    if (highlightedObjectIds.has(rel.subject_id)) {
-                        const color = highlightedObjectIds.get(rel.subject_id);
-                        style = `style="background: ${color.css}; color: white; font-weight: bold; border: 2px solid ${color.border}; padding: 2px 6px; border-radius: 3px; box-shadow: 0 2px 4px rgba(0,0,0,0.2);"`;
-                    }
-                    html += `<div class="relationship-item ${getRelValidationClass(relIndex)}">
-                        <span style="color: #666;">←</span>
-                        <span class="rel-name"> ${rel.name} </span>
-                        <span style="color: #666;">←</span>
-                        <span class="rel-target" ${style} onclick="highlightRelatedObject(${rel.subject_id})">${sourceLabel}</span>
-                        ${getRelValidationButtons(relIndex)}
-                    </div>`;
                 });
             }
             
@@ -3617,6 +3670,16 @@ HTML_TEMPLATE = """<!DOCTYPE html>
         document.getElementById('export-annotations').addEventListener('click', () => {
             exportAnnotations();
         });
+        
+        document.getElementById('load-annotations').addEventListener('click', () => {
+            loadAnnotations();
+        });
+        
+        document.getElementById('annotations-file').addEventListener('change', (e) => {
+            if (e.target.files.length > 0) {
+                processAnnotationFile(e.target.files[0]);
+            }
+        });
 
         document.getElementById('show-points').addEventListener('change', (e) => {
             if (pointCloud) {
@@ -3725,6 +3788,9 @@ HTML_TEMPLATE = """<!DOCTYPE html>
                     (sceneGraphData.objects || []).length, 'objects,',
                     (sceneGraphData.relationships || []).length, 'relationships,',
                     (sceneGraphData.attributes || []).length, 'attributes');
+                console.log('DEBUG - First 3 object IDs:', sceneGraphData.objects.slice(0, 3).map(o => o.id));
+                console.log('DEBUG - First relationship:', sceneGraphData.relationships[0]);
+                console.log('DEBUG - URL loaded from:', sgUrl);
                 
                 // Clear filters when loading new scene
                 selectedAttributeFilters.clear();
