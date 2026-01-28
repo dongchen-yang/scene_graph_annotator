@@ -13,7 +13,7 @@ from collections import defaultdict
 
 def sample_objects(objects, num_objects, seed=42):
     """
-    Sample a subset of objects, prioritizing targetable objects.
+    Sample a subset of objects, prioritizing <AGENT> and targetable objects.
     
     Args:
         objects: List of object dictionaries
@@ -25,20 +25,33 @@ def sample_objects(objects, num_objects, seed=42):
     """
     random.seed(seed)
     
-    # Separate targetable and non-targetable objects
-    targetable = [obj for obj in objects if obj.get('is_targetable', True)]
-    non_targetable = [obj for obj in objects if not obj.get('is_targetable', True)]
+    # ALWAYS include <AGENT> objects (high priority)
+    agent_objects = [obj for obj in objects if '<AGENT>' in obj.get('labels', [])]
     
-    # Prioritize targetable objects
-    if len(targetable) >= num_objects:
-        sampled = random.sample(targetable, num_objects)
-    else:
+    # Separate targetable and non-targetable objects (excluding agents already selected)
+    agent_ids = set(obj['id'] for obj in agent_objects)
+    remaining_objects = [obj for obj in objects if obj['id'] not in agent_ids]
+    
+    targetable = [obj for obj in remaining_objects if obj.get('is_targetable', True)]
+    non_targetable = [obj for obj in remaining_objects if not obj.get('is_targetable', True)]
+    
+    # Calculate how many more objects we need after including agents
+    remaining_slots = max(0, num_objects - len(agent_objects))
+    
+    # Sample from remaining objects
+    if remaining_slots == 0:
+        # If we already have enough agents, just use those
+        sampled = agent_objects
+    elif len(targetable) >= remaining_slots:
+        # Sample from targetable objects
+        sampled = agent_objects + random.sample(targetable, remaining_slots)
+    elif len(targetable) + len(non_targetable) >= remaining_slots:
         # Take all targetable + sample from non-targetable
-        remaining = num_objects - len(targetable)
-        if remaining <= len(non_targetable):
-            sampled = targetable + random.sample(non_targetable, remaining)
-        else:
-            sampled = objects[:num_objects]  # Take first N if not enough
+        needed_from_non_targetable = remaining_slots - len(targetable)
+        sampled = agent_objects + targetable + random.sample(non_targetable, needed_from_non_targetable)
+    else:
+        # Take all available objects
+        sampled = objects[:num_objects]
     
     return sorted([obj['id'] for obj in sampled])
 
@@ -57,9 +70,15 @@ def filter_scene_graph(scene_graph_path, output_path, num_objects, seed=42):
     original_relationships = len(data.get('relationships', []))
     original_attributes = len(data.get('attributes', []))
     
+    # Count AGENT objects
+    agent_count = sum(1 for obj in data['objects'] if '<AGENT>' in obj.get('labels', []))
+    
     # Sample objects
     sampled_object_ids = sample_objects(data['objects'], min(num_objects, len(data['objects'])), seed)
     sampled_object_ids_set = set(sampled_object_ids)
+    
+    # Verify all AGENT objects were included
+    sampled_agent_count = sum(1 for obj in data['objects'] if obj['id'] in sampled_object_ids_set and '<AGENT>' in obj.get('labels', []))
     
     # Filter objects
     filtered_objects = [obj for obj in data['objects'] if obj['id'] in sampled_object_ids_set]
@@ -106,7 +125,9 @@ def filter_scene_graph(scene_graph_path, output_path, num_objects, seed=42):
         'original_attributes': original_attributes,
         'sampled_attributes': len(filtered_attributes),
         'reduction_relationships': original_relationships - len(filtered_relationships),
-        'reduction_percentage': ((original_relationships - len(filtered_relationships)) / original_relationships * 100) if original_relationships > 0 else 0
+        'reduction_percentage': ((original_relationships - len(filtered_relationships)) / original_relationships * 100) if original_relationships > 0 else 0,
+        'agent_objects': agent_count,
+        'sampled_agent_objects': sampled_agent_count
     }
 
 
@@ -170,6 +191,8 @@ def print_statistics(all_stats):
     total_sampled_rels = sum(s['sampled_relationships'] for s in all_stats)
     total_original_attrs = sum(s['original_attributes'] for s in all_stats)
     total_sampled_attrs = sum(s['sampled_attributes'] for s in all_stats)
+    total_agent_objects = sum(s['agent_objects'] for s in all_stats)
+    total_sampled_agents = sum(s['sampled_agent_objects'] for s in all_stats)
     
     print("\n" + "="*70)
     print("SAMPLING STATISTICS")
@@ -179,6 +202,12 @@ def print_statistics(all_stats):
     print(f"  Original: {total_original_objects:,} ({total_original_objects/len(all_stats):.1f} avg per scene)")
     print(f"  Sampled:  {total_sampled_objects:,} ({total_sampled_objects/len(all_stats):.1f} avg per scene)")
     print(f"  Reduction: {total_original_objects - total_sampled_objects:,} ({(total_original_objects - total_sampled_objects)/total_original_objects*100:.1f}%)")
+    
+    print(f"\n<AGENT> Objects (always included):")
+    print(f"  Found in data: {total_agent_objects:,}")
+    print(f"  Included in samples: {total_sampled_agents:,}")
+    if total_agent_objects > 0:
+        print(f"  Inclusion rate: {total_sampled_agents/total_agent_objects*100:.1f}%")
     
     print(f"\nRelationships:")
     print(f"  Original: {total_original_rels:,} ({total_original_rels/len(all_stats):.1f} avg per scene)")
@@ -217,7 +246,7 @@ def main():
         '--input-dir',
         type=str,
         default='data/scenegraphs',
-        help='Input directory containing scene graphs (default: data/scenegraphs)'
+        help='Input directory containing scene graphs (default: data/scenegraphs, can use data/scenegraphs_augmented)'
     )
     parser.add_argument(
         '--output-dir',

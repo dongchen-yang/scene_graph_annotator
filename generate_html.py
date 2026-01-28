@@ -1197,6 +1197,13 @@ HTML_TEMPLATE = """<!DOCTYPE html>
             <label id="point-size-control" style="display: none;">Point Size: <input type="range" id="point-size" min="0.1" max="30" step="0.1" value="8.0">
                 <span id="point-size-value">8.0</span></label>
             <hr style="margin: 10px 0; border-color: #555;">
+            <div style="font-size: 12px; margin-bottom: 5px;">Vertical Pan (Z-axis):</div>
+            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 10px;">
+                <input type="range" id="camera-height" min="-20" max="20" step="0.1" value="0" style="flex: 1;">
+                <span id="camera-height-value" style="min-width: 45px; font-size: 11px;">0.0</span>
+            </div>
+            <div style="font-size: 10px; color: #888; margin-bottom: 8px;">Keys: Q (up) / E (down) | Shift for faster</div>
+            <hr style="margin: 10px 0; border-color: #555;">
             <div style="font-size: 12px; margin-bottom: 5px;">Annotation Mode:</div>
             <div id="annotation-mode-buttons" style="display: flex; gap: 4px; flex-wrap: wrap;">
                 <button class="mode-btn" id="mode-none" onclick="setAnnotationMode(null)">Off</button>
@@ -1847,6 +1854,13 @@ HTML_TEMPLATE = """<!DOCTYPE html>
         let currentSceneId = null;
         let currentDataset = 'scannet'; // 'scannet', 'multiscan', or '3rscan'
         
+        // Helper function to escape HTML special characters
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+        
         // Detect dataset from scene ID pattern
         function getDatasetFromSceneId(sceneId) {
             // MultiScan scenes use underscore after "scene": scene_00000_00
@@ -1945,6 +1959,48 @@ HTML_TEMPLATE = """<!DOCTYPE html>
                 camera.aspect = width / height;
                 camera.updateProjectionMatrix();
                 renderer.setSize(width, height);
+            });
+
+            // Camera height control with slider - implements vertical pan
+            const cameraHeightSlider = document.getElementById('camera-height');
+            const cameraHeightValue = document.getElementById('camera-height-value');
+            let verticalOffset = 0;
+            let initialCameraZ = 0;
+            let initialTargetZ = 0;
+            
+            function updateCameraHeight(deltaZ) {
+                // Move both camera and target vertically (vertical pan)
+                verticalOffset += deltaZ;
+                camera.position.z = initialCameraZ + verticalOffset;
+                controls.target.z = initialTargetZ + verticalOffset;
+                controls.update();
+                
+                cameraHeightSlider.value = verticalOffset;
+                cameraHeightValue.textContent = verticalOffset.toFixed(1);
+            }
+            
+            cameraHeightSlider.addEventListener('input', (e) => {
+                const offset = parseFloat(e.target.value);
+                const deltaZ = offset - verticalOffset;
+                updateCameraHeight(deltaZ);
+            });
+            
+            // Keyboard controls for vertical camera movement (Q = up, E = down)
+            window.addEventListener('keydown', (e) => {
+                // Don't interfere with text input
+                if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.tagName === 'SELECT') {
+                    return;
+                }
+                
+                const heightStep = e.shiftKey ? 0.3 : 0.1; // Fine control
+                
+                if (e.key === 'q' || e.key === 'Q') {
+                    updateCameraHeight(heightStep);
+                    e.preventDefault();
+                } else if (e.key === 'e' || e.key === 'E') {
+                    updateCameraHeight(-heightStep);
+                    e.preventDefault();
+                }
             });
 
             animate();
@@ -2304,6 +2360,18 @@ HTML_TEMPLATE = """<!DOCTYPE html>
                 // Position camera for Z-up: elevated in Z, offset in X and Y
                 camera.position.set(center.x + distance, center.y + distance * 0.7, center.z + distance * 0.5);
                 controls.update();
+                
+                // Reset vertical offset and store initial positions
+                verticalOffset = 0;
+                initialCameraZ = camera.position.z;
+                initialTargetZ = controls.target.z;
+                const cameraHeightSlider = document.getElementById('camera-height');
+                const cameraHeightValue = document.getElementById('camera-height-value');
+                if (cameraHeightSlider && cameraHeightValue) {
+                    cameraHeightSlider.value = 0;
+                    cameraHeightValue.textContent = '0.0';
+                }
+                
                 console.log('Camera set to:', camera.position.x.toFixed(2), camera.position.y.toFixed(2), camera.position.z.toFixed(2));
                 console.log('Looking at:', center.x.toFixed(2), center.y.toFixed(2), center.z.toFixed(2));
             } else {
@@ -2438,7 +2506,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
                                     </span>` : '';
                             attributesHTML += `
                                 <span class="attribute-tag ${validationClass}" data-attr-id="${attr.id}">
-                                    <span class="attr-name">${attr.name}</span>
+                                    <span class="attr-name">${escapeHtml(attr.name)}</span>
                                     ${validationBtnsHTML}
                                 </span>`;
                         });
@@ -2455,7 +2523,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
                             `<button class="attr-delete-btn" onclick="deleteAnnotatedAttribute('${attr.id}', event)" title="Remove">×</button>` : '';
                         attributesHTML += `
                             <span class="attribute-tag annotated-added" data-annotated-attr-id="${attr.id}">
-                                <span class="attr-name">${attr.name}</span>
+                                <span class="attr-name">${escapeHtml(attr.name)}</span>
                                 ${deleteBtnHTML}
                             </span>`;
                     });
@@ -2476,7 +2544,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
                 
                 div.innerHTML = `
                     <div class="object-id">Object ${obj.id}</div>
-                    <div class="object-labels">${obj.labels ? obj.labels.join(', ') : 'No labels'}</div>
+                    <div class="object-labels">${obj.labels ? obj.labels.map(l => escapeHtml(l)).join(', ') : 'No labels'}</div>
                     ${hasAttributes ? attributesHTML : '<div class="object-attributes"><em style="color: #999;">No attributes</em></div>'}
                     ${addAttrHTML}
                 `;
@@ -2703,7 +2771,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
                     html += `<div class="annotation-item">
                         <div>
                             <span style="color: ${ann.sameClass ? '#4caf50' : '#ff9800'};">${icon}</span>
-                            <strong>${ann.label1}</strong> ↔ <strong>${ann.label2}</strong>
+                            <strong>${escapeHtml(ann.label1)}</strong> ↔ <strong>${escapeHtml(ann.label2)}</strong>
                             <div style="font-size: 9px; color: #999;">${classInfo}</div>
                         </div>
                         <button class="delete-btn" onclick="deleteAnnotation(${idx})">×</button>
@@ -3271,7 +3339,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
                     const targetIds = rel.recipient_id || [];
                     targetIds.forEach(targetId => {
                         const targetObj = sceneGraphData.objects.find(o => o.id === targetId);
-                        const targetLabel = targetObj ? (targetObj.labels[0] || `Object ${targetId}`) : `Object ${targetId}`;
+                        const targetLabel = targetObj ? escapeHtml(targetObj.labels[0] || `Object ${targetId}`) : `Object ${targetId}`;
                         let style = '';
                         if (highlightedObjectIds.has(targetId)) {
                             const color = highlightedObjectIds.get(targetId);
@@ -3298,8 +3366,8 @@ HTML_TEMPLATE = """<!DOCTYPE html>
                     const target1Obj = sceneGraphData.objects.find(o => o.id === targetIds[0]);
                     const target2Obj = sceneGraphData.objects.find(o => o.id === targetIds[1]);
                     
-                    const target1Label = target1Obj ? (target1Obj.labels[0] || `Object ${targetIds[0]}`) : `Object ${targetIds[0]}`;
-                    const target2Label = target2Obj ? (target2Obj.labels[0] || `Object ${targetIds[1]}`) : `Object ${targetIds[1]}`;
+                    const target1Label = target1Obj ? escapeHtml(target1Obj.labels[0] || `Object ${targetIds[0]}`) : `Object ${targetIds[0]}`;
+                    const target2Label = target2Obj ? escapeHtml(target2Obj.labels[0] || `Object ${targetIds[1]}`) : `Object ${targetIds[1]}`;
                     
                     let style1 = '';
                     let style2 = '';
@@ -3336,7 +3404,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
                 addedRels.forEach(rel => {
                     const otherObjId = rel.subject_id === objectId ? rel.object_id : rel.subject_id;
                     const otherObj = sceneGraphData.objects.find(o => o.id === otherObjId);
-                    const otherLabel = otherObj ? (otherObj.labels[0] || `Object ${otherObjId}`) : `Object ${otherObjId}`;
+                    const otherLabel = otherObj ? escapeHtml(otherObj.labels[0] || `Object ${otherObjId}`) : `Object ${otherObjId}`;
                     const direction = rel.subject_id === objectId ? '→' : '←';
                     
                     // Only show delete button in relationship mode
@@ -3365,7 +3433,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
             // Build object options
             const objectOptions = sceneGraphData.objects
                 .filter(o => o.id !== objectId)
-                .map(o => `<option value="${o.id}">${o.labels[0] || 'Object ' + o.id} (${o.id})</option>`)
+                .map(o => `<option value="${o.id}">${escapeHtml(o.labels[0] || 'Object ' + o.id)} (${o.id})</option>`)
                 .join('');
             
             // Use global predicates list (collected from all scene graphs)

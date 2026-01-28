@@ -19,6 +19,11 @@ Sample 15 objects per scene (default):
 python sample_scene_graphs.py
 ```
 
+**Sample from augmented data** (includes <AGENT> objects):
+```bash
+python sample_scene_graphs.py --input-dir data/scenegraphs_augmented
+```
+
 Custom number of objects per scene:
 ```bash
 python sample_scene_graphs.py --num-objects 10
@@ -132,10 +137,14 @@ Attributes:
 ## Notes
 
 - **Reproducibility:** Use the same `--seed` value to get consistent sampling
-- **Prioritization:** The script prioritizes `is_targetable=true` objects
+- **Prioritization:** The script prioritizes objects in this order:
+  1. **`<AGENT>` objects** (ALWAYS included, never filtered out)
+  2. `is_targetable=true` objects
+  3. Other objects
 - **Relationships:** Only keeps relationships where the subject AND all recipients are in the sampled set
 - **Original data:** Your original scene graphs in `data/scenegraphs/` are never modified
 - **Annotations:** Export/import annotations work the same way with sampled scenes
+- **Augmented data:** Use `--input-dir data/scenegraphs_augmented` to sample from augmented scenes with <AGENT> objects
 
 ## Comparison: Original vs Sampled
 
