@@ -3664,6 +3664,11 @@ HTML_TEMPLATE = """<!DOCTYPE html>
         document.getElementById('clear-rel-filters').addEventListener('click', clearAllRelFilters);
 
         function setAnnotationMode(mode) {
+            // Toggle off if clicking the same mode button
+            if (annotationMode === mode && mode !== null) {
+                mode = null;
+            }
+            
             annotationMode = mode;
             
             // Update button states
