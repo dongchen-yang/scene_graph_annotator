@@ -1,0 +1,366 @@
+{
+  "overall": {
+    "average_accuracy": 0.895885170021135,
+    "num_scenes": 13
+  },
+  "total_counts": {
+    "total_relationships": 1,
+    "evaluated": 2822,
+    "not_evaluated": 62,
+    "correct": 2562,
+    "incorrect": 260
+  },
+  "per_scene": {
+    "3rscan/02b33dfb-be2b-2d54-92d2-cd012b2b3c40": {
+      "total": 182,
+      "correct": 148,
+      "incorrect": 33,
+      "null_validation": 1,
+      "accuracy": 0.8131868131868132
+    },
+    "3rscan/095821f7-e2c2-2de1-9568-b9ce59920e29": {
+      "total": 265,
+      "correct": 214,
+      "incorrect": 23,
+      "null_validation": 28,
+      "accuracy": 0.8075471698113208
+    },
+    "3rscan/0958220d-e2c2-2de1-9710-c37018da1883": {
+      "total": 314,
+      "correct": 310,
+      "incorrect": 0,
+      "null_validation": 4,
+      "accuracy": 0.9872611464968153
+    },
+    "3rscan/09582212-e2c2-2de1-9700-fa44b14fbded": {
+      "total": 367,
+      "correct": 356,
+      "incorrect": 7,
+      "null_validation": 4,
+      "accuracy": 0.9700272479564033
+    },
+    "3rscan/09582225-e2c2-2de1-9564-f6681ef5e511": {
+      "total": 199,
+      "correct": 195,
+      "incorrect": 0,
+      "null_validation": 4,
+      "accuracy": 0.9798994974874372
+    },
+    "scannet/scene0000_00": {
+      "total": 160,
+      "correct": 136,
+      "incorrect": 24,
+      "null_validation": 0,
+      "accuracy": 0.85
+    },
+    "scannet/scene0001_00": {
+      "total": 139,
+      "correct": 130,
+      "incorrect": 8,
+      "null_validation": 1,
+      "accuracy": 0.935251798561151
+    },
+    "scannet/scene0002_00": {
+      "total": 116,
+      "correct": 116,
+      "incorrect": 0,
+      "null_validation": 0,
+      "accuracy": 1.0
+    },
+    "scannet/scene0003_00": {
+      "total": 277,
+      "correct": 213,
+      "incorrect": 60,
+      "null_validation": 4,
+      "accuracy": 0.7689530685920578
+    },
+    "scannet/scene0004_00": {
+      "total": 316,
+      "correct": 233,
+      "incorrect": 77,
+      "null_validation": 6,
+      "accuracy": 0.7373417721518988
+    },
+    "scannet/scene0005_00": {
+      "total": 171,
+      "correct": 169,
+      "incorrect": 0,
+      "null_validation": 2,
+      "accuracy": 0.9883040935672515
+    },
+    "scannet/scene0006_00": {
+      "total": 190,
+      "correct": 186,
+      "incorrect": 0,
+      "null_validation": 4,
+      "accuracy": 0.9789473684210527
+    },
+    "scannet/scene0008_00": {
+      "total": 188,
+      "correct": 156,
+      "incorrect": 28,
+      "null_validation": 4,
+      "accuracy": 0.8297872340425532
+    }
+  },
+  "per_predicate": {
+    "near": {
+      "total": 822,
+      "correct": 803,
+      "incorrect": 19,
+      "accuracy": 0.9768856447688564
+    },
+    "next to": {
+      "total": 485,
+      "correct": 431,
+      "incorrect": 54,
+      "accuracy": 0.8886597938144329
+    },
+    "lower than": {
+      "total": 248,
+      "correct": 210,
+      "incorrect": 38,
+      "accuracy": 0.8467741935483871
+    },
+    "higher than": {
+      "total": 248,
+      "correct": 213,
+      "incorrect": 35,
+      "accuracy": 0.8588709677419355
+    },
+    "far from": {
+      "total": 200,
+      "correct": 173,
+      "incorrect": 27,
+      "accuracy": 0.865
+    },
+    "in between": {
+      "total": 103,
+      "correct": 83,
+      "incorrect": 20,
+      "accuracy": 0.8058252427184466
+    },
+    "closer to": {
+      "total": 59,
+      "correct": 55,
+      "incorrect": 4,
+      "accuracy": 0.9322033898305084
+    },
+    "farthest from": {
+      "total": 59,
+      "correct": 54,
+      "incorrect": 5,
+      "accuracy": 0.9152542372881356
+    },
+    "farther from": {
+      "total": 56,
+      "correct": 56,
+      "incorrect": 0,
+      "accuracy": 1.0
+    },
+    "2nd closest to": {
+      "total": 53,
+      "correct": 48,
+      "incorrect": 5,
+      "accuracy": 0.9056603773584906
+    },
+    "1st farthest from": {
+      "total": 52,
+      "correct": 52,
+      "incorrect": 0,
+      "accuracy": 1.0
+    },
+    "1st closest to": {
+      "total": 52,
+      "correct": 52,
+      "incorrect": 0,
+      "accuracy": 1.0
+    },
+    "2nd farthest from": {
+      "total": 52,
+      "correct": 45,
+      "incorrect": 7,
+      "accuracy": 0.8653846153846154
+    },
+    "closest to": {
+      "total": 41,
+      "correct": 36,
+      "incorrect": 5,
+      "accuracy": 0.8780487804878049
+    },
+    "left of": {
+      "total": 35,
+      "correct": 32,
+      "incorrect": 3,
+      "accuracy": 0.9142857142857143
+    },
+    "right of": {
+      "total": 27,
+      "correct": 22,
+      "incorrect": 5,
+      "accuracy": 0.8148148148148148
+    },
+    "supports": {
+      "total": 26,
+      "correct": 23,
+      "incorrect": 3,
+      "accuracy": 0.8846153846153846
+    },
+    "in front of": {
+      "total": 24,
+      "correct": 21,
+      "incorrect": 3,
+      "accuracy": 0.875
+    },
+    "behind": {
+      "total": 19,
+      "correct": 15,
+      "incorrect": 4,
+      "accuracy": 0.7894736842105263
+    },
+    "on": {
+      "total": 18,
+      "correct": 17,
+      "incorrect": 1,
+      "accuracy": 0.9444444444444444
+    },
+    "over": {
+      "total": 14,
+      "correct": 13,
+      "incorrect": 1,
+      "accuracy": 0.9285714285714286
+    },
+    "under": {
+      "total": 14,
+      "correct": 12,
+      "incorrect": 2,
+      "accuracy": 0.8571428571428571
+    },
+    "contains": {
+      "total": 12,
+      "correct": 12,
+      "incorrect": 0,
+      "accuracy": 1.0
+    },
+    "in": {
+      "total": 12,
+      "correct": 12,
+      "incorrect": 0,
+      "accuracy": 1.0
+    },
+    "is aligned with": {
+      "total": 11,
+      "correct": 3,
+      "incorrect": 8,
+      "accuracy": 0.2727272727272727
+    },
+    "above": {
+      "total": 10,
+      "correct": 9,
+      "incorrect": 1,
+      "accuracy": 0.9
+    },
+    "below": {
+      "total": 10,
+      "correct": 10,
+      "incorrect": 0,
+      "accuracy": 1.0
+    },
+    "in center of": {
+      "total": 7,
+      "correct": 7,
+      "incorrect": 0,
+      "accuracy": 1.0
+    },
+    "2nd from the left of": {
+      "total": 6,
+      "correct": 4,
+      "incorrect": 2,
+      "accuracy": 0.6666666666666666
+    },
+    "1st from the right of": {
+      "total": 6,
+      "correct": 4,
+      "incorrect": 2,
+      "accuracy": 0.6666666666666666
+    },
+    "leaning on": {
+      "total": 6,
+      "correct": 6,
+      "incorrect": 0,
+      "accuracy": 1.0
+    },
+    "3rd farthest from": {
+      "total": 6,
+      "correct": 6,
+      "incorrect": 0,
+      "accuracy": 1.0
+    },
+    "3rd closest to": {
+      "total": 6,
+      "correct": 6,
+      "incorrect": 0,
+      "accuracy": 1.0
+    },
+    "1st from the left of": {
+      "total": 4,
+      "correct": 3,
+      "incorrect": 1,
+      "accuracy": 0.75
+    },
+    "2nd from the right of": {
+      "total": 4,
+      "correct": 2,
+      "incorrect": 2,
+      "accuracy": 0.5
+    },
+    "of": {
+      "total": 4,
+      "correct": 4,
+      "incorrect": 0,
+      "accuracy": 1.0
+    },
+    "has": {
+      "total": 4,
+      "correct": 4,
+      "incorrect": 0,
+      "accuracy": 1.0
+    },
+    "hanging on": {
+      "total": 2,
+      "correct": 1,
+      "incorrect": 1,
+      "accuracy": 0.5
+    },
+    "embeds": {
+      "total": 1,
+      "correct": 1,
+      "incorrect": 0,
+      "accuracy": 1.0
+    },
+    "embedded in": {
+      "total": 1,
+      "correct": 1,
+      "incorrect": 0,
+      "accuracy": 1.0
+    },
+    "4th farthest from": {
+      "total": 1,
+      "correct": 0,
+      "incorrect": 1,
+      "accuracy": 0.0
+    },
+    "shorter than": {
+      "total": 1,
+      "correct": 0,
+      "incorrect": 1,
+      "accuracy": 0.0
+    },
+    "taller than": {
+      "total": 1,
+      "correct": 1,
+      "incorrect": 0,
+      "accuracy": 1.0
+    }
+  }
+}

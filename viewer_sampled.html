@@ -771,6 +771,16 @@
             cursor: not-allowed;
         }
 
+        .remove-btn {
+            background: #ff9800;
+            color: white;
+        }
+
+        .remove-btn:hover {
+            background: #f57c00;
+            box-shadow: 0 2px 4px rgba(255, 152, 0, 0.4);
+        }
+
         .preview-btn {
             background: #42a5f5;
             color: white;
@@ -1036,6 +1046,16 @@
     </div>
 
     <script>
+        // Global error handler for debugging
+        window.onerror = function(message, source, lineno, colno, error) {
+            console.error('JavaScript Error:', { message, source, lineno, colno, error });
+            return false;
+        };
+        
+        window.addEventListener('unhandledrejection', function(event) {
+            console.error('Unhandled Promise Rejection:', event.reason);
+        });
+        
         // PLY file parser - handles both ASCII and binary
         async function parsePLY(data) {
             let text, arrayBuffer;
@@ -2364,40 +2384,88 @@
         }
 
         function createSimilarityAnnotation(candidateId, event) {
+            console.log('createSimilarityAnnotation called:');
+            console.log('  candidateId:', candidateId);
+            console.log('  selectedObjectId:', selectedObjectId);
+            console.log('  event:', event);
+            
             if (event) event.stopPropagation();
-            if (!selectedObjectId || selectedObjectId === candidateId) return;
+            
+            if (selectedObjectId === null || selectedObjectId === undefined) {
+                console.warn('No object selected. Please select an object first.');
+                return;
+            }
+            
+            if (selectedObjectId === candidateId) {
+                console.warn('Cannot mark object as similar to itself.');
+                return;
+            }
             
             const obj1 = sceneGraphData.objects.find(o => o.id === selectedObjectId);
             const obj2 = sceneGraphData.objects.find(o => o.id === candidateId);
+            
+            console.log('  obj1:', obj1);
+            console.log('  obj2:', obj2);
+            
+            if (!obj1 || !obj2) {
+                console.error('Could not find objects!');
+                console.error('  selectedObjectId:', selectedObjectId, 'found obj1:', obj1);
+                console.error('  candidateId:', candidateId, 'found obj2:', obj2);
+                return;
+            }
+            
             const label1 = obj1 ? (obj1.labels[0] || `Object ${selectedObjectId}`) : `Object ${selectedObjectId}`;
             const label2 = obj2 ? (obj2.labels[0] || `Object ${candidateId}`) : `Object ${candidateId}`;
             
-            // Check if same class
-            const sameClass = obj1 && obj2 && obj1.labels[0] === obj2.labels[0];
+            // Check if this pair is already annotated
+            const existingIndex = similarityAnnotations.findIndex(ann => 
+                (ann.id1 === selectedObjectId && ann.id2 === candidateId) ||
+                (ann.id2 === selectedObjectId && ann.id1 === candidateId)
+            );
             
-            similarityAnnotations.push({
-                id1: selectedObjectId,
-                id2: candidateId,
-                label1: label1,
-                label2: label2,
-                sameClass: sameClass,
-                timestamp: new Date().toISOString()
-            });
+            if (existingIndex !== -1) {
+                // Remove existing annotation (toggle off)
+                console.log('Removing existing annotation at index:', existingIndex);
+                similarityAnnotations.splice(existingIndex, 1);
+                console.log('Annotation removed. Total annotations:', similarityAnnotations.length);
+            } else {
+                // Add new annotation (toggle on)
+                // Check if same class
+                const sameClass = obj1 && obj2 && obj1.labels[0] === obj2.labels[0];
+                
+                console.log('Creating similarity annotation:');
+                console.log('  id1:', selectedObjectId, 'label1:', label1);
+                console.log('  id2:', candidateId, 'label2:', label2);
+                console.log('  sameClass:', sameClass);
+                
+                similarityAnnotations.push({
+                    id1: selectedObjectId,
+                    id2: candidateId,
+                    label1: label1,
+                    label2: label2,
+                    sameClass: sameClass,
+                    timestamp: new Date().toISOString()
+                });
+                
+                console.log('Annotation created. Total annotations:', similarityAnnotations.length);
+            }
             
             // Clear preview
             previewedCandidateId = null;
             
             updateAnnotationsDisplay();
-            showAnnotationCandidates(selectedObjectId); // Refresh to show updated "annotated" status
+            showAnnotationCandidates(selectedObjectId); // Refresh to show updated button state
             updateAnnotationLines();
         }
 
         function togglePreviewCandidate(candidateId, event) {
+            console.log('togglePreviewCandidate called:', { candidateId, event });
             // Stop event from bubbling
             if (event) event.stopPropagation();
             
             if (previewedCandidateId === candidateId) {
                 // Un-preview
+                console.log('Un-previewing candidate:', candidateId);
                 previewedCandidateId = null;
                 updateBoundingBoxes();
                 // Remove highlight from candidate item
@@ -2406,6 +2474,7 @@
                 });
             } else {
                 // Preview this candidate
+                console.log('Previewing candidate:', candidateId);
                 previewedCandidateId = candidateId;
                 updateBoundingBoxes();
                 
@@ -2429,6 +2498,9 @@
         }
 
         function showAnnotationCandidates(firstObjectId) {
+            console.log('showAnnotationCandidates called with firstObjectId:', firstObjectId);
+            console.log('  selectedObjectId:', selectedObjectId);
+            
             const container = document.getElementById('relationships-container');
             
             if (annotationMode !== 'similarity') {
@@ -2443,6 +2515,7 @@
             }
             
             const firstObj = sceneGraphData.objects.find(o => o.id === firstObjectId);
+            console.log('  firstObj:', firstObj ? `id=${firstObj.id}, label="${firstObj.labels[0]}"` : 'null');
             if (!firstObj) return;
             
             const firstClass = firstObj.labels[0];
@@ -2464,9 +2537,12 @@
                     };
                 })
                 .sort((a, b) => {
-                    // Sort: same class first, then not annotated, then by label
+                    // Sort: same class first, then by label
+                    // Note: We DON'T sort by annotation status to keep items stable
+                    // This prevents confusion where users click item #1, then see it
+                    // jump to the bottom after being annotated
                     if (a.sameClass !== b.sameClass) return b.sameClass ? 1 : -1;
-                    if (a.alreadyAnnotated !== b.alreadyAnnotated) return a.alreadyAnnotated ? 1 : -1;
+                    // Removed: if (a.alreadyAnnotated !== b.alreadyAnnotated) return a.alreadyAnnotated ? 1 : -1;
                     return a.label.localeCompare(b.label);
                 });
             
@@ -2481,9 +2557,11 @@
             
             if (sameClassCandidates.length > 0) {
                 html += '<div style="font-weight: bold; font-size: 11px; margin: 10px 0 5px 0; color: #4caf50;">✓ Same Class</div>';
-                sameClassCandidates.slice(0, 10).forEach(c => {
-                    const disabled = c.alreadyAnnotated ? 'disabled' : '';
-                    const btnText = c.alreadyAnnotated ? 'Annotated' : 'Mark Similar';
+                console.log('Rendering same class candidates:', sameClassCandidates.length);
+                sameClassCandidates.slice(0, 10).forEach((c, index) => {
+                    console.log(`  Candidate ${index}: id=${c.id}, label="${c.label}"`);
+                    const btnText = c.alreadyAnnotated ? 'Remove' : 'Mark Similar';
+                    const btnClass = c.alreadyAnnotated ? 'annotate-btn remove-btn' : 'annotate-btn';
                     const previewClass = previewedCandidateId === c.id ? 'previewing' : '';
                     html += `<div class="candidate-item same-class ${previewClass}" onclick="togglePreviewCandidate(${c.id}, event)">
                         <div class="candidate-info">
@@ -2491,7 +2569,7 @@
                             <div class="candidate-match">✓ Matching class</div>
                         </div>
                         <div>
-                            <button class="annotate-btn" onclick="createSimilarityAnnotation(${c.id}, event)" ${disabled}>${btnText}</button>
+                            <button class="${btnClass}" onclick="createSimilarityAnnotation(${c.id}, event)">${btnText}</button>
                         </div>
                     </div>`;
                 });
@@ -2499,9 +2577,11 @@
             
             if (otherCandidates.length > 0) {
                 html += `<div style="font-weight: bold; font-size: 11px; margin: 10px 0 5px 0; color: #ff9800;">⚠ Different Class (${otherCandidates.length})</div>`;
-                otherCandidates.forEach(c => {
-                    const disabled = c.alreadyAnnotated ? 'disabled' : '';
-                    const btnText = c.alreadyAnnotated ? 'Annotated' : 'Mark Similar';
+                console.log('Rendering different class candidates:', otherCandidates.length);
+                otherCandidates.forEach((c, index) => {
+                    console.log(`  Candidate ${index}: id=${c.id}, label="${c.label}"`);
+                    const btnText = c.alreadyAnnotated ? 'Remove' : 'Mark Similar';
+                    const btnClass = c.alreadyAnnotated ? 'annotate-btn remove-btn' : 'annotate-btn';
                     const previewClass = previewedCandidateId === c.id ? 'previewing' : '';
                     html += `<div class="candidate-item different-class ${previewClass}" onclick="togglePreviewCandidate(${c.id}, event)">
                         <div class="candidate-info">
@@ -2509,7 +2589,7 @@
                             <div class="candidate-match">⚠ Different class</div>
                         </div>
                         <div>
-                            <button class="annotate-btn" onclick="createSimilarityAnnotation(${c.id}, event)" ${disabled}>${btnText}</button>
+                            <button class="${btnClass}" onclick="createSimilarityAnnotation(${c.id}, event)">${btnText}</button>
                         </div>
                     </div>`;
                 });
@@ -3429,6 +3509,11 @@ Timestamp: ${data.timestamp || 'unknown'}`);
         document.getElementById('clear-rel-filters').addEventListener('click', clearAllRelFilters);
 
         function setAnnotationMode(mode) {
+            // Toggle off if clicking the same mode button
+            if (annotationMode === mode && mode !== null) {
+                mode = null;
+            }
+            
             annotationMode = mode;
             
             // Update button states
