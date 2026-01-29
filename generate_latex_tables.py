@@ -55,12 +55,18 @@ def generate_results_table(results: Dict) -> str:
     # Attributes
     if 'attributes' in results:
         attr = results['attributes']['overall']
+        n_scenes = attr.get('total_scenes', 0)
         
+        # Check if image similarity data is available
         if 'average_image_gt_similarity' in attr and 'average_image_pred_similarity' in attr:
             img_gt = attr['average_image_gt_similarity']
             img_pred = attr['average_image_pred_similarity']
             latex.append(f"\\multirow{{2}}{{*}}{{Attributes}} & CLIP Sim. (Image-Pred) & ${img_pred:.3f}$ \\\\")
             latex.append(f" & CLIP Sim. (Image-GT) & ${img_gt:.3f}$ \\\\")
+        elif 'average_similarity' in attr:
+            # Fall back to text-text similarity if image data not available
+            text_sim = attr['average_similarity']
+            latex.append(f"Attributes & Text-Text Similarity & ${text_sim:.3f}$ \\\\")
     
     latex.append("\\midrule")
     

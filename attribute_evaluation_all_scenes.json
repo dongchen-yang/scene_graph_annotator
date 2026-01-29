@@ -1,28 +1,49 @@
 {
   "overall": {
-    "average_similarity": 0.9137214649858929,
-    "std_similarity": 0.03315002270991089,
+    "average_similarity": 0.9129720647359594,
+    "std_similarity": 0.032377183655904036,
     "total_scenes": 14,
     "total_objects": 186,
-    "min_similarity": 0.8158853888511657,
-    "max_similarity": 0.9501962142331262
+    "min_similarity": 0.8154408386120429,
+    "max_similarity": 0.9481749534606935,
+    "average_image_gt_similarity": 0.24897367536086282,
+    "std_image_gt_similarity": 0.011923433905542747,
+    "average_image_pred_similarity": 0.24474257102481506,
+    "std_image_pred_similarity": 0.011946880146797408,
+    "scenes_with_images": 14,
+    "total_objects_with_images": 186,
+    "total_objects_without_images": 0
   },
   "by_dataset": {
     "3rscan": {
-      "average_similarity": 0.9185694885395822,
-      "std_similarity": 0.016544440434698056,
+      "average_similarity": 0.9160233513552906,
+      "std_similarity": 0.015788463608933278,
       "total_scenes": 6,
       "total_objects": 74,
-      "min_similarity": 0.8919284675802504,
-      "max_similarity": 0.9395031090293612
+      "min_similarity": 0.8928885000092642,
+      "max_similarity": 0.9392582161085946,
+      "average_image_gt_similarity": 0.24609657897900195,
+      "std_image_gt_similarity": 0.011701920212883715,
+      "average_image_pred_similarity": 0.24410822627928863,
+      "std_image_pred_similarity": 0.01215538153320227,
+      "scenes_with_images": 6,
+      "total_objects_with_images": 74,
+      "total_objects_without_images": 0
     },
     "scannet": {
-      "average_similarity": 0.9100854473206259,
-      "std_similarity": 0.04107286213791755,
+      "average_similarity": 0.910683599771461,
+      "std_similarity": 0.04043905310263295,
       "total_scenes": 8,
       "total_objects": 112,
-      "min_similarity": 0.8158853888511657,
-      "max_similarity": 0.9501962142331262
+      "min_similarity": 0.8154408386120429,
+      "max_similarity": 0.9481749534606935,
+      "average_image_gt_similarity": 0.2511314976472585,
+      "std_image_gt_similarity": 0.01162879275594226,
+      "average_image_pred_similarity": 0.24521832958395992,
+      "std_image_pred_similarity": 0.011765661386483134,
+      "scenes_with_images": 8,
+      "total_objects_with_images": 112,
+      "total_objects_without_images": 0
     }
   },
   "per_scene": [
@@ -31,13 +52,13 @@
       "dataset": "3rscan",
       "validation_file": "data/validation_results/3rscan/annotations_02b33dfb-be2b-2d54-92d2-cd012b2b3c40_1769641580995.json",
       "scene_graph_file": "data/scenegraphs_sampled/3rscan/02b33dfb-be2b-2d54-92d2-cd012b2b3c40/scene_graph.json",
-      "average_similarity": 0.8919284675802504,
+      "average_similarity": 0.8928885000092642,
       "total_objects": 14,
       "per_object": [
         {
           "object_id": 2,
-          "similarity_score": 0.9237586081027984,
-          "similarity_std": 0.027786427424488124,
+          "similarity_score": 0.9218836724758148,
+          "similarity_std": 0.028321182770394953,
           "ground_truth_text": "ceramic, flat, large, rectangular, smooth, tall, tiled, white",
           "predicted_text": "boxy, ceramic, flat, large, light gray, rectangular, smooth, tall, tiled, white",
           "ground_truth_attrs": [
@@ -63,12 +84,17 @@
             "tall"
           ],
           "num_ground_truth": 8,
-          "num_predicted": 10
+          "num_predicted": 10,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.276588499546051,
+          "image_pred_similarity": 0.24009306728839874,
+          "num_images_loaded": 1
         },
         {
           "object_id": 3,
-          "similarity_score": 0.9096036076545715,
-          "similarity_std": 0.03344407714932986,
+          "similarity_score": 0.9223475992679596,
+          "similarity_std": 0.020020364858761287,
           "ground_truth_text": "ceramic, flat, large, rectangular, smooth, tall, tiled, white",
           "predicted_text": "boxy, ceramic, flat, large, light gray, rectangular, smooth, tall, tiled, white",
           "ground_truth_attrs": [
@@ -94,12 +120,17 @@
             "tall"
           ],
           "num_ground_truth": 8,
-          "num_predicted": 10
+          "num_predicted": 10,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.24671925604343414,
+          "image_pred_similarity": 0.22223860025405884,
+          "num_images_loaded": 1
         },
         {
           "object_id": 4,
-          "similarity_score": 0.9038963139057159,
-          "similarity_std": 0.013772303592605898,
+          "similarity_score": 0.9094086408615112,
+          "similarity_std": 0.011242281588318189,
           "ground_truth_text": "closed, flat, for opening and closing an entrance, large, rectangular, smooth, standard, white, wooden",
           "predicted_text": "closed, cream, flat, for opening and closing an entrance, large, light beige, light gray, rectangular, smooth, standard, tall, wooden",
           "ground_truth_attrs": [
@@ -128,12 +159,17 @@
             "for opening and closing an entrance"
           ],
           "num_ground_truth": 9,
-          "num_predicted": 12
+          "num_predicted": 12,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.2539313733577728,
+          "image_pred_similarity": 0.25924938917160034,
+          "num_images_loaded": 1
         },
         {
           "object_id": 5,
-          "similarity_score": 0.7953684389591217,
-          "similarity_std": 0.03719978483211097,
+          "similarity_score": 0.8076512455940247,
+          "similarity_std": 0.04809476447654965,
           "ground_truth_text": "fabric, for drying, hanging, large, rectangular, soft, white",
           "predicted_text": "elongated, fabric, for drying, for drying hands, green, hanging, irregular, large, light green, rectangular, soft",
           "ground_truth_attrs": [
@@ -159,12 +195,17 @@
             "for drying hands"
           ],
           "num_ground_truth": 7,
-          "num_predicted": 11
+          "num_predicted": 11,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.26546382904052734,
+          "image_pred_similarity": 0.2782346308231354,
+          "num_images_loaded": 1
         },
         {
           "object_id": 7,
-          "similarity_score": 0.9110073506832123,
-          "similarity_std": 0.01870200793923466,
+          "similarity_score": 0.9359215140342713,
+          "similarity_std": 0.01831475943535328,
           "ground_truth_text": "ceramic, flat, large, rectangular, smooth, tall, tiled, white",
           "predicted_text": "boxy, ceramic, flat, large, light gray, rectangular, smooth, tall, tiled, white",
           "ground_truth_attrs": [
@@ -190,12 +231,17 @@
             "tall"
           ],
           "num_ground_truth": 8,
-          "num_predicted": 10
+          "num_predicted": 10,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.28129303455352783,
+          "image_pred_similarity": 0.2606337368488312,
+          "num_images_loaded": 1
         },
         {
           "object_id": 10,
-          "similarity_score": 0.9347253739833832,
-          "similarity_std": 0.019537876211454093,
+          "similarity_score": 0.9042513251304627,
+          "similarity_std": 0.02892166935888084,
           "ground_truth_text": "ceramic, flat, large, rectangular, smooth, tall, tiled, white",
           "predicted_text": "boxy, ceramic, flat, large, light gray, rectangular, smooth, tall, tiled, white",
           "ground_truth_attrs": [
@@ -221,12 +267,17 @@
             "tall"
           ],
           "num_ground_truth": 8,
-          "num_predicted": 10
+          "num_predicted": 10,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.236607164144516,
+          "image_pred_similarity": 0.21513968706130981,
+          "num_images_loaded": 1
         },
         {
           "object_id": 11,
-          "similarity_score": 0.844947749376297,
-          "similarity_std": 0.023062355562275264,
+          "similarity_score": 0.814996063709259,
+          "similarity_std": 0.03217575115382238,
           "ground_truth_text": "ceramic, for bathing, large, porcelain, rectangular, smooth, white",
           "predicted_text": "ceramic, elongated, for bathing, for cleaning, for cleaning hair, for washing hands, large, light beige, oval, porcelain, rectangular, rounded, smooth, white",
           "ground_truth_attrs": [
@@ -255,12 +306,17 @@
             "for washing hands"
           ],
           "num_ground_truth": 7,
-          "num_predicted": 14
+          "num_predicted": 14,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.267934113740921,
+          "image_pred_similarity": 0.2767638862133026,
+          "num_images_loaded": 1
         },
         {
           "object_id": 16,
-          "similarity_score": 0.9153904438018798,
-          "similarity_std": 0.03081686928445434,
+          "similarity_score": 0.9361646890640258,
+          "similarity_std": 0.022627672325585105,
           "ground_truth_text": "for holding items, for organizing toiletries and towels, for storing bathroom items, large, open, rectangular, shelved, smooth, tall, white",
           "predicted_text": "boxy, for holding items, for organizing toiletries and towels, for storing bathroom items, large, light gray, medium, open, rectangular, shelved, smooth, tall, white, wooden",
           "ground_truth_attrs": [
@@ -292,12 +348,17 @@
             "for holding items"
           ],
           "num_ground_truth": 10,
-          "num_predicted": 14
+          "num_predicted": 14,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.256990522146225,
+          "image_pred_similarity": 0.2551041841506958,
+          "num_images_loaded": 1
         },
         {
           "object_id": 17,
-          "similarity_score": 0.9008912146091461,
-          "similarity_std": 0.02069272328451093,
+          "similarity_score": 0.9020546197891235,
+          "similarity_std": 0.024207885251710134,
           "ground_truth_text": "fabric, folded, for bathing, for blocking water in a shower, hanging, large, rectangular, smooth, tall, white",
           "predicted_text": "fabric, folded, for bathing, for blocking water in a shower, hanging, large, light beige, light gray, rectangular, smooth, tall, white",
           "ground_truth_attrs": [
@@ -327,12 +388,17 @@
             "for bathing"
           ],
           "num_ground_truth": 10,
-          "num_predicted": 12
+          "num_predicted": 12,
+          "num_image_files": 2,
+          "has_images": true,
+          "image_gt_similarity": 0.25655224919319153,
+          "image_pred_similarity": 0.2401120513677597,
+          "num_images_loaded": 2
         },
         {
           "object_id": 22,
-          "similarity_score": 0.8447234392166137,
-          "similarity_std": 0.01532189500281069,
+          "similarity_score": 0.8610789000988006,
+          "similarity_std": 0.021105948403365514,
           "ground_truth_text": "fabric, folded, for drying, hanging, rectangular, soft, white",
           "predicted_text": "fabric, folded, for drying, for drying hands, gray, hanging, light gray, rectangular, soft",
           "ground_truth_attrs": [
@@ -356,12 +422,17 @@
             "for drying hands"
           ],
           "num_ground_truth": 7,
-          "num_predicted": 9
+          "num_predicted": 9,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.2156723439693451,
+          "image_pred_similarity": 0.2183966487646103,
+          "num_images_loaded": 1
         },
         {
           "object_id": 25,
-          "similarity_score": 0.8944027304649353,
-          "similarity_std": 0.01821156634753675,
+          "similarity_score": 0.8702968180179596,
+          "similarity_std": 0.02631692859610726,
           "ground_truth_text": "blue, cylindrical, for holding items, plastic, small",
           "predicted_text": "blue, cylindrical, for holding items, irregular, light blue, plastic, rounded top, small",
           "ground_truth_attrs": [
@@ -382,12 +453,17 @@
             "for holding items"
           ],
           "num_ground_truth": 5,
-          "num_predicted": 8
+          "num_predicted": 8,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.26642924547195435,
+          "image_pred_similarity": 0.2537755072116852,
+          "num_images_loaded": 1
         },
         {
           "object_id": 26,
-          "similarity_score": 0.8712672650814056,
-          "similarity_std": 0.02648261262880107,
+          "similarity_score": 0.8733924210071564,
+          "similarity_std": 0.020727649162002492,
           "ground_truth_text": "for holding items, for storing bathroom items, medium, red",
           "predicted_text": "boxy, for holding items, for storing bathroom items, green, medium, open, possibly laminated, rectangular, red, tapered",
           "ground_truth_attrs": [
@@ -409,12 +485,17 @@
             "for storing bathroom items"
           ],
           "num_ground_truth": 4,
-          "num_predicted": 10
+          "num_predicted": 10,
+          "num_image_files": 2,
+          "has_images": true,
+          "image_gt_similarity": 0.2413031905889511,
+          "image_pred_similarity": 0.23171600699424744,
+          "num_images_loaded": 2
         },
         {
           "object_id": 29,
-          "similarity_score": 0.9574363708496094,
-          "similarity_std": 0.017358701342346437,
+          "similarity_score": 0.9628185331821442,
+          "similarity_std": 0.02364382363604003,
           "ground_truth_text": "cylindrical, for toileting, for wiping, medium, paper, roll, soft, standard, white",
           "predicted_text": "cylindrical, for toileting, for wiping, medium, paper, roll, soft, standard, white",
           "ground_truth_attrs": [
@@ -440,12 +521,17 @@
             "for toileting"
           ],
           "num_ground_truth": 9,
-          "num_predicted": 9
+          "num_predicted": 9,
+          "num_image_files": 2,
+          "has_images": true,
+          "image_gt_similarity": 0.2118813693523407,
+          "image_pred_similarity": 0.2118813693523407,
+          "num_images_loaded": 2
         },
         {
           "object_id": 30,
-          "similarity_score": 0.8795796394348144,
-          "similarity_std": 0.04619842025293853,
+          "similarity_score": 0.8781729578971863,
+          "similarity_std": 0.030009972607589877,
           "ground_truth_text": "flat, for measuring weight, plastic, rectangular, small, smooth, white",
           "predicted_text": "boxy, flat, for holding items, for measuring weight, green, plastic, rectangular, small, smooth",
           "ground_truth_attrs": [
@@ -469,22 +555,30 @@
             "for holding items"
           ],
           "num_ground_truth": 7,
-          "num_predicted": 9
+          "num_predicted": 9,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.21042296290397644,
+          "image_pred_similarity": 0.21350166201591492,
+          "num_images_loaded": 1
         }
-      ]
+      ],
+      "average_image_gt_similarity": 0.24912779671805246,
+      "average_image_pred_similarity": 0.24120288767984935,
+      "objects_with_images": 14
     },
     {
       "scene_id": "095821f7-e2c2-2de1-9568-b9ce59920e29",
       "dataset": "3rscan",
       "validation_file": "data/validation_results/3rscan/annotations_095821f7-e2c2-2de1-9568-b9ce59920e29_1769653060348.json",
       "scene_graph_file": "data/scenegraphs_sampled/3rscan/095821f7-e2c2-2de1-9568-b9ce59920e29/scene_graph.json",
-      "average_similarity": 0.9279920935630799,
+      "average_similarity": 0.9239644576202739,
       "total_objects": 11,
       "per_object": [
         {
           "object_id": 2,
-          "similarity_score": 0.9851728916168213,
-          "similarity_std": 0.00489260421646157,
+          "similarity_score": 0.9865072190761566,
+          "similarity_std": 0.00339413904924784,
           "ground_truth_text": "brown, curved arms, curved back, for comfort, for sitting on, large, rectangular, smooth, traditional, wood, wooden",
           "predicted_text": "brown, curved arms, curved back, for comfort, for sitting on, large, rectangular, smooth, traditional, wood, wooden",
           "ground_truth_attrs": [
@@ -514,12 +608,17 @@
             "wood"
           ],
           "num_ground_truth": 11,
-          "num_predicted": 11
+          "num_predicted": 11,
+          "num_image_files": 2,
+          "has_images": true,
+          "image_gt_similarity": 0.2535792291164398,
+          "image_pred_similarity": 0.2535792291164398,
+          "num_images_loaded": 2
         },
         {
           "object_id": 3,
-          "similarity_score": 0.9890950739383697,
-          "similarity_std": 0.004531661606028359,
+          "similarity_score": 0.9845338344573975,
+          "similarity_std": 0.0051869359403083634,
           "ground_truth_text": "brown, curved arms, curved back, for comfort, for sitting on, large, rectangular, smooth, traditional, wood, wooden",
           "predicted_text": "brown, curved arms, curved back, for comfort, for sitting on, large, rectangular, smooth, traditional, wood, wooden",
           "ground_truth_attrs": [
@@ -549,12 +648,17 @@
             "wood"
           ],
           "num_ground_truth": 11,
-          "num_predicted": 11
+          "num_predicted": 11,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.23146602511405945,
+          "image_pred_similarity": 0.23146602511405945,
+          "num_images_loaded": 1
         },
         {
           "object_id": 4,
-          "similarity_score": 0.9710026741027832,
-          "similarity_std": 0.010707642912317917,
+          "similarity_score": 0.9603135108947753,
+          "similarity_std": 0.023867847975720117,
           "ground_truth_text": "beige, brown, classic, comfortable, curved arms, curved back, fabric, fabric upholstery, for comfort, for sitting on, large, medium, rustic, smooth (upholstery), soft, wicker, wooden, woven",
           "predicted_text": "beige, brown, classic, comfortable, curved arms, curved back, fabric, fabric upholstery, for comfort, for sitting on, large, medium, rectangular, rustic, smooth (upholstery), soft, wicker, wooden, woven",
           "ground_truth_attrs": [
@@ -599,12 +703,17 @@
             "wooden"
           ],
           "num_ground_truth": 18,
-          "num_predicted": 19
+          "num_predicted": 19,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.28845784068107605,
+          "image_pred_similarity": 0.29108384251594543,
+          "num_images_loaded": 1
         },
         {
           "object_id": 5,
-          "similarity_score": 0.9635876774787903,
-          "similarity_std": 0.012742931905477026,
+          "similarity_score": 0.9661828756332398,
+          "similarity_std": 0.013274132051417014,
           "ground_truth_text": "fabric, fabric upholstery, for blocking light, for providing privacy, large, smooth, soft, woven",
           "predicted_text": "fabric, fabric upholstery, for blocking light, for providing privacy, green, large, rectangular, smooth, soft, woven",
           "ground_truth_attrs": [
@@ -630,12 +739,17 @@
             "fabric upholstery"
           ],
           "num_ground_truth": 8,
-          "num_predicted": 10
+          "num_predicted": 10,
+          "num_image_files": 2,
+          "has_images": true,
+          "image_gt_similarity": 0.24355974793434143,
+          "image_pred_similarity": 0.24036163091659546,
+          "num_images_loaded": 2
         },
         {
           "object_id": 6,
-          "similarity_score": 0.9336475372314453,
-          "similarity_std": 0.0300391790205484,
+          "similarity_score": 0.9380813419818879,
+          "similarity_std": 0.026193794780877768,
           "ground_truth_text": "brown, comfortable, fabric, fabric upholstery, for resting feet, for sitting on, medium, rectangular, smooth, smooth (upholstery), soft, wood",
           "predicted_text": "black, brown, comfortable, fabric, fabric upholstery, for resting feet, for sitting on, gray, medium, rectangular, small, smooth, smooth (upholstery), soft, square, white, wood",
           "ground_truth_attrs": [
@@ -672,12 +786,17 @@
             "fabric upholstery"
           ],
           "num_ground_truth": 12,
-          "num_predicted": 17
+          "num_predicted": 17,
+          "num_image_files": 2,
+          "has_images": true,
+          "image_gt_similarity": 0.264433354139328,
+          "image_pred_similarity": 0.26497483253479004,
+          "num_images_loaded": 2
         },
         {
           "object_id": 7,
-          "similarity_score": 0.9556626200675964,
-          "similarity_std": 0.01966673857885181,
+          "similarity_score": 0.9429028451442718,
+          "similarity_std": 0.023146883144816107,
           "ground_truth_text": "dark brown, for holding media devices, for supporting a television, medium, rectangular, smooth, wood, wooden",
           "predicted_text": "brown, dark brown, for holding media devices, for supporting a television, large, medium, rectangular, smooth, wood, wooden",
           "ground_truth_attrs": [
@@ -703,12 +822,17 @@
             "wood"
           ],
           "num_ground_truth": 8,
-          "num_predicted": 10
+          "num_predicted": 10,
+          "num_image_files": 2,
+          "has_images": true,
+          "image_gt_similarity": 0.2487620711326599,
+          "image_pred_similarity": 0.25009801983833313,
+          "num_images_loaded": 2
         },
         {
           "object_id": 8,
-          "similarity_score": 0.8819760799407959,
-          "similarity_std": 0.0387722895559366,
+          "similarity_score": 0.8764930427074432,
+          "similarity_std": 0.028867149289666,
           "ground_truth_text": "brown, comfortable, decorative, fabric, fabric upholstery, floral, for comfort, for support, medium, rectangular, smooth, soft, traditional",
           "predicted_text": "beige, brown, comfortable, decorative, fabric, fabric upholstery, floral, for comfort, for sitting on, for support, large, medium, rectangular, smooth, soft, traditional, white, yellow",
           "ground_truth_attrs": [
@@ -747,12 +871,17 @@
             "fabric upholstery"
           ],
           "num_ground_truth": 13,
-          "num_predicted": 18
+          "num_predicted": 18,
+          "num_image_files": 2,
+          "has_images": true,
+          "image_gt_similarity": 0.21855968236923218,
+          "image_pred_similarity": 0.19597798585891724,
+          "num_images_loaded": 2
         },
         {
           "object_id": 9,
-          "similarity_score": 0.9088842153549195,
-          "similarity_std": 0.023593985803709215,
+          "similarity_score": 0.906949108839035,
+          "similarity_std": 0.01571860722148676,
           "ground_truth_text": "dark blue, fabric, for carrying items, for holding books and notebooks, open, small, smooth",
           "predicted_text": "black, dark blue, fabric, for carrying items, for holding books and notebooks, for holding media devices, medium, open, rectangular, small, smooth",
           "ground_truth_attrs": [
@@ -778,12 +907,17 @@
             "fabric"
           ],
           "num_ground_truth": 7,
-          "num_predicted": 11
+          "num_predicted": 11,
+          "num_image_files": 2,
+          "has_images": true,
+          "image_gt_similarity": 0.2713070809841156,
+          "image_pred_similarity": 0.2828748822212219,
+          "num_images_loaded": 2
         },
         {
           "object_id": 10,
-          "similarity_score": 0.8863305032253266,
-          "similarity_std": 0.016705626913489584,
+          "similarity_score": 0.872374415397644,
+          "similarity_std": 0.032255884537291966,
           "ground_truth_text": "brown, comfortable, decorative, fabric, fabric upholstery, floral, for comfort, for support, medium, rectangular, smooth, soft, traditional",
           "predicted_text": "beige, brown, comfortable, decorative, fabric, fabric upholstery, floral, for comfort, for sitting on, for support, large, medium, rectangular, smooth, soft, traditional, white, yellow",
           "ground_truth_attrs": [
@@ -822,12 +956,17 @@
             "fabric upholstery"
           ],
           "num_ground_truth": 13,
-          "num_predicted": 18
+          "num_predicted": 18,
+          "num_image_files": 2,
+          "has_images": true,
+          "image_gt_similarity": 0.2735280990600586,
+          "image_pred_similarity": 0.25964289903640747,
+          "num_images_loaded": 2
         },
         {
           "object_id": 11,
-          "similarity_score": 0.9023694038391114,
-          "similarity_std": 0.014770951928212267,
+          "similarity_score": 0.8949811935424805,
+          "similarity_std": 0.0394184776856579,
           "ground_truth_text": "comfortable, decorative, fabric, fabric upholstery, for comfort, for sitting against, for support, light green, medium, rectangular, soft, square",
           "predicted_text": "black (patterns/text), comfortable, decorative, fabric, fabric upholstery, for comfort, for sitting against, for support, green, light green, medium, rectangular, soft, square",
           "ground_truth_attrs": [
@@ -861,12 +1000,17 @@
             "fabric upholstery"
           ],
           "num_ground_truth": 12,
-          "num_predicted": 14
+          "num_predicted": 14,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.2563146948814392,
+          "image_pred_similarity": 0.25290757417678833,
+          "num_images_loaded": 1
         },
         {
           "object_id": 15,
-          "similarity_score": 0.8301843523979187,
-          "similarity_std": 0.023736425467830037,
+          "similarity_score": 0.8342896461486816,
+          "similarity_std": 0.01659978829529389,
           "ground_truth_text": "black, curved back, wooden",
           "predicted_text": "black, brown, curved back, for sitting against, gray, rectangular, small, wicker, wooden",
           "ground_truth_attrs": [
@@ -886,22 +1030,30 @@
             "wicker"
           ],
           "num_ground_truth": 3,
-          "num_predicted": 9
+          "num_predicted": 9,
+          "num_image_files": 2,
+          "has_images": true,
+          "image_gt_similarity": 0.2284611165523529,
+          "image_pred_similarity": 0.22131595015525818,
+          "num_images_loaded": 2
         }
-      ]
+      ],
+      "average_image_gt_similarity": 0.2525844492695548,
+      "average_image_pred_similarity": 0.24948026104406876,
+      "objects_with_images": 11
     },
     {
       "scene_id": "0958220d-e2c2-2de1-9710-c37018da1883",
       "dataset": "3rscan",
       "validation_file": "data/validation_results/3rscan/annotations_0958220d-e2c2-2de1-9710-c37018da1883_1769630616357.json",
       "scene_graph_file": "data/scenegraphs_sampled/3rscan/0958220d-e2c2-2de1-9710-c37018da1883/scene_graph.json",
-      "average_similarity": 0.9283830617155345,
+      "average_similarity": 0.9270296454429626,
       "total_objects": 14,
       "per_object": [
         {
           "object_id": 3,
-          "similarity_score": 0.8427389085292816,
-          "similarity_std": 0.04648387085324221,
+          "similarity_score": 0.8385025024414062,
+          "similarity_std": 0.03182380889184832,
           "ground_truth_text": "beige, cylindrical, fabric, for covering floors, large, long, rolled, round, soft, soft (fabric parts), woven",
           "predicted_text": "beige, cylindrical, dark green, fabric, floral pattern with light and dark shades, for covering floors, green, large, long, rolled, round, soft, soft (fabric parts), woven",
           "ground_truth_attrs": [
@@ -934,12 +1086,17 @@
             "for covering floors"
           ],
           "num_ground_truth": 11,
-          "num_predicted": 14
+          "num_predicted": 14,
+          "num_image_files": 2,
+          "has_images": true,
+          "image_gt_similarity": 0.2418772429227829,
+          "image_pred_similarity": 0.24431166052818298,
+          "num_images_loaded": 2
         },
         {
           "object_id": 4,
-          "similarity_score": 0.9678612172603607,
-          "similarity_std": 0.012722844557605757,
+          "similarity_score": 0.973400992155075,
+          "similarity_std": 0.008163064761324348,
           "ground_truth_text": "dark green, folded, folded, for back support, for sitting on, medium, metal, plastic, rectangular, smooth",
           "predicted_text": "dark green, folded, folded, for back support, for sitting on, green, medium, metal, plastic, rectangular, smooth",
           "ground_truth_attrs": [
@@ -968,12 +1125,17 @@
             "for back support"
           ],
           "num_ground_truth": 10,
-          "num_predicted": 11
+          "num_predicted": 11,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.2581397294998169,
+          "image_pred_similarity": 0.25691962242126465,
+          "num_images_loaded": 1
         },
         {
           "object_id": 5,
-          "similarity_score": 0.8448873460292816,
-          "similarity_std": 0.07062988882718431,
+          "similarity_score": 0.7964045643806458,
+          "similarity_std": 0.09583159594645593,
           "ground_truth_text": "beige, flat, for enclosing space, long, rectangular",
           "predicted_text": "beige, dark green, flat, for enclosing space, irregular, long, rectangular",
           "ground_truth_attrs": [
@@ -993,12 +1155,17 @@
             "for enclosing space"
           ],
           "num_ground_truth": 5,
-          "num_predicted": 7
+          "num_predicted": 7,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.21956399083137512,
+          "image_pred_similarity": 0.20198695361614227,
+          "num_images_loaded": 1
         },
         {
           "object_id": 6,
-          "similarity_score": 0.8954902768135071,
-          "similarity_std": 0.02128899054225296,
+          "similarity_score": 0.9095955431461334,
+          "similarity_std": 0.02314053373622877,
           "ground_truth_text": "draped, fabric, for blocking light, for enclosing space, for providing privacy, large, long, rectangular, smooth, soft, soft (fabric parts)",
           "predicted_text": "dark green, draped, fabric, folded, for blocking light, for enclosing space, for providing privacy, green, large, long, rectangular, smooth, soft, soft (fabric parts)",
           "ground_truth_attrs": [
@@ -1031,12 +1198,17 @@
             "for enclosing space"
           ],
           "num_ground_truth": 11,
-          "num_predicted": 14
+          "num_predicted": 14,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.1934903860092163,
+          "image_pred_similarity": 0.20325936377048492,
+          "num_images_loaded": 1
         },
         {
           "object_id": 7,
-          "similarity_score": 0.9470004737377167,
-          "similarity_std": 0.014896011447210844,
+          "similarity_score": 0.9447530508041382,
+          "similarity_std": 0.013797848973082883,
           "ground_truth_text": "beige, box-shaped, flat, for cooling air, large, metal, plastic, rectangular, smooth, white",
           "predicted_text": "beige, box-shaped, flat, for cooling air, large, metal, plastic, rectangular, smooth, smooth (wooden parts), white",
           "ground_truth_attrs": [
@@ -1065,12 +1237,17 @@
             "for cooling air"
           ],
           "num_ground_truth": 10,
-          "num_predicted": 11
+          "num_predicted": 11,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.2644708454608917,
+          "image_pred_similarity": 0.2635362446308136,
+          "num_images_loaded": 1
         },
         {
           "object_id": 8,
-          "similarity_score": 0.9164365828037262,
-          "similarity_std": 0.029021878801531908,
+          "similarity_score": 0.919709575176239,
+          "similarity_std": 0.0271548070168432,
           "ground_truth_text": "draped, fabric, for blocking light, for enclosing space, for providing privacy, large, long, rectangular, smooth, soft, soft (fabric parts)",
           "predicted_text": "dark green, draped, fabric, folded, for blocking light, for enclosing space, for providing privacy, green, large, long, rectangular, smooth, soft, soft (fabric parts)",
           "ground_truth_attrs": [
@@ -1103,12 +1280,17 @@
             "for enclosing space"
           ],
           "num_ground_truth": 11,
-          "num_predicted": 14
+          "num_predicted": 14,
+          "num_image_files": 2,
+          "has_images": true,
+          "image_gt_similarity": 0.2013903260231018,
+          "image_pred_similarity": 0.20345133543014526,
+          "num_images_loaded": 2
         },
         {
           "object_id": 9,
-          "similarity_score": 0.970268714427948,
-          "similarity_std": 0.009977759611545284,
+          "similarity_score": 0.9642689883708954,
+          "similarity_std": 0.010732368644197843,
           "ground_truth_text": "black, cylindrical, dark brown, for riding, metal, round, smooth",
           "predicted_text": "black, cylindrical, dark brown, for riding, metal, round, smooth",
           "ground_truth_attrs": [
@@ -1130,12 +1312,17 @@
             "for riding"
           ],
           "num_ground_truth": 7,
-          "num_predicted": 7
+          "num_predicted": 7,
+          "num_image_files": 2,
+          "has_images": true,
+          "image_gt_similarity": 0.24108219146728516,
+          "image_pred_similarity": 0.24108219146728516,
+          "num_images_loaded": 2
         },
         {
           "object_id": 10,
-          "similarity_score": 0.9586812734603882,
-          "similarity_std": 0.01643894243165393,
+          "similarity_score": 0.9666247427463531,
+          "similarity_std": 0.012864797057202946,
           "ground_truth_text": "beige, boxy, brown, fabric, floral, floral pattern with light and dark shades, for back support, for sitting on, medium, rectangular, smooth (wooden parts), soft, soft (fabric parts), wooden",
           "predicted_text": "beige, boxy, brown, fabric, floral, floral pattern with light and dark shades, for back support, for sitting on, medium, rectangular, smooth (wooden parts), soft, soft (fabric parts), wooden",
           "ground_truth_attrs": [
@@ -1171,12 +1358,17 @@
             "for back support"
           ],
           "num_ground_truth": 14,
-          "num_predicted": 14
+          "num_predicted": 14,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.20236124098300934,
+          "image_pred_similarity": 0.20236124098300934,
+          "num_images_loaded": 1
         },
         {
           "object_id": 11,
-          "similarity_score": 0.965979027748108,
-          "similarity_std": 0.017873378770457554,
+          "similarity_score": 0.9650361895561218,
+          "similarity_std": 0.012187321323596347,
           "ground_truth_text": "beige, box-shaped, boxy, brown, cardboard, for holding items, for packaging, for storing items, medium, rectangular, smooth",
           "predicted_text": "beige, box-shaped, boxy, brown, cardboard, for holding items, for packaging, for storing items, medium, open, rectangular, smooth",
           "ground_truth_attrs": [
@@ -1207,12 +1399,17 @@
             "for holding items"
           ],
           "num_ground_truth": 11,
-          "num_predicted": 12
+          "num_predicted": 12,
+          "num_image_files": 2,
+          "has_images": true,
+          "image_gt_similarity": 0.2554943859577179,
+          "image_pred_similarity": 0.254360169172287,
+          "num_images_loaded": 2
         },
         {
           "object_id": 12,
-          "similarity_score": 0.9375899970531464,
-          "similarity_std": 0.02243211814182807,
+          "similarity_score": 0.9373243570327758,
+          "similarity_std": 0.01687091511363526,
           "ground_truth_text": "beige, brown, fabric, floral, floral pattern with light and dark shades, for back support, for sitting on, large, rectangular, soft, soft (fabric parts), vintage",
           "predicted_text": "beige, brown, fabric, floral, floral pattern with light and dark shades, for back support, for sitting on, green, large, rectangular, soft, soft (fabric parts), vintage, white",
           "ground_truth_attrs": [
@@ -1246,12 +1443,17 @@
             "for sitting on"
           ],
           "num_ground_truth": 12,
-          "num_predicted": 14
+          "num_predicted": 14,
+          "num_image_files": 2,
+          "has_images": true,
+          "image_gt_similarity": 0.22888118028640747,
+          "image_pred_similarity": 0.22239279747009277,
+          "num_images_loaded": 2
         },
         {
           "object_id": 13,
-          "similarity_score": 0.9527863383293151,
-          "similarity_std": 0.03246496199084941,
+          "similarity_score": 0.9622957229614257,
+          "similarity_std": 0.011256816628885922,
           "ground_truth_text": "beige, boxy, brown, fabric, floral, floral pattern with light and dark shades, for back support, for sitting on, medium, rectangular, smooth (wooden parts), soft, soft (fabric parts), wooden",
           "predicted_text": "beige, boxy, brown, fabric, floral, floral pattern with light and dark shades, for back support, for sitting on, medium, rectangular, smooth (wooden parts), soft, soft (fabric parts), wooden",
           "ground_truth_attrs": [
@@ -1287,12 +1489,17 @@
             "for back support"
           ],
           "num_ground_truth": 14,
-          "num_predicted": 14
+          "num_predicted": 14,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.1749965399503708,
+          "image_pred_similarity": 0.1749965399503708,
+          "num_images_loaded": 1
         },
         {
           "object_id": 14,
-          "similarity_score": 0.9228994011878967,
-          "similarity_std": 0.013651360213417101,
+          "similarity_score": 0.929012942314148,
+          "similarity_std": 0.02182701532623785,
           "ground_truth_text": "black, fabric, for wearing, irregular, medium, soft, soft (fabric parts)",
           "predicted_text": "black, dark brown, draped, fabric, folded, folded, for wearing, irregular, medium, soft, soft (fabric parts)",
           "ground_truth_attrs": [
@@ -1318,12 +1525,17 @@
             "for wearing"
           ],
           "num_ground_truth": 7,
-          "num_predicted": 11
+          "num_predicted": 11,
+          "num_image_files": 2,
+          "has_images": true,
+          "image_gt_similarity": 0.25013092160224915,
+          "image_pred_similarity": 0.24008706212043762,
+          "num_images_loaded": 2
         },
         {
           "object_id": 15,
-          "similarity_score": 0.9039729058742523,
-          "similarity_std": 0.03264577989091748,
+          "similarity_score": 0.9041011512279511,
+          "similarity_std": 0.03111288853407135,
           "ground_truth_text": "boxy, brown, for holding items, for placing items on, for placing objects on, glass, rectangular, rustic, smooth (glass top), wicker, woven",
           "predicted_text": "beige, boxy, brown, clear, for holding items, for placing items on, for placing objects on, glass, medium, rectangular, rustic, smooth (glass top), wicker, woven",
           "ground_truth_attrs": [
@@ -1356,12 +1568,17 @@
             "for placing items on"
           ],
           "num_ground_truth": 11,
-          "num_predicted": 14
+          "num_predicted": 14,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.22628718614578247,
+          "image_pred_similarity": 0.24275696277618408,
+          "num_images_loaded": 1
         },
         {
           "object_id": 18,
-          "similarity_score": 0.9707704007625579,
-          "similarity_std": 0.012232307628548992,
+          "similarity_score": 0.9673847138881684,
+          "similarity_std": 0.017540613570975073,
           "ground_truth_text": "brown, flat, for placing items on, for placing objects on, rectangular, smooth, wooden",
           "predicted_text": "brown, flat, for placing items on, for placing objects on, rectangular, smooth, wooden",
           "ground_truth_attrs": [
@@ -1383,22 +1600,30 @@
             "for placing objects on"
           ],
           "num_ground_truth": 7,
-          "num_predicted": 7
+          "num_predicted": 7,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.23749950528144836,
+          "image_pred_similarity": 0.23749950528144836,
+          "num_images_loaded": 1
         }
-      ]
+      ],
+      "average_image_gt_similarity": 0.22826183374438966,
+      "average_image_pred_similarity": 0.22778583211558207,
+      "objects_with_images": 14
     },
     {
       "scene_id": "09582212-e2c2-2de1-9700-fa44b14fbded",
       "dataset": "3rscan",
       "validation_file": "data/validation_results/3rscan/annotations_09582212-e2c2-2de1-9700-fa44b14fbded_1769666649124.json",
       "scene_graph_file": "data/scenegraphs_sampled/3rscan/09582212-e2c2-2de1-9700-fa44b14fbded/scene_graph.json",
-      "average_similarity": 0.9013709017208644,
+      "average_similarity": 0.9012569567986898,
       "total_objects": 14,
       "per_object": [
         {
           "object_id": 2,
-          "similarity_score": 0.7247139751911164,
-          "similarity_std": 0.052902047213693265,
+          "similarity_score": 0.7235040545463562,
+          "similarity_std": 0.041813279743232824,
           "ground_truth_text": "flat, light blue, rectangular, smooth",
           "predicted_text": "flat, large, light blue, light green, painted plaster, rectangular, smooth",
           "ground_truth_attrs": [
@@ -1417,12 +1642,17 @@
             "large"
           ],
           "num_ground_truth": 4,
-          "num_predicted": 7
+          "num_predicted": 7,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.24609658122062683,
+          "image_pred_similarity": 0.21866044402122498,
+          "num_images_loaded": 1
         },
         {
           "object_id": 3,
-          "similarity_score": 0.8770615339279175,
-          "similarity_std": 0.024105095286406274,
+          "similarity_score": 0.8836474120616913,
+          "similarity_std": 0.02586416758560514,
           "ground_truth_text": "flat, for dividing spaces, for structural support, large, light blue, painted plaster, rectangular, smooth, tall, textured",
           "predicted_text": "flat, for dividing spaces, for structural support, large, light blue, light green, painted plaster, rectangular, smooth, tall, textured",
           "ground_truth_attrs": [
@@ -1451,12 +1681,17 @@
             "for structural support"
           ],
           "num_ground_truth": 10,
-          "num_predicted": 11
+          "num_predicted": 11,
+          "num_image_files": 2,
+          "has_images": true,
+          "image_gt_similarity": 0.22923600673675537,
+          "image_pred_similarity": 0.20540496706962585,
+          "num_images_loaded": 2
         },
         {
           "object_id": 4,
-          "similarity_score": 0.9320500671863556,
-          "similarity_std": 0.018231473114710555,
+          "similarity_score": 0.9531688034534455,
+          "similarity_std": 0.011802828808297434,
           "ground_truth_text": "box-shaped, brown, flat, for desk work, for holding or supporting objects, for placing items on, for working on, large, light brown, metal, rectangular, smooth, wood, wooden",
           "predicted_text": "black, box-shaped, brown, flat, for desk work, for holding or supporting objects, for placing items on, for working on, large, light brown, medium, metal, rectangular, smooth, wood, wooden",
           "ground_truth_attrs": [
@@ -1494,12 +1729,17 @@
             "for desk work"
           ],
           "num_ground_truth": 14,
-          "num_predicted": 16
+          "num_predicted": 16,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.25862929224967957,
+          "image_pred_similarity": 0.259609192609787,
+          "num_images_loaded": 1
         },
         {
           "object_id": 5,
-          "similarity_score": 0.7868666172027587,
-          "similarity_std": 0.025965959746372926,
+          "similarity_score": 0.7721507787704468,
+          "similarity_std": 0.019939094917806932,
           "ground_truth_text": "black, box-shaped, dark gray, flat, for displaying visual output, full-size, glass, medium, modern, plastic, rectangular, smooth",
           "predicted_text": "black, box-shaped, dark gray, flat, for displaying visual output, full-size, glass, labeled 'Lenovo', medium, modern, plastic, rectangular, smooth",
           "ground_truth_attrs": [
@@ -1532,12 +1772,17 @@
             "for displaying visual output"
           ],
           "num_ground_truth": 12,
-          "num_predicted": 13
+          "num_predicted": 13,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.26534590125083923,
+          "image_pred_similarity": 0.2956036627292633,
+          "num_images_loaded": 1
         },
         {
           "object_id": 6,
-          "similarity_score": 0.8322163224220276,
-          "similarity_std": 0.035409703148341264,
+          "similarity_score": 0.8055984020233155,
+          "similarity_std": 0.04631404616084097,
           "ground_truth_text": "black, flat, for desk work, for typing, full-size, modern, plastic, rectangular, smooth",
           "predicted_text": "black, dark gray, flat, for desk work, for typing, full-size, labeled 'Lenovo', modern, plastic, rectangular, smooth",
           "ground_truth_attrs": [
@@ -1565,12 +1810,17 @@
             "for desk work"
           ],
           "num_ground_truth": 9,
-          "num_predicted": 11
+          "num_predicted": 11,
+          "num_image_files": 2,
+          "has_images": true,
+          "image_gt_similarity": 0.23967811465263367,
+          "image_pred_similarity": 0.25858399271965027,
+          "num_images_loaded": 2
         },
         {
           "object_id": 7,
-          "similarity_score": 0.9543740153312683,
-          "similarity_std": 0.012668184901472701,
+          "similarity_score": 0.9511498391628266,
+          "similarity_std": 0.01269168525797042,
           "ground_truth_text": "curved backrest, for sitting on, full-size, light brown, metal, rectangular, smooth, with rounded corners, wood",
           "predicted_text": "curved backrest, dark gray, for sitting on, full-size, light brown, metal, rectangular, smooth, with rounded corners, wood, wooden",
           "ground_truth_attrs": [
@@ -1598,12 +1848,17 @@
             "for sitting on"
           ],
           "num_ground_truth": 9,
-          "num_predicted": 11
+          "num_predicted": 11,
+          "num_image_files": 2,
+          "has_images": true,
+          "image_gt_similarity": 0.3102232813835144,
+          "image_pred_similarity": 0.2893153131008148,
+          "num_images_loaded": 2
         },
         {
           "object_id": 8,
-          "similarity_score": 0.9426928937435151,
-          "similarity_std": 0.01637196402195772,
+          "similarity_score": 0.9363082945346832,
+          "similarity_std": 0.019656288442978512,
           "ground_truth_text": "curved backrest, for sitting on, full-size, light brown, metal, rectangular, smooth, with rounded corners, wood, wooden",
           "predicted_text": "curved backrest, dark gray, for sitting on, full-size, light brown, metal, rectangular, smooth, with rounded corners, wood, wooden",
           "ground_truth_attrs": [
@@ -1632,12 +1887,17 @@
             "for sitting on"
           ],
           "num_ground_truth": 10,
-          "num_predicted": 11
+          "num_predicted": 11,
+          "num_image_files": 2,
+          "has_images": true,
+          "image_gt_similarity": 0.29409486055374146,
+          "image_pred_similarity": 0.2686763405799866,
+          "num_images_loaded": 2
         },
         {
           "object_id": 9,
-          "similarity_score": 0.9169457018375397,
-          "similarity_std": 0.03808759807112222,
+          "similarity_score": 0.9499510645866394,
+          "similarity_std": 0.0105490345346772,
           "ground_truth_text": "black, blue, curved backrest, ergonomic, fabric, for desk work, for sitting on, full-size, medium, modern, plastic, smooth, textured",
           "predicted_text": "black, blue, curved backrest, ergonomic, fabric, for desk work, for sitting on, full-size, light blue, medium, modern, plastic, smooth, textured",
           "ground_truth_attrs": [
@@ -1672,12 +1932,17 @@
             "for sitting on"
           ],
           "num_ground_truth": 13,
-          "num_predicted": 14
+          "num_predicted": 14,
+          "num_image_files": 2,
+          "has_images": true,
+          "image_gt_similarity": 0.2708795666694641,
+          "image_pred_similarity": 0.27269822359085083,
+          "num_images_loaded": 2
         },
         {
           "object_id": 12,
-          "similarity_score": 0.9614628672599792,
-          "similarity_std": 0.011598930583699646,
+          "similarity_score": 0.9547493278980255,
+          "similarity_std": 0.019399159922607895,
           "ground_truth_text": "black, box-shaped, for holding or supporting objects, for organizing items in drawers, for storing items, light brown, medium, metal, rectangular, smooth, wooden",
           "predicted_text": "black, box-shaped, dark gray, for holding or supporting objects, for organizing items in drawers, for storing items, light brown, medium, metal, rectangular, smooth, wooden",
           "ground_truth_attrs": [
@@ -1708,12 +1973,17 @@
             "for storing items"
           ],
           "num_ground_truth": 11,
-          "num_predicted": 12
+          "num_predicted": 12,
+          "num_image_files": 2,
+          "has_images": true,
+          "image_gt_similarity": 0.2830234467983246,
+          "image_pred_similarity": 0.2754683494567871,
+          "num_images_loaded": 2
         },
         {
           "object_id": 13,
-          "similarity_score": 0.9516780734062195,
-          "similarity_std": 0.00922626931323557,
+          "similarity_score": 0.9385860562324524,
+          "similarity_std": 0.01951145973861221,
           "ground_truth_text": "box-shaped, brown, cardboard, for storing items, full-size, light brown, medium, paper, rectangular, smooth",
           "predicted_text": "box-shaped, brown, cardboard, dark green, for storing items, full-size, light brown, medium, paper, rectangular, smooth",
           "ground_truth_attrs": [
@@ -1742,12 +2012,17 @@
             "for storing items"
           ],
           "num_ground_truth": 10,
-          "num_predicted": 11
+          "num_predicted": 11,
+          "num_image_files": 2,
+          "has_images": true,
+          "image_gt_similarity": 0.2691473364830017,
+          "image_pred_similarity": 0.26467615365982056,
+          "num_images_loaded": 2
         },
         {
           "object_id": 14,
-          "similarity_score": 0.9293395340442657,
-          "similarity_std": 0.01835537442095673,
+          "similarity_score": 0.9356938004493713,
+          "similarity_std": 0.03709816645939959,
           "ground_truth_text": "blue, flat, for reading, for storing items, medium, modern, paper, partially closed, rectangular, smooth, white",
           "predicted_text": "blue, flat, for reading, for storing items, medium, modern, paper, partially closed, rectangular, smooth, white",
           "ground_truth_attrs": [
@@ -1777,12 +2052,17 @@
             "for storing items"
           ],
           "num_ground_truth": 11,
-          "num_predicted": 11
+          "num_predicted": 11,
+          "num_image_files": 2,
+          "has_images": true,
+          "image_gt_similarity": 0.2161666750907898,
+          "image_pred_similarity": 0.2161666750907898,
+          "num_images_loaded": 2
         },
         {
           "object_id": 15,
-          "similarity_score": 0.8977572798728943,
-          "similarity_std": 0.02667379271195553,
+          "similarity_score": 0.8809195339679718,
+          "similarity_std": 0.030838857551054772,
           "ground_truth_text": "blue, flat, for cutting paper, for desk work, medium, metal, plastic, rectangular, smooth, white",
           "predicted_text": "blue, flat, for cutting paper, for desk work, light green, medium, metal, plastic, rectangular, smooth, white",
           "ground_truth_attrs": [
@@ -1811,12 +2091,17 @@
             "for desk work"
           ],
           "num_ground_truth": 10,
-          "num_predicted": 11
+          "num_predicted": 11,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.24601706862449646,
+          "image_pred_similarity": 0.2584552466869354,
+          "num_images_loaded": 1
         },
         {
           "object_id": 16,
-          "similarity_score": 0.9597804546356201,
-          "similarity_std": 0.019707656084644126,
+          "similarity_score": 0.9691186606884002,
+          "similarity_std": 0.00976830574663791,
           "ground_truth_text": "fabric, flat, for blocking light, for letting light in, for providing privacy, large, light blue, light gray, partially closed, plastic, rectangular, smooth, vertical slats",
           "predicted_text": "fabric, flat, for blocking light, for letting light in, for providing privacy, large, light blue, light gray, partially closed, plastic, rectangular, smooth, vertical slats",
           "ground_truth_attrs": [
@@ -1850,12 +2135,17 @@
             "for letting light in"
           ],
           "num_ground_truth": 13,
-          "num_predicted": 13
+          "num_predicted": 13,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.2290543168783188,
+          "image_pred_similarity": 0.2290543168783188,
+          "num_images_loaded": 1
         },
         {
           "object_id": 17,
-          "similarity_score": 0.9522532880306244,
-          "similarity_std": 0.018190481364486477,
+          "similarity_score": 0.9630513668060303,
+          "similarity_std": 0.011193363822319585,
           "ground_truth_text": "for blocking light, for letting light in, for seeing through, glass, large, light blue, rectangular, smooth, vertical slats, white",
           "predicted_text": "for blocking light, for letting light in, for seeing through, glass, large, light blue, rectangular, smooth, vertical slats, white",
           "ground_truth_attrs": [
@@ -1883,22 +2173,30 @@
             "for blocking light"
           ],
           "num_ground_truth": 10,
-          "num_predicted": 10
+          "num_predicted": 10,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.27407342195510864,
+          "image_pred_similarity": 0.27407342195510864,
+          "num_images_loaded": 1
         }
-      ]
+      ],
+      "average_image_gt_similarity": 0.25940470503909246,
+      "average_image_pred_similarity": 0.256174735724926,
+      "objects_with_images": 14
     },
     {
       "scene_id": "09582225-e2c2-2de1-9564-f6681ef5e511",
       "dataset": "3rscan",
       "validation_file": "data/validation_results/3rscan/annotations_09582225-e2c2-2de1-9564-f6681ef5e511_1769667348156.json",
       "scene_graph_file": "data/scenegraphs_sampled/3rscan/09582225-e2c2-2de1-9564-f6681ef5e511/scene_graph.json",
-      "average_similarity": 0.9222392976284028,
+      "average_similarity": 0.9117423321519579,
       "total_objects": 7,
       "per_object": [
         {
           "object_id": 2,
-          "similarity_score": 0.9421557664871216,
-          "similarity_std": 0.03665721399914896,
+          "similarity_score": 0.9349464237689972,
+          "similarity_std": 0.02937901478877583,
           "ground_truth_text": "flat, for dividing rooms, for dividing spaces, for providing structural support, for supporting structures, large, off-white, plaster, rectangular, smooth",
           "predicted_text": "flat, for dividing rooms, for dividing spaces, for providing structural support, for supporting structures, gray, large, off-white, plaster, rectangular, smooth",
           "ground_truth_attrs": [
@@ -1927,12 +2225,17 @@
             "flat"
           ],
           "num_ground_truth": 10,
-          "num_predicted": 11
+          "num_predicted": 11,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.22919023036956787,
+          "image_pred_similarity": 0.22455382347106934,
+          "num_images_loaded": 1
         },
         {
           "object_id": 3,
-          "similarity_score": 0.8947233438491822,
-          "similarity_std": 0.0337382557851495,
+          "similarity_score": 0.9028233468532563,
+          "similarity_std": 0.024401574555314123,
           "ground_truth_text": "black, flat, for sitting on, light brown, medium, metal, plastic, rectangular, smooth, with a flat seat and straight backrest, wooden",
           "predicted_text": "black, flat, for sitting on, light brown, medium, metal, off-white, plastic, rectangular, red, smooth, with a flat seat and straight backrest, wooden",
           "ground_truth_attrs": [
@@ -1964,12 +2267,17 @@
             "flat"
           ],
           "num_ground_truth": 11,
-          "num_predicted": 13
+          "num_predicted": 13,
+          "num_image_files": 2,
+          "has_images": true,
+          "image_gt_similarity": 0.28093135356903076,
+          "image_pred_similarity": 0.29741668701171875,
+          "num_images_loaded": 2
         },
         {
           "object_id": 4,
-          "similarity_score": 0.887737101316452,
-          "similarity_std": 0.0327968888931864,
+          "similarity_score": 0.8891972184181214,
+          "similarity_std": 0.042966700648520255,
           "ground_truth_text": "black, flat, for sitting on, light brown, medium, metal, plastic, rectangular, smooth, with a flat seat and straight backrest, wooden",
           "predicted_text": "black, flat, for sitting on, light brown, medium, metal, off-white, plastic, rectangular, red, smooth, with a flat seat and straight backrest, wooden",
           "ground_truth_attrs": [
@@ -2001,12 +2309,17 @@
             "flat"
           ],
           "num_ground_truth": 11,
-          "num_predicted": 13
+          "num_predicted": 13,
+          "num_image_files": 2,
+          "has_images": true,
+          "image_gt_similarity": 0.24007737636566162,
+          "image_pred_similarity": 0.24888980388641357,
+          "num_images_loaded": 2
         },
         {
           "object_id": 5,
-          "similarity_score": 0.966436356306076,
-          "similarity_std": 0.013738311142019453,
+          "similarity_score": 0.9514602720737457,
+          "similarity_std": 0.018319658452427643,
           "ground_truth_text": "box-shaped, cardboard, closed, flat, green, light green, medium, plastic, rectangular, smooth, white",
           "predicted_text": "box-shaped, cardboard, closed, flat, green, light green, medium, plastic, rectangular, smooth, white",
           "ground_truth_attrs": [
@@ -2036,12 +2349,17 @@
             "flat"
           ],
           "num_ground_truth": 11,
-          "num_predicted": 11
+          "num_predicted": 11,
+          "num_image_files": 2,
+          "has_images": true,
+          "image_gt_similarity": 0.2957795262336731,
+          "image_pred_similarity": 0.2957795262336731,
+          "num_images_loaded": 2
         },
         {
           "object_id": 6,
-          "similarity_score": 0.912653249502182,
-          "similarity_std": 0.039101399906508405,
+          "similarity_score": 0.8821315824985504,
+          "similarity_std": 0.04445822833794671,
           "ground_truth_text": "black, box-shaped, closed, for disposing trash, medium, plastic, rectangular, smooth",
           "predicted_text": "black, box-shaped, closed, for disposing trash, green, light green, medium, plastic, rectangular, smooth",
           "ground_truth_attrs": [
@@ -2067,12 +2385,17 @@
             "box-shaped"
           ],
           "num_ground_truth": 8,
-          "num_predicted": 10
+          "num_predicted": 10,
+          "num_image_files": 2,
+          "has_images": true,
+          "image_gt_similarity": 0.23791632056236267,
+          "image_pred_similarity": 0.2564524710178375,
+          "num_images_loaded": 2
         },
         {
           "object_id": 7,
-          "similarity_score": 0.9434768795967102,
-          "similarity_std": 0.021649381957773953,
+          "similarity_score": 0.931358414888382,
+          "similarity_std": 0.03203370273059392,
           "ground_truth_text": "concrete, flat, for dividing rooms, for dividing spaces, for providing structural support, for supporting structures, off-white, plaster, rectangular, smooth",
           "predicted_text": "concrete, flat, for dividing rooms, for dividing spaces, for providing structural support, for supporting structures, large, medium, off-white, plaster, rectangular, smooth",
           "ground_truth_attrs": [
@@ -2102,12 +2425,17 @@
             "flat"
           ],
           "num_ground_truth": 10,
-          "num_predicted": 12
+          "num_predicted": 12,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.2434876263141632,
+          "image_pred_similarity": 0.2440601885318756,
+          "num_images_loaded": 1
         },
         {
           "object_id": 8,
-          "similarity_score": 0.908492386341095,
-          "similarity_std": 0.029905993990700715,
+          "similarity_score": 0.8902790665626525,
+          "similarity_std": 0.036963456290390426,
           "ground_truth_text": "closed, flat, for blocking light, for controlling privacy, large, plastic, rectangular, smooth, vertical slat",
           "predicted_text": "closed, flat, for blocking light, for controlling privacy, green, large, light green, plastic, rectangular, smooth, vertical slat",
           "ground_truth_attrs": [
@@ -2135,22 +2463,30 @@
             "flat"
           ],
           "num_ground_truth": 9,
-          "num_predicted": 11
+          "num_predicted": 11,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.2580428719520569,
+          "image_pred_similarity": 0.25117337703704834,
+          "num_images_loaded": 1
         }
-      ]
+      ],
+      "average_image_gt_similarity": 0.2550607579095023,
+      "average_image_pred_similarity": 0.2597608395985195,
+      "objects_with_images": 7
     },
     {
       "scene_id": "0ad2d382-79e2-2212-98b3-641bf9d552c1",
       "dataset": "3rscan",
       "validation_file": "data/validation_results/3rscan/annotations_0ad2d382-79e2-2212-98b3-641bf9d552c1_1769672059619.json",
       "scene_graph_file": "data/scenegraphs_sampled/3rscan/0ad2d382-79e2-2212-98b3-641bf9d552c1/scene_graph.json",
-      "average_similarity": 0.9395031090293612,
+      "average_similarity": 0.9392582161085946,
       "total_objects": 14,
       "per_object": [
         {
           "object_id": 2,
-          "similarity_score": 0.963960838317871,
-          "similarity_std": 0.019283518798422834,
+          "similarity_score": 0.9613596022129058,
+          "similarity_std": 0.02213321579391005,
           "ground_truth_text": "beige, fabric, for comfort, for sitting on, large, light beige, quilted, rectangular, rectangular seat, smooth, soft",
           "predicted_text": "beige, boxy, fabric, for comfort, for sitting on, large, light beige, quilted, rectangular, rectangular seat, smooth, soft",
           "ground_truth_attrs": [
@@ -2181,12 +2517,17 @@
             "boxy"
           ],
           "num_ground_truth": 11,
-          "num_predicted": 12
+          "num_predicted": 12,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.22112572193145752,
+          "image_pred_similarity": 0.2236858308315277,
+          "num_images_loaded": 1
         },
         {
           "object_id": 3,
-          "similarity_score": 0.9397169351577759,
-          "similarity_std": 0.028321281759039054,
+          "similarity_score": 0.9370999217033387,
+          "similarity_std": 0.024710839380815197,
           "ground_truth_text": "drywall, flat, for displaying artwork, for hanging decorations, for supporting structures, large, light beige, plaster, rectangular, smooth, straight-edged",
           "predicted_text": "drywall, flat, for displaying artwork, for hanging decorations, for supporting structures, large, light beige, light gray, plaster, rectangular, smooth, straight-edged, white",
           "ground_truth_attrs": [
@@ -2218,12 +2559,17 @@
             "straight-edged"
           ],
           "num_ground_truth": 11,
-          "num_predicted": 13
+          "num_predicted": 13,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.2334035038948059,
+          "image_pred_similarity": 0.22485005855560303,
+          "num_images_loaded": 1
         },
         {
           "object_id": 4,
-          "similarity_score": 0.9701107442378998,
-          "similarity_std": 0.01641395997642074,
+          "similarity_score": 0.9610824525356293,
+          "similarity_std": 0.01844923422861463,
           "ground_truth_text": "closed, dark gray, for storage, for storing kitchen items, large, modern, rectangular, smooth, smooth (wood), straight-edged, tall, white, wooden, wooden or engineered wood",
           "predicted_text": "boxy, closed, dark gray, for storage, for storing kitchen items, large, modern, rectangular, smooth, smooth (wood), straight-edged, tall, white, wooden, wooden or engineered wood",
           "ground_truth_attrs": [
@@ -2260,12 +2606,17 @@
             "straight-edged"
           ],
           "num_ground_truth": 14,
-          "num_predicted": 15
+          "num_predicted": 15,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.21505746245384216,
+          "image_pred_similarity": 0.20521704852581024,
+          "num_images_loaded": 1
         },
         {
           "object_id": 7,
-          "similarity_score": 0.9519622027873993,
-          "similarity_std": 0.023487732465724307,
+          "similarity_score": 0.9579207360744476,
+          "similarity_std": 0.015509742829188216,
           "ground_truth_text": "beige, drywall, flat, for dividing spaces, for supporting structure, for supporting structures, large, light beige, rectangular, smooth, smooth (wood), straight-edged, tall, vertical",
           "predicted_text": "beige, drywall, flat, for dividing spaces, for supporting structure, for supporting structures, large, light beige, rectangular, smooth, smooth (wood), straight-edged, tall, vertical",
           "ground_truth_attrs": [
@@ -2301,12 +2652,17 @@
             "straight-edged"
           ],
           "num_ground_truth": 14,
-          "num_predicted": 14
+          "num_predicted": 14,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.24389129877090454,
+          "image_pred_similarity": 0.24389129877090454,
+          "num_images_loaded": 1
         },
         {
           "object_id": 8,
-          "similarity_score": 0.9657230615615845,
-          "similarity_std": 0.016945553299998785,
+          "similarity_score": 0.9582037687301636,
+          "similarity_std": 0.02347578939171284,
           "ground_truth_text": "closed, dark gray, for storage, for storing kitchen items, large, modern, rectangular, smooth, smooth (wood), straight-edged, tall, white, wooden, wooden or engineered wood",
           "predicted_text": "boxy, closed, dark gray, for storage, for storing kitchen items, large, modern, rectangular, smooth, smooth (wood), straight-edged, tall, white, wooden, wooden or engineered wood",
           "ground_truth_attrs": [
@@ -2343,12 +2699,17 @@
             "straight-edged"
           ],
           "num_ground_truth": 14,
-          "num_predicted": 15
+          "num_predicted": 15,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.21560710668563843,
+          "image_pred_similarity": 0.20801404118537903,
+          "num_images_loaded": 1
         },
         {
           "object_id": 9,
-          "similarity_score": 0.8724839746952057,
-          "similarity_std": 0.06081030670332265,
+          "similarity_score": 0.9020891726016999,
+          "similarity_std": 0.05018044750039715,
           "ground_truth_text": "abstract, black, blue, decorative, for decoration, for displaying art, for displaying artwork, for wall decoration, green, medium, modern, multicolored (stained glass panel), paper, patterned, rectangular, red, smooth, yellow",
           "predicted_text": "abstract, black, blue, decorative, for decoration, for displaying art, for displaying artwork, for wall decoration, glass, green, medium, modern, multicolored (stained glass panel), paper, patterned, rectangular, red, smooth, white, wood, yellow",
           "ground_truth_attrs": [
@@ -2395,12 +2756,17 @@
             "rectangular"
           ],
           "num_ground_truth": 18,
-          "num_predicted": 21
+          "num_predicted": 21,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.23485642671585083,
+          "image_pred_similarity": 0.25174176692962646,
+          "num_images_loaded": 1
         },
         {
           "object_id": 10,
-          "similarity_score": 0.948212307691574,
-          "similarity_std": 0.02625384455469056,
+          "similarity_score": 0.9437977135181427,
+          "similarity_std": 0.021194975579545722,
           "ground_truth_text": "flat, for eating food on, for placing kitchen items on, medium, orange, rectangular, smooth, straight-edged, yellow",
           "predicted_text": "flat, for eating food on, for placing kitchen items on, large, medium, orange, rectangular, smooth, straight-edged, yellow",
           "ground_truth_attrs": [
@@ -2427,12 +2793,17 @@
             "flat"
           ],
           "num_ground_truth": 9,
-          "num_predicted": 10
+          "num_predicted": 10,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.2880191206932068,
+          "image_pred_similarity": 0.28362372517585754,
+          "num_images_loaded": 1
         },
         {
           "object_id": 17,
-          "similarity_score": 0.9416645228862762,
-          "similarity_std": 0.017532599635690965,
+          "similarity_score": 0.9331178903579712,
+          "similarity_std": 0.019453938624298152,
           "ground_truth_text": "closed, for storage, for storing or displaying items, modern, rectangular, smooth, smooth (wood), straight-edged, white, wooden",
           "predicted_text": "closed, for storage, for storing or displaying items, light gray, modern, rectangular, red, smooth, smooth (wood), straight-edged, white, wooden",
           "ground_truth_attrs": [
@@ -2462,12 +2833,17 @@
             "straight-edged"
           ],
           "num_ground_truth": 10,
-          "num_predicted": 12
+          "num_predicted": 12,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.2290630042552948,
+          "image_pred_similarity": 0.2433348000049591,
+          "num_images_loaded": 1
         },
         {
           "object_id": 18,
-          "similarity_score": 0.9229295432567597,
-          "similarity_std": 0.02933293941449152,
+          "similarity_score": 0.932461929321289,
+          "similarity_std": 0.027210026945258266,
           "ground_truth_text": "flat, for supporting structures, large, plaster, rectangular, smooth, straight-edged, upright, vertical",
           "predicted_text": "flat, for supporting structures, large, light green, plaster, rectangular, smooth, straight-edged, upright, vertical",
           "ground_truth_attrs": [
@@ -2494,12 +2870,17 @@
             "straight-edged"
           ],
           "num_ground_truth": 9,
-          "num_predicted": 10
+          "num_predicted": 10,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.21257366240024567,
+          "image_pred_similarity": 0.20684850215911865,
+          "num_images_loaded": 1
         },
         {
           "object_id": 20,
-          "similarity_score": 0.9643129587173462,
-          "similarity_std": 0.012339524966314575,
+          "similarity_score": 0.9464938938617706,
+          "similarity_std": 0.007579915531645922,
           "ground_truth_text": "dark brown, for allowing light and air inside, for providing a view outside, for providing outdoor space, glass, large, open, rectangular",
           "predicted_text": "black, closed, dark brown, for allowing light and air inside, for providing a view outside, for providing outdoor space, glass, large, medium, metal, open, rectangular, smooth",
           "ground_truth_attrs": [
@@ -2528,12 +2909,17 @@
             "rectangular"
           ],
           "num_ground_truth": 8,
-          "num_predicted": 13
+          "num_predicted": 13,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.23522807657718658,
+          "image_pred_similarity": 0.25201284885406494,
+          "num_images_loaded": 1
         },
         {
           "object_id": 30,
-          "similarity_score": 0.9206567406654358,
-          "similarity_std": 0.025759888321602375,
+          "similarity_score": 0.9258012712001801,
+          "similarity_std": 0.028272460780985116,
           "ground_truth_text": "arrangement, artificial plant, brown, bushy, decorative, for decoration, for displaying art, irregular, leafy, medium, multicolored (stained glass panel), naturalistic, plastic, possibly ceramic base, tall, upright, yellow",
           "predicted_text": "arrangement, artificial plant, brown, bushy, decorative, for decoration, for displaying art, green, irregular, leafy, medium, multicolored (stained glass panel), naturalistic, plastic, possibly ceramic base, smooth, tall, upright, yellow",
           "ground_truth_attrs": [
@@ -2577,12 +2963,17 @@
             "upright"
           ],
           "num_ground_truth": 17,
-          "num_predicted": 19
+          "num_predicted": 19,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.19336891174316406,
+          "image_pred_similarity": 0.18598711490631104,
+          "num_images_loaded": 1
         },
         {
           "object_id": 38,
-          "similarity_score": 0.879502809047699,
-          "similarity_std": 0.03867881079464628,
+          "similarity_score": 0.8591043591499329,
+          "similarity_std": 0.040436002827610215,
           "ground_truth_text": "black, curved backrest, dark gray, fabric, for comfort, for sitting on, four legs, medium, modern, rectangular seat, smooth",
           "predicted_text": "black, curved backrest, dark gray, dark green, fabric, for comfort, for sitting on, four legs, medium, metal, modern, rectangular seat, smooth, soft",
           "ground_truth_attrs": [
@@ -2615,12 +3006,17 @@
             "four legs"
           ],
           "num_ground_truth": 11,
-          "num_predicted": 14
+          "num_predicted": 14,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.20506615936756134,
+          "image_pred_similarity": 0.17323049902915955,
+          "num_images_loaded": 1
         },
         {
           "object_id": 44,
-          "similarity_score": 0.9546647667884827,
-          "similarity_std": 0.020374885272628932,
+          "similarity_score": 0.9661064088344574,
+          "similarity_std": 0.013921999376090587,
           "ground_truth_text": "blue, for holding trash, medium, medium height, open, plastic, rectangular, rounded edges, smooth",
           "predicted_text": "blue, for holding trash, medium, medium height, open, plastic, rectangular, round, rounded edges, smooth",
           "ground_truth_attrs": [
@@ -2647,12 +3043,17 @@
             "round"
           ],
           "num_ground_truth": 9,
-          "num_predicted": 10
+          "num_predicted": 10,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.27874091267585754,
+          "image_pred_similarity": 0.2770320177078247,
+          "num_images_loaded": 1
         },
         {
           "object_id": 45,
-          "similarity_score": 0.9571421205997467,
-          "similarity_std": 0.008696176663478909,
+          "similarity_score": 0.964975905418396,
+          "similarity_std": 0.018624588359478576,
           "ground_truth_text": "beige, drywall, flat, for dividing space, for dividing spaces, for supporting structure, light beige, light brown, plaster, smooth, straight-edged, vertical",
           "predicted_text": "beige, drywall, flat, for dividing space, for dividing spaces, for supporting structure, light beige, light brown, plaster, smooth, straight-edged, vertical",
           "ground_truth_attrs": [
@@ -2684,22 +3085,30 @@
             "straight-edged"
           ],
           "num_ground_truth": 12,
-          "num_predicted": 12
+          "num_predicted": 12,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.24395766854286194,
+          "image_pred_similarity": 0.24395766854286194,
+          "num_images_loaded": 1
         }
-      ]
+      ],
+      "average_image_gt_similarity": 0.23213993119341986,
+      "average_image_pred_similarity": 0.2302448015127863,
+      "objects_with_images": 14
     },
     {
       "scene_id": "scene0000_00",
       "dataset": "scannet",
       "validation_file": "data/validation_results/scannet/annotations_scene0000_00_1769641840869.json",
       "scene_graph_file": "data/scenegraphs_sampled/scannet/scene0000_00/scene_graph.json",
-      "average_similarity": 0.9221754576478686,
+      "average_similarity": 0.9224972907985958,
       "total_objects": 14,
       "per_object": [
         {
           "object_id": 1,
-          "similarity_score": 0.9405804336071014,
-          "similarity_std": 0.02288442205482871,
+          "similarity_score": 0.927753460407257,
+          "similarity_std": 0.015041751617838385,
           "ground_truth_text": "clear, for letting in light, for letting light in, for ventilation, for viewing outside, glass, medium, rectangular, rectangular base, smooth, transparent, wooden frame",
           "predicted_text": "clear, for letting in light, for letting light in, for ventilation, for viewing outside, glass, greenish frame, light blue, medium, open, rectangular, rectangular base, smooth, white, wooden frame",
           "ground_truth_attrs": [
@@ -2734,12 +3143,17 @@
             "open"
           ],
           "num_ground_truth": 12,
-          "num_predicted": 15
+          "num_predicted": 15,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.2466995120048523,
+          "image_pred_similarity": 0.25522157549858093,
+          "num_images_loaded": 1
         },
         {
           "object_id": 5,
-          "similarity_score": 0.9135691285133362,
-          "similarity_std": 0.01399493004040888,
+          "similarity_score": 0.9061652064323426,
+          "similarity_std": 0.021257609062702174,
           "ground_truth_text": "closed, fabric, for covering windows, for providing privacy, green, hanging, large, long, rectangular, soft, tall, wide",
           "predicted_text": "closed, fabric, for covering windows, for dividing rooms, for providing privacy, green, greenish frame, hanging, large, long, rectangular, smooth, soft, tall, wide",
           "ground_truth_attrs": [
@@ -2774,12 +3188,17 @@
             "hanging"
           ],
           "num_ground_truth": 12,
-          "num_predicted": 15
+          "num_predicted": 15,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.22212468087673187,
+          "image_pred_similarity": 0.20583175122737885,
+          "num_images_loaded": 1
         },
         {
           "object_id": 6,
-          "similarity_score": 0.9110080063343048,
-          "similarity_std": 0.010544235141891019,
+          "similarity_score": 0.9151998877525329,
+          "similarity_std": 0.018035704341725353,
           "ground_truth_text": "closed, fabric, for covering windows, for providing privacy, green, greenish frame, hanging, rectangular, soft",
           "predicted_text": "closed, fabric, for covering windows, for dividing rooms, for providing privacy, green, greenish frame, hanging, large, long, rectangular, smooth, soft, tall, wide",
           "ground_truth_attrs": [
@@ -2811,12 +3230,17 @@
             "hanging"
           ],
           "num_ground_truth": 9,
-          "num_predicted": 15
+          "num_predicted": 15,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.24686674773693085,
+          "image_pred_similarity": 0.25184208154678345,
+          "num_images_loaded": 1
         },
         {
           "object_id": 7,
-          "similarity_score": 0.9410171210765839,
-          "similarity_std": 0.01535120891026792,
+          "similarity_score": 0.9535083115100861,
+          "similarity_std": 0.018866164855614917,
           "ground_truth_text": "beige, brown, flat, for placing items, for placing items on, for placing objects on, for storing items, for working at, light brown, medium, open shelves, rectangular, rectangular base, smooth, wooden",
           "predicted_text": "beige, brown, flat, for holding electronic devices, for placing items, for placing items on, for placing objects on, for storing items, for working at, light brown, medium, open shelves, rectangular, rectangular base, smooth, wooden",
           "ground_truth_attrs": [
@@ -2855,12 +3279,17 @@
             "open shelves"
           ],
           "num_ground_truth": 15,
-          "num_predicted": 16
+          "num_predicted": 16,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.23739850521087646,
+          "image_pred_similarity": 0.22755980491638184,
+          "num_images_loaded": 1
         },
         {
           "object_id": 8,
-          "similarity_score": 0.9326811909675599,
-          "similarity_std": 0.02419262368652466,
+          "similarity_score": 0.9195295929908752,
+          "similarity_std": 0.030410879883111665,
           "ground_truth_text": "boxy, brown, classic, for holding electronic devices, for storage, for storing items, large, light brown, rectangular, rectangular base, smooth, tall, traditional, wood (cabinet), wooden",
           "predicted_text": "boxy, brown, classic, enclosed, for displaying visual media, for holding electronic devices, for holding items near a bed, for storage, for storing items, large, light brown, rectangular, rectangular base, rounded edges, smooth, tall, tan, traditional, wood (cabinet), wooden",
           "ground_truth_attrs": [
@@ -2903,12 +3332,17 @@
             "for holding items near a bed"
           ],
           "num_ground_truth": 15,
-          "num_predicted": 20
+          "num_predicted": 20,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.23336288332939148,
+          "image_pred_similarity": 0.24659180641174316,
+          "num_images_loaded": 1
         },
         {
           "object_id": 15,
-          "similarity_score": 0.9278257846832275,
-          "similarity_std": 0.014107414789218089,
+          "similarity_score": 0.9330695450305939,
+          "similarity_std": 0.013786898177129317,
           "ground_truth_text": "black, for displaying visual media, glass, medium, modern, plastic, rectangular, rectangular base, smooth",
           "predicted_text": "black, for displaying visual media, for holding electronic devices, glass, medium, modern, plastic, rectangular, rectangular base, smooth",
           "ground_truth_attrs": [
@@ -2935,12 +3369,17 @@
             "for holding electronic devices"
           ],
           "num_ground_truth": 9,
-          "num_predicted": 10
+          "num_predicted": 10,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.24219302833080292,
+          "image_pred_similarity": 0.21969060599803925,
+          "num_images_loaded": 1
         },
         {
           "object_id": 16,
-          "similarity_score": 0.8937913119792938,
-          "similarity_std": 0.030089371786915103,
+          "similarity_score": 0.8690261363983154,
+          "similarity_std": 0.026866390028102274,
           "ground_truth_text": "backrest, brown, fabric, for back support, for comfort while sitting or reading, for reclining, large, plush, soft, with armrests",
           "predicted_text": "backrest, black, dark green, fabric, for back support, for comfort while sitting or reading, for reclining, for sleeping on, large, lumpy, plush, rectangular base, soft, with armrests",
           "ground_truth_attrs": [
@@ -2972,12 +3411,17 @@
             "for sleeping on"
           ],
           "num_ground_truth": 10,
-          "num_predicted": 14
+          "num_predicted": 14,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.26936203241348267,
+          "image_pred_similarity": 0.2289934754371643,
+          "num_images_loaded": 1
         },
         {
           "object_id": 18,
-          "similarity_score": 0.8969915091991425,
-          "similarity_std": 0.010776126227484202,
+          "similarity_score": 0.9193100392818451,
+          "similarity_std": 0.014806424757495032,
           "ground_truth_text": "black, enclosed, fabric, for carrying items, medium, soft, standard",
           "predicted_text": "black, enclosed, fabric, for carrying items, for storing items, hanging, medium, rectangular, smooth, soft, standard",
           "ground_truth_attrs": [
@@ -3003,12 +3447,17 @@
             "hanging"
           ],
           "num_ground_truth": 7,
-          "num_predicted": 11
+          "num_predicted": 11,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.2230238914489746,
+          "image_pred_similarity": 0.24294063448905945,
+          "num_images_loaded": 1
         },
         {
           "object_id": 35,
-          "similarity_score": 0.9521361708641052,
-          "similarity_std": 0.016324617382901953,
+          "similarity_score": 0.9594334363937378,
+          "similarity_std": 0.02112170024370159,
           "ground_truth_text": "flat, for placing items on, for placing objects on, for storage, light beige, light brown, medium, open shelves, rectangular, rectangular base, smooth, wooden",
           "predicted_text": "flat, for placing items on, for placing objects on, for storage, light beige, light brown, medium, open shelves, rectangular, rectangular base, smooth, wooden",
           "ground_truth_attrs": [
@@ -3040,12 +3489,17 @@
             "open shelves"
           ],
           "num_ground_truth": 12,
-          "num_predicted": 12
+          "num_predicted": 12,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.266389399766922,
+          "image_pred_similarity": 0.266389399766922,
+          "num_images_loaded": 1
         },
         {
           "object_id": 41,
-          "similarity_score": 0.9304491341114044,
-          "similarity_std": 0.02289191414955923,
+          "similarity_score": 0.9336757659912109,
+          "similarity_std": 0.01681098696363428,
           "ground_truth_text": "boxy, brown, closed, enclosed, for holding kitchen items, for storage, for storing items, medium, rectangular, smooth, traditional, wooden",
           "predicted_text": "boxy, closed, enclosed, for holding kitchen items, for storage, for storing items, for storing kitchen items, green, medium, rectangular, smooth, traditional, wooden",
           "ground_truth_attrs": [
@@ -3078,12 +3532,17 @@
             "closed"
           ],
           "num_ground_truth": 12,
-          "num_predicted": 13
+          "num_predicted": 13,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.2318294197320938,
+          "image_pred_similarity": 0.23176957666873932,
+          "num_images_loaded": 1
         },
         {
           "object_id": 44,
-          "similarity_score": 0.842829841375351,
-          "similarity_std": 0.024538854527685543,
+          "similarity_score": 0.850276780128479,
+          "similarity_std": 0.02254253787717204,
           "ground_truth_text": "absorbent, cotton, dark green, fabric, folded, for drying body, hanging, medium, plush, rectangular, soft",
           "predicted_text": "absorbent, cotton, dark gray, dark green, fabric, folded, for drying body, for drying dishes, for drying hands, for washing hands, hanging, medium, plush, rectangular, soft",
           "ground_truth_attrs": [
@@ -3117,12 +3576,17 @@
             "hanging"
           ],
           "num_ground_truth": 11,
-          "num_predicted": 15
+          "num_predicted": 15,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.29440659284591675,
+          "image_pred_similarity": 0.26561522483825684,
+          "num_images_loaded": 1
         },
         {
           "object_id": 48,
-          "similarity_score": 0.9470606207847595,
-          "similarity_std": 0.016522669948245815,
+          "similarity_score": 0.9449275255203247,
+          "similarity_std": 0.016731013470173608,
           "ground_truth_text": "blue, boxy, cardboard, for dispensing tissues, light blue, medium, open top, paper, rectangular, rectangular base, small, smooth, standard, white",
           "predicted_text": "blue, boxy, cardboard, for dispensing tissues, for storing items, light blue, medium, open top, paper, rectangular, rectangular base, small, smooth, standard, white",
           "ground_truth_attrs": [
@@ -3159,12 +3623,17 @@
             "for storing items"
           ],
           "num_ground_truth": 14,
-          "num_predicted": 15
+          "num_predicted": 15,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.21988610923290253,
+          "image_pred_similarity": 0.2329857349395752,
+          "num_images_loaded": 1
         },
         {
           "object_id": 56,
-          "similarity_score": 0.9442435145378113,
-          "similarity_std": 0.011282334932462152,
+          "similarity_score": 0.9393611788749695,
+          "similarity_std": 0.025105778549155865,
           "ground_truth_text": "beige, brown, closed, enclosed, for placing items on, for storage, for storing books, for storing items, large, light brown, open shelves, rectangular, rectangular base, smooth, tall, wide, wooden, wooden frame",
           "predicted_text": "beige, brown, closed, enclosed, for holding kitchen items, for placing items on, for storage, for storing books, for storing items, for storing kitchen items, large, light brown, open shelves, rectangular, rectangular base, smooth, tall, wide, wooden, wooden frame",
           "ground_truth_attrs": [
@@ -3210,12 +3679,17 @@
             "open shelves"
           ],
           "num_ground_truth": 18,
-          "num_predicted": 20
+          "num_predicted": 20,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.2933018207550049,
+          "image_pred_similarity": 0.2804005742073059,
+          "num_images_loaded": 1
         },
         {
           "object_id": 61,
-          "similarity_score": 0.9362726390361786,
-          "similarity_std": 0.02155464541853885,
+          "similarity_score": 0.9437252044677734,
+          "similarity_std": 0.01528909838895421,
           "ground_truth_text": "black, for head protection, medium, plastic, rounded, smooth, vented",
           "predicted_text": "black, foam, for head protection, gray, matte, medium, plastic, rounded, smooth, vented",
           "ground_truth_attrs": [
@@ -3240,22 +3714,30 @@
             "for head protection"
           ],
           "num_ground_truth": 7,
-          "num_predicted": 10
+          "num_predicted": 10,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.24522173404693604,
+          "image_pred_similarity": 0.2470552623271942,
+          "num_images_loaded": 1
         }
-      ]
+      ],
+      "average_image_gt_similarity": 0.24800473983798707,
+      "average_image_pred_similarity": 0.24306339344808034,
+      "objects_with_images": 14
     },
     {
       "scene_id": "scene0001_00",
       "dataset": "scannet",
       "validation_file": "data/validation_results/scannet/annotations_scene0001_00_1769639833162.json",
       "scene_graph_file": "data/scenegraphs_sampled/scannet/scene0001_00/scene_graph.json",
-      "average_similarity": 0.9501962142331262,
+      "average_similarity": 0.9481749534606935,
       "total_objects": 14,
       "per_object": [
         {
           "object_id": 0,
-          "similarity_score": 0.9660813748836518,
-          "similarity_std": 0.012907935243384518,
+          "similarity_score": 0.9688741803169251,
+          "similarity_std": 0.008398945536005717,
           "ground_truth_text": "boxy, dark brown, for sitting on, large, leather, medium, rectangular, smooth",
           "predicted_text": "black, boxy, dark brown, for sitting on, large, leather, medium, rectangular, smooth",
           "ground_truth_attrs": [
@@ -3280,12 +3762,17 @@
             "boxy"
           ],
           "num_ground_truth": 8,
-          "num_predicted": 9
+          "num_predicted": 9,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.27191123366355896,
+          "image_pred_similarity": 0.2799210548400879,
+          "num_images_loaded": 1
         },
         {
           "object_id": 1,
-          "similarity_score": 0.9659741461277008,
-          "similarity_std": 0.014820390576189843,
+          "similarity_score": 0.9607613563537598,
+          "similarity_std": 0.023099905027462075,
           "ground_truth_text": "boxy, dark brown, for sitting on, large, leather, modern, rectangular, smooth, wide",
           "predicted_text": "black, boxy, dark brown, for sitting on, large, leather, modern, rectangular, smooth, wide",
           "ground_truth_attrs": [
@@ -3312,12 +3799,17 @@
             "boxy"
           ],
           "num_ground_truth": 9,
-          "num_predicted": 10
+          "num_predicted": 10,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.26979517936706543,
+          "image_pred_similarity": 0.27421411871910095,
+          "num_images_loaded": 1
         },
         {
           "object_id": 3,
-          "similarity_score": 0.9637306690216064,
-          "similarity_std": 0.012145054210043334,
+          "similarity_score": 0.9677916884422302,
+          "similarity_std": 0.010577716965808772,
           "ground_truth_text": "boxy, brown, flat, for placing items on, for placing objects on, medium, rectangular, small, smooth, wood, wooden",
           "predicted_text": "boxy, brown, dark brown, flat, for placing items on, for placing objects on, medium, rectangular, small, smooth, wood, wooden",
           "ground_truth_attrs": [
@@ -3348,12 +3840,17 @@
             "boxy"
           ],
           "num_ground_truth": 11,
-          "num_predicted": 12
+          "num_predicted": 12,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.24318620562553406,
+          "image_pred_similarity": 0.2457723170518875,
+          "num_images_loaded": 1
         },
         {
           "object_id": 4,
-          "similarity_score": 0.9648670077323913,
-          "similarity_std": 0.013505481160171971,
+          "similarity_score": 0.9599145829677582,
+          "similarity_std": 0.012455635124742744,
           "ground_truth_text": "boxy, brown, dark brown, flat, for placing items on, for placing objects on, medium, rectangular, smooth, wood, wooden",
           "predicted_text": "boxy, brown, dark brown, flat, for placing items on, for placing objects on, medium, rectangular, small, smooth, wood, wooden",
           "ground_truth_attrs": [
@@ -3384,12 +3881,17 @@
             "boxy"
           ],
           "num_ground_truth": 11,
-          "num_predicted": 12
+          "num_predicted": 12,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.27850082516670227,
+          "image_pred_similarity": 0.2761729061603546,
+          "num_images_loaded": 1
         },
         {
           "object_id": 7,
-          "similarity_score": 0.9731447160243988,
-          "similarity_std": 0.009587723318365136,
+          "similarity_score": 0.9703078627586365,
+          "similarity_std": 0.012201114516681865,
           "ground_truth_text": "boxy, brown, dark brown, flat, for placing items on, for placing objects on, medium, rectangular, small, smooth, wood, wooden",
           "predicted_text": "boxy, brown, dark brown, flat, for placing items on, for placing objects on, medium, rectangular, small, smooth, wood, wooden",
           "ground_truth_attrs": [
@@ -3421,12 +3923,17 @@
             "flat"
           ],
           "num_ground_truth": 12,
-          "num_predicted": 12
+          "num_predicted": 12,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.2523052394390106,
+          "image_pred_similarity": 0.2523052394390106,
+          "num_images_loaded": 1
         },
         {
           "object_id": 8,
-          "similarity_score": 0.9657540321350098,
-          "similarity_std": 0.013534199561626247,
+          "similarity_score": 0.9602923512458801,
+          "similarity_std": 0.020575275748821367,
           "ground_truth_text": "boxy, dark brown, for sitting on, large, leather, medium, rectangular, smooth",
           "predicted_text": "black, boxy, dark brown, for sitting on, large, leather, medium, rectangular, smooth",
           "ground_truth_attrs": [
@@ -3451,12 +3958,17 @@
             "boxy"
           ],
           "num_ground_truth": 8,
-          "num_predicted": 9
+          "num_predicted": 9,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.2645722031593323,
+          "image_pred_similarity": 0.2804920971393585,
+          "num_images_loaded": 1
         },
         {
           "object_id": 9,
-          "similarity_score": 0.9711745917797089,
-          "similarity_std": 0.009018909824559026,
+          "similarity_score": 0.9680203020572662,
+          "similarity_std": 0.02342248150274588,
           "ground_truth_text": "boxy, dark brown, for sitting on, large, leather, medium, rectangular, smooth",
           "predicted_text": "black, boxy, dark brown, for sitting on, large, leather, medium, rectangular, smooth",
           "ground_truth_attrs": [
@@ -3481,12 +3993,17 @@
             "boxy"
           ],
           "num_ground_truth": 8,
-          "num_predicted": 9
+          "num_predicted": 9,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.2469303011894226,
+          "image_pred_similarity": 0.2514491677284241,
+          "num_images_loaded": 1
         },
         {
           "object_id": 11,
-          "similarity_score": 0.9490944087505341,
-          "similarity_std": 0.017303140082596622,
+          "similarity_score": 0.9492909848690033,
+          "similarity_std": 0.02379127140914572,
           "ground_truth_text": "boxy, brown, dark brown, for sitting on, leather, rectangular, smooth",
           "predicted_text": "black, boxy, brown, dark brown, for sitting on, large, leather, modern, rectangular, smooth, wide",
           "ground_truth_attrs": [
@@ -3512,12 +4029,17 @@
             "rectangular"
           ],
           "num_ground_truth": 7,
-          "num_predicted": 11
+          "num_predicted": 11,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.20166447758674622,
+          "image_pred_similarity": 0.2116972804069519,
+          "num_images_loaded": 1
         },
         {
           "object_id": 12,
-          "similarity_score": 0.9527817845344544,
-          "similarity_std": 0.019629000797058718,
+          "similarity_score": 0.9606331050395965,
+          "similarity_std": 0.006093242035407773,
           "ground_truth_text": "boxy, brown, dark brown, for sitting on, leather, rectangular, smooth",
           "predicted_text": "black, boxy, brown, dark brown, for sitting on, large, leather, modern, rectangular, smooth, wide",
           "ground_truth_attrs": [
@@ -3543,12 +4065,17 @@
             "rectangular"
           ],
           "num_ground_truth": 7,
-          "num_predicted": 11
+          "num_predicted": 11,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.24408309161663055,
+          "image_pred_similarity": 0.24540065228939056,
+          "num_images_loaded": 1
         },
         {
           "object_id": 13,
-          "similarity_score": 0.9584210693836213,
-          "similarity_std": 0.0139321731502232,
+          "similarity_score": 0.9607637822628021,
+          "similarity_std": 0.012709590159890193,
           "ground_truth_text": "boxy, brown, dark brown, for sitting on, leather, rectangular, smooth",
           "predicted_text": "black, boxy, brown, dark brown, for sitting on, large, leather, modern, rectangular, smooth, wide",
           "ground_truth_attrs": [
@@ -3574,12 +4101,17 @@
             "rectangular"
           ],
           "num_ground_truth": 7,
-          "num_predicted": 11
+          "num_predicted": 11,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.2577790319919586,
+          "image_pred_similarity": 0.25376683473587036,
+          "num_images_loaded": 1
         },
         {
           "object_id": 17,
-          "similarity_score": 0.9644131481647491,
-          "similarity_std": 0.0094900191845878,
+          "similarity_score": 0.9701431870460511,
+          "similarity_std": 0.011142875030091193,
           "ground_truth_text": "clear, for letting in light, for looking through, glass, large, rectangular, smooth, tall, white, wooden frame",
           "predicted_text": "brown, clear, for letting in light, for looking through, glass, large, medium, rectangular, smooth, tall, white, wooden frame",
           "ground_truth_attrs": [
@@ -3609,12 +4141,17 @@
             "rectangular"
           ],
           "num_ground_truth": 10,
-          "num_predicted": 12
+          "num_predicted": 12,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.26202520728111267,
+          "image_pred_similarity": 0.2663463354110718,
+          "num_images_loaded": 1
         },
         {
           "object_id": 18,
-          "similarity_score": 0.879999327659607,
-          "similarity_std": 0.012740720510478271,
+          "similarity_score": 0.8656446456909179,
+          "similarity_std": 0.02132364519768675,
           "ground_truth_text": "black, flat, for displaying images or artwork, glass, rectangular, smooth, wooden frame",
           "predicted_text": "black, flat, for displaying images or artwork, glass, green, light green, rectangular, small, smooth, wooden, wooden frame",
           "ground_truth_attrs": [
@@ -3640,12 +4177,17 @@
             "flat"
           ],
           "num_ground_truth": 7,
-          "num_predicted": 11
+          "num_predicted": 11,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.24959063529968262,
+          "image_pred_similarity": 0.25288328528404236,
+          "num_images_loaded": 1
         },
         {
           "object_id": 19,
-          "similarity_score": 0.9569074392318726,
-          "similarity_std": 0.011637466597338032,
+          "similarity_score": 0.9508821070194244,
+          "similarity_std": 0.023645961431269392,
           "ground_truth_text": "brown, flat, for entering or exiting a room, glass, large, rectangular, smooth, tall, wood, wooden, wooden frame",
           "predicted_text": "brown, flat, for entering or exiting a room, glass, green, large, open, rectangular, smooth, tall, white, wood, wooden, wooden frame",
           "ground_truth_attrs": [
@@ -3678,12 +4220,17 @@
             "flat"
           ],
           "num_ground_truth": 11,
-          "num_predicted": 14
+          "num_predicted": 14,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.2762940526008606,
+          "image_pred_similarity": 0.2692202925682068,
+          "num_images_loaded": 1
         },
         {
           "object_id": 22,
-          "similarity_score": 0.8704032838344574,
-          "similarity_std": 0.024622843691108082,
+          "similarity_score": 0.8611292123794556,
+          "similarity_std": 0.020925951124188623,
           "ground_truth_text": "flat, large, plaster, rectangular, smooth, structural support, tall, wide",
           "predicted_text": "flat, green, large, light green, plaster, rectangular, smooth, structural support, tall, wide",
           "ground_truth_attrs": [
@@ -3709,22 +4256,30 @@
             "rectangular"
           ],
           "num_ground_truth": 8,
-          "num_predicted": 10
+          "num_predicted": 10,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.23933818936347961,
+          "image_pred_similarity": 0.23644563555717468,
+          "num_images_loaded": 1
         }
-      ]
+      ],
+      "average_image_gt_similarity": 0.2541411338107927,
+      "average_image_pred_similarity": 0.25686337266649517,
+      "objects_with_images": 14
     },
     {
       "scene_id": "scene0002_00",
       "dataset": "scannet",
       "validation_file": "data/validation_results/scannet/annotations_scene0002_00_1769601324262.json",
       "scene_graph_file": "data/scenegraphs_sampled/scannet/scene0002_00/scene_graph.json",
-      "average_similarity": 0.9454013275248664,
+      "average_similarity": 0.9456253073045185,
       "total_objects": 14,
       "per_object": [
         {
           "object_id": 4,
-          "similarity_score": 0.9290960371494293,
-          "similarity_std": 0.02616204563847883,
+          "similarity_score": 0.9307391226291657,
+          "similarity_std": 0.03188650732850135,
           "ground_truth_text": "beige, drywall, flat, for dividing rooms, for supporting structures, large, plaster, rectangular, smooth",
           "predicted_text": "beige, drywall, flat, for dividing rooms, for supporting structures, large, light green, plaster, rectangular, smooth",
           "ground_truth_attrs": [
@@ -3751,12 +4306,17 @@
             "large"
           ],
           "num_ground_truth": 9,
-          "num_predicted": 10
+          "num_predicted": 10,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.22608081996440887,
+          "image_pred_similarity": 0.2306918203830719,
+          "num_images_loaded": 1
         },
         {
           "object_id": 9,
-          "similarity_score": 0.9168116927146912,
-          "similarity_std": 0.022219039039127662,
+          "similarity_score": 0.9099297106266022,
+          "similarity_std": 0.03928971336220648,
           "ground_truth_text": "drywall, flat, for dividing rooms, for dividing space, for supporting ceiling, large, light grey, off-white, rectangular, smooth",
           "predicted_text": "drywall, flat, for dividing rooms, for dividing space, for supporting ceiling, greenish, large, light green, light grey, off-white, rectangular, smooth",
           "ground_truth_attrs": [
@@ -3786,12 +4346,17 @@
             "large"
           ],
           "num_ground_truth": 10,
-          "num_predicted": 12
+          "num_predicted": 12,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.26054319739341736,
+          "image_pred_similarity": 0.26011085510253906,
+          "num_images_loaded": 1
         },
         {
           "object_id": 10,
-          "similarity_score": 0.9624553084373474,
-          "similarity_std": 0.011722124151564742,
+          "similarity_score": 0.9635622501373291,
+          "similarity_std": 0.012498966054342158,
           "ground_truth_text": "brown, dark, for opening and closing, for privacy, for storage, for storing clothes, for storing objects, narrow, open, rectangular, smooth, tall, wooden",
           "predicted_text": "brown, dark, for opening and closing, for privacy, for storage, for storing clothes, for storing objects, narrow, open, rectangular, smooth, tall, wooden",
           "ground_truth_attrs": [
@@ -3825,12 +4390,17 @@
             "tall"
           ],
           "num_ground_truth": 13,
-          "num_predicted": 13
+          "num_predicted": 13,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.21213290095329285,
+          "image_pred_similarity": 0.21213290095329285,
+          "num_images_loaded": 1
         },
         {
           "object_id": 12,
-          "similarity_score": 0.9652282953262329,
-          "similarity_std": 0.013116693755028741,
+          "similarity_score": 0.9661635100841522,
+          "similarity_std": 0.01355571799704552,
           "ground_truth_text": "brown, closed, dark brown, for dividing rooms, for entering or exiting a room, for entry and exit, for privacy, paneled, rectangular, smooth, standard, wooden",
           "predicted_text": "brown, closed, dark brown, for dividing rooms, for entering or exiting a room, for entry and exit, for privacy, paneled, rectangular, smooth, standard, wooden",
           "ground_truth_attrs": [
@@ -3862,12 +4432,17 @@
             "standard"
           ],
           "num_ground_truth": 12,
-          "num_predicted": 12
+          "num_predicted": 12,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.2476276010274887,
+          "image_pred_similarity": 0.2476276010274887,
+          "num_images_loaded": 1
         },
         {
           "object_id": 18,
-          "similarity_score": 0.9529394745826721,
-          "similarity_std": 0.015977906994877934,
+          "similarity_score": 0.9426016688346863,
+          "similarity_std": 0.02232006116094078,
           "ground_truth_text": "boxy, brown, cushioned, dark blue, fabric, for comfort, for sitting on, for supporting structures, medium, modern, possibly composite wood, rectangular, smooth, soft, standard, wooden",
           "predicted_text": "boxy, brown, cushioned, dark blue, fabric, for comfort, for resting head, for sitting on, for supporting structures, green, medium, modern, possibly composite wood, rectangular, smooth, soft, standard, wooden",
           "ground_truth_attrs": [
@@ -3909,12 +4484,17 @@
             "standard"
           ],
           "num_ground_truth": 16,
-          "num_predicted": 18
+          "num_predicted": 18,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.25552746653556824,
+          "image_pred_similarity": 0.2568807303905487,
+          "num_images_loaded": 1
         },
         {
           "object_id": 19,
-          "similarity_score": 0.9523705065250396,
-          "similarity_std": 0.016996174749978655,
+          "similarity_score": 0.9526666760444641,
+          "similarity_std": 0.014545904399892961,
           "ground_truth_text": "boxy, brown, cushioned, dark blue, fabric, for comfort, for sitting on, for supporting structures, green, medium, modern, possibly composite wood, rectangular, smooth, soft, standard, wooden",
           "predicted_text": "boxy, brown, cushioned, dark blue, fabric, for comfort, for resting head, for sitting on, for supporting structures, green, medium, modern, possibly composite wood, rectangular, smooth, soft, standard, wooden",
           "ground_truth_attrs": [
@@ -3957,12 +4537,17 @@
             "standard"
           ],
           "num_ground_truth": 17,
-          "num_predicted": 18
+          "num_predicted": 18,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.2572667598724365,
+          "image_pred_similarity": 0.2568812370300293,
+          "num_images_loaded": 1
         },
         {
           "object_id": 21,
-          "similarity_score": 0.9655697822570801,
-          "similarity_std": 0.015471927911871733,
+          "similarity_score": 0.9557405531406402,
+          "similarity_std": 0.018221090570430958,
           "ground_truth_text": "branched, brown, bushy, for decoration, for display, green, greenish, leafy, orange, round, round pot, small, smooth pot",
           "predicted_text": "branched, brown, bushy, for decoration, for display, green, greenish, leafy, orange, round, round pot, small, smooth pot",
           "ground_truth_attrs": [
@@ -3996,12 +4581,17 @@
             "small"
           ],
           "num_ground_truth": 13,
-          "num_predicted": 13
+          "num_predicted": 13,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.26888301968574524,
+          "image_pred_similarity": 0.26888301968574524,
+          "num_images_loaded": 1
         },
         {
           "object_id": 38,
-          "similarity_score": 0.9489970982074738,
-          "similarity_std": 0.014279315272974333,
+          "similarity_score": 0.9526682436466217,
+          "similarity_std": 0.009824482784814804,
           "ground_truth_text": "clear, for letting light in, for opening and closing, for ventilation, for viewing outside, glass, gridded, large, metal, open, paneled, rectangular, smooth, traditional, transparent",
           "predicted_text": "black, clear, for entry and exit, for letting light in, for opening and closing, for privacy, for ventilation, for viewing outside, glass, gridded, large, metal, open, paneled, rectangular, smooth, traditional, transparent",
           "ground_truth_attrs": [
@@ -4042,12 +4632,17 @@
             "large"
           ],
           "num_ground_truth": 15,
-          "num_predicted": 18
+          "num_predicted": 18,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.22923961281776428,
+          "image_pred_similarity": 0.21486049890518188,
+          "num_images_loaded": 1
         },
         {
           "object_id": 42,
-          "similarity_score": 0.9640604972839355,
-          "similarity_std": 0.014251772172372645,
+          "similarity_score": 0.9610777735710144,
+          "similarity_std": 0.024237299161042232,
           "ground_truth_text": "athletic shoe shape, black, casual, dark, dark blue, fabric, for athletics, for comfort, for walking, for wearing on feet, green, greenish, mesh-like, modern, purple, rounded toe, rubber, smooth, soft, sporty, textured",
           "predicted_text": "athletic shoe shape, black, casual, dark, dark blue, fabric, for athletics, for comfort, for sitting on, for walking, for wearing on feet, green, greenish, mesh-like, modern, purple, rounded toe, rubber, smooth, soft, sporty, textured",
           "ground_truth_attrs": [
@@ -4098,12 +4693,17 @@
             "for sitting on"
           ],
           "num_ground_truth": 21,
-          "num_predicted": 22
+          "num_predicted": 22,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.2349996566772461,
+          "image_pred_similarity": 0.2395748794078827,
+          "num_images_loaded": 1
         },
         {
           "object_id": 48,
-          "similarity_score": 0.9330671668052674,
-          "similarity_std": 0.009746033789993525,
+          "similarity_score": 0.936590725183487,
+          "similarity_std": 0.008723366739847822,
           "ground_truth_text": "boxy, for heating, for heating a room, greenish, greenish-gray, gridded, light gray, medium, metal, rectangular, smooth",
           "predicted_text": "boxy, for heating, for heating a room, for ventilation, greenish, greenish-gray, gridded, light gray, medium, metal, rectangular, smooth",
           "ground_truth_attrs": [
@@ -4134,12 +4734,17 @@
             "medium"
           ],
           "num_ground_truth": 11,
-          "num_predicted": 12
+          "num_predicted": 12,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.25789472460746765,
+          "image_pred_similarity": 0.23076248168945312,
+          "num_images_loaded": 1
         },
         {
           "object_id": 52,
-          "similarity_score": 0.92276611328125,
-          "similarity_std": 0.041401819483651896,
+          "similarity_score": 0.9385369181632995,
+          "similarity_std": 0.022172651277763578,
           "ground_truth_text": "beige, dome-shaped, fabric, for illuminating a room, for lighting, for providing light, minimalist, modern, off-white, on, round, rounded, smooth",
           "predicted_text": "beige, dome-shaped, fabric, for illuminating a room, for lighting, for providing light, large, minimalist, modern, off-white, on, paper, round, rounded, smooth",
           "ground_truth_attrs": [
@@ -4175,12 +4780,17 @@
             "large"
           ],
           "num_ground_truth": 13,
-          "num_predicted": 15
+          "num_predicted": 15,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.24004653096199036,
+          "image_pred_similarity": 0.24582868814468384,
+          "num_images_loaded": 1
         },
         {
           "object_id": 62,
-          "similarity_score": 0.9860827922821045,
-          "similarity_std": 0.004381188281556663,
+          "similarity_score": 0.9841443181037903,
+          "similarity_std": 0.007719998353917047,
           "ground_truth_text": "curved, green, greenish, irregular, modern, possibly composite wood, small, smooth",
           "predicted_text": "curved, green, greenish, irregular, modern, possibly composite wood, small, smooth",
           "ground_truth_attrs": [
@@ -4204,12 +4814,17 @@
             "small"
           ],
           "num_ground_truth": 8,
-          "num_predicted": 8
+          "num_predicted": 8,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.2799428105354309,
+          "image_pred_similarity": 0.2799428105354309,
+          "num_images_loaded": 1
         },
         {
           "object_id": 67,
-          "similarity_score": 0.932291430234909,
-          "similarity_std": 0.029188332146002926,
+          "similarity_score": 0.9430326640605926,
+          "similarity_std": 0.011115621581414662,
           "ground_truth_text": "blue, clear, closed, cylindrical, for carrying fluids, for holding liquids, narrow, small, smooth, white",
           "predicted_text": "blue, clear, closed, cylindrical, for carrying fluids, for holding liquids, narrow, plastic, small, smooth, transparent, white",
           "ground_truth_attrs": [
@@ -4239,12 +4854,17 @@
             "narrow"
           ],
           "num_ground_truth": 10,
-          "num_predicted": 12
+          "num_predicted": 12,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.31507813930511475,
+          "image_pred_similarity": 0.3158097565174103,
+          "num_images_loaded": 1
         },
         {
           "object_id": 69,
-          "similarity_score": 0.9038823902606964,
-          "similarity_std": 0.019385765676162677,
+          "similarity_score": 0.9013001680374145,
+          "similarity_std": 0.023401987863645862,
           "ground_truth_text": "blue, cylindrical, for storing objects, irregular, medium, metal, smooth, yellow",
           "predicted_text": "blue, cylindrical, for storing objects, green, greenish, irregular, medium, metal, plastic, smooth, yellow",
           "ground_truth_attrs": [
@@ -4271,22 +4891,30 @@
             "medium"
           ],
           "num_ground_truth": 8,
-          "num_predicted": 11
+          "num_predicted": 11,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.2776784896850586,
+          "image_pred_similarity": 0.27060413360595703,
+          "num_images_loaded": 1
         }
-      ]
+      ],
+      "average_image_gt_similarity": 0.254495837858745,
+      "average_image_pred_similarity": 0.2521851009556225,
+      "objects_with_images": 14
     },
     {
       "scene_id": "scene0003_00",
       "dataset": "scannet",
       "validation_file": "data/validation_results/scannet/annotations_scene0003_00_1769640609761.json",
       "scene_graph_file": "data/scenegraphs_sampled/scannet/scene0003_00/scene_graph.json",
-      "average_similarity": 0.9007925778627397,
+      "average_similarity": 0.9025680742093495,
       "total_objects": 14,
       "per_object": [
         {
           "object_id": 0,
-          "similarity_score": 0.9496682703495025,
-          "similarity_std": 0.015072039499649005,
+          "similarity_score": 0.9598093152046203,
+          "similarity_std": 0.021031507337816346,
           "ground_truth_text": "drywall, flat, large, painted surface, partitioning space, smooth, white",
           "predicted_text": "drywall, flat, large, off-white, painted surface, partitioning space, rectangular, smooth, white",
           "ground_truth_attrs": [
@@ -4310,12 +4938,17 @@
             "flat"
           ],
           "num_ground_truth": 7,
-          "num_predicted": 9
+          "num_predicted": 9,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.26092103123664856,
+          "image_pred_similarity": 0.2584952712059021,
+          "num_images_loaded": 1
         },
         {
           "object_id": 1,
-          "similarity_score": 0.8537466526031494,
-          "similarity_std": 0.046809522208997485,
+          "similarity_score": 0.8733178436756134,
+          "similarity_std": 0.0373750151511198,
           "ground_truth_text": "composite, flat, for food preparation, for supporting objects in the kitchen, gray, large, medium, rectangular, smooth, supporting fixtures",
           "predicted_text": "composite, dark green, flat, for cleaning objects, for food preparation, for supporting objects in the kitchen, gray, laminate, large, long, medium, rectangular, smooth, supporting fixtures",
           "ground_truth_attrs": [
@@ -4347,12 +4980,17 @@
             "flat"
           ],
           "num_ground_truth": 10,
-          "num_predicted": 14
+          "num_predicted": 14,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.23106899857521057,
+          "image_pred_similarity": 0.21264488995075226,
+          "num_images_loaded": 1
         },
         {
           "object_id": 2,
-          "similarity_score": 0.9293210864067077,
-          "similarity_std": 0.020932099425459823,
+          "similarity_score": 0.9057838976383209,
+          "similarity_std": 0.031087213890562838,
           "ground_truth_text": "boxy, closed, flat, for storage, for storing kitchen items, light brown, medium, metal (handles), metal handle, rectangular, simple, smooth, wood, wooden",
           "predicted_text": "boxy, closed, dark green, flat, for storage, for storing kitchen items, large, light brown, medium, metal (handles), metal handle, rectangular, simple, smooth, wood, wooden",
           "ground_truth_attrs": [
@@ -4390,12 +5028,17 @@
             "flat"
           ],
           "num_ground_truth": 14,
-          "num_predicted": 16
+          "num_predicted": 16,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.2483580857515335,
+          "image_pred_similarity": 0.2382027506828308,
+          "num_images_loaded": 1
         },
         {
           "object_id": 3,
-          "similarity_score": 0.9245418906211853,
-          "similarity_std": 0.03614121993397372,
+          "similarity_score": 0.9526157438755035,
+          "similarity_std": 0.022750062247509455,
           "ground_truth_text": "boxy, closed, flat, for storage, for storing kitchen items, large, light brown, long, metal handle, modern, simple, smooth, tall, wood, wooden",
           "predicted_text": "boxy, closed, flat, for opening and closing, for storage, for storing kitchen items, large, light brown, long, metal handle, modern, rectangular, simple, smooth, tall, wood, wooden",
           "ground_truth_attrs": [
@@ -4435,12 +5078,17 @@
             "boxy"
           ],
           "num_ground_truth": 15,
-          "num_predicted": 17
+          "num_predicted": 17,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.2204221487045288,
+          "image_pred_similarity": 0.2232290506362915,
+          "num_images_loaded": 1
         },
         {
           "object_id": 5,
-          "similarity_score": 0.9380168914794922,
-          "similarity_std": 0.02145208972803171,
+          "similarity_score": 0.9288800418376922,
+          "similarity_std": 0.037094583965215464,
           "ground_truth_text": "boxy, closed, flat, for storage, for storing kitchen items, large, light brown, long, metal (handles), metal handle, simple, smooth, wood, wooden",
           "predicted_text": "black, boxy, closed, flat, for opening and closing, for storage, for storing kitchen items, large, light brown, long, metal (handles), metal handle, rectangular, simple, smooth, wood, wooden",
           "ground_truth_attrs": [
@@ -4479,12 +5127,17 @@
             "boxy"
           ],
           "num_ground_truth": 14,
-          "num_predicted": 17
+          "num_predicted": 17,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.2363712191581726,
+          "image_pred_similarity": 0.25249183177948,
+          "num_images_loaded": 1
         },
         {
           "object_id": 7,
-          "similarity_score": 0.8669717609882355,
-          "similarity_std": 0.024745969486061205,
+          "similarity_score": 0.8603453397750854,
+          "similarity_std": 0.03287576816753519,
           "ground_truth_text": "black, curved, cylindrical, for dispensing water, large, modern",
           "predicted_text": "black, black (handles), curved, cylindrical, for dispensing paper towels, for dispensing water, for holding trash, for storing items, large, modern, plastic, smooth, tall",
           "ground_truth_attrs": [
@@ -4511,12 +5164,17 @@
             "curved"
           ],
           "num_ground_truth": 6,
-          "num_predicted": 13
+          "num_predicted": 13,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.22227606177330017,
+          "image_pred_similarity": 0.2649609446525574,
+          "num_images_loaded": 1
         },
         {
           "object_id": 8,
-          "similarity_score": 0.7638304114341736,
-          "similarity_std": 0.05590269184752263,
+          "similarity_score": 0.7857361555099487,
+          "similarity_std": 0.028792381375237867,
           "ground_truth_text": "black, boxy, closed, for food preparation, for heating food, medium, metal, metallic, modern, rectangular, smooth",
           "predicted_text": "black, black (handles), boxy, closed, flat, for cooking food, for food preparation, for heating food, glass, gray, labeled 'Panasonic', large, medium, metal, metallic, modern, plastic, rectangular, silver, smooth, stainless steel",
           "ground_truth_attrs": [
@@ -4556,12 +5214,17 @@
             "flat"
           ],
           "num_ground_truth": 11,
-          "num_predicted": 21
+          "num_predicted": 21,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.22217990458011627,
+          "image_pred_similarity": 0.23045215010643005,
+          "num_images_loaded": 1
         },
         {
           "object_id": 9,
-          "similarity_score": 0.9042988598346711,
-          "similarity_std": 0.029855157751935767,
+          "similarity_score": 0.8917577981948852,
+          "similarity_std": 0.027721731314245265,
           "ground_truth_text": "boxy, for holding trash, full, gray, large, open, plastic, rectangular, simple, tall",
           "predicted_text": "boxy, dark green, for holding trash, full, gray, green, large, open, plastic, rectangular, simple, smooth, tall",
           "ground_truth_attrs": [
@@ -4592,12 +5255,17 @@
             "boxy"
           ],
           "num_ground_truth": 10,
-          "num_predicted": 13
+          "num_predicted": 13,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.2644047439098358,
+          "image_pred_similarity": 0.25162631273269653,
+          "num_images_loaded": 1
         },
         {
           "object_id": 11,
-          "similarity_score": 0.9287934839725495,
-          "similarity_std": 0.031686954979766174,
+          "similarity_score": 0.9063302099704742,
+          "similarity_std": 0.0432964612649842,
           "ground_truth_text": "for cleaning objects, for dispensing water, for washing hands, medium, metal, metallic, rectangular, silver, smooth, stainless steel",
           "predicted_text": "boxy, for cleaning objects, for dispensing water, for washing hands, gray, medium, metal, metal handle, metallic, rectangular, silver, smooth, stainless steel",
           "ground_truth_attrs": [
@@ -4628,12 +5296,17 @@
             "boxy"
           ],
           "num_ground_truth": 10,
-          "num_predicted": 13
+          "num_predicted": 13,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.21158382296562195,
+          "image_pred_similarity": 0.1882515847682953,
+          "num_images_loaded": 1
         },
         {
           "object_id": 12,
-          "similarity_score": 0.9545003652572632,
-          "similarity_std": 0.01450518110502519,
+          "similarity_score": 0.9523447811603546,
+          "similarity_std": 0.00874440691295606,
           "ground_truth_text": "flat, for opening and closing, for passage between rooms, large, light brown, metal handle, modern, open, partitioning space, rectangular, smooth, tall, transparent, wood, wooden",
           "predicted_text": "flat, for opening and closing, for passage between rooms, glass, large, light brown, metal, metal handle, modern, open, partitioning space, rectangular, silver, smooth, tall, transparent, wood, wooden",
           "ground_truth_attrs": [
@@ -4674,12 +5347,17 @@
             "flat"
           ],
           "num_ground_truth": 15,
-          "num_predicted": 18
+          "num_predicted": 18,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.2559775114059448,
+          "image_pred_similarity": 0.25024673342704773,
+          "num_images_loaded": 1
         },
         {
           "object_id": 15,
-          "similarity_score": 0.8786571383476257,
-          "similarity_std": 0.021400939676273486,
+          "similarity_score": 0.8745115876197815,
+          "similarity_std": 0.03555188256220339,
           "ground_truth_text": "black, curved, for dispensing paper towels, medium, modern, plastic",
           "predicted_text": "black, black (handles), boxy, closed, curved, for cleaning objects, for dispensing paper towels, medium, modern, plastic, rectangular, smooth, transparent",
           "ground_truth_attrs": [
@@ -4706,12 +5384,17 @@
             "boxy"
           ],
           "num_ground_truth": 6,
-          "num_predicted": 13
+          "num_predicted": 13,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.26441138982772827,
+          "image_pred_similarity": 0.25012457370758057,
+          "num_images_loaded": 1
         },
         {
           "object_id": 16,
-          "similarity_score": 0.8826047062873841,
-          "similarity_std": 0.03620517107910281,
+          "similarity_score": 0.890047162771225,
+          "similarity_std": 0.022086508233401136,
           "ground_truth_text": "drywall, flat, light beige, off-white, painted surface, partitioning space, rectangular, simple, smooth",
           "predicted_text": "drywall, flat, large, light beige, long, off-white, painted surface, partitioning space, rectangular, simple, smooth, supporting fixtures, tall, white",
           "ground_truth_attrs": [
@@ -4742,12 +5425,17 @@
             "rectangular"
           ],
           "num_ground_truth": 9,
-          "num_predicted": 14
+          "num_predicted": 14,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.2622452974319458,
+          "image_pred_similarity": 0.24990534782409668,
+          "num_images_loaded": 1
         },
         {
           "object_id": 18,
-          "similarity_score": 0.8850349962711335,
-          "similarity_std": 0.02447745113246022,
+          "similarity_score": 0.9001057386398316,
+          "similarity_std": 0.02715113111716273,
           "ground_truth_text": "drywall, flat, large, light beige, long, off-white, painted surface, partitioning space, rectangular, simple, smooth, tall",
           "predicted_text": "drywall, flat, large, light beige, long, off-white, painted surface, partitioning space, rectangular, simple, smooth, supporting fixtures, tall, white",
           "ground_truth_attrs": [
@@ -4781,12 +5469,17 @@
             "rectangular"
           ],
           "num_ground_truth": 12,
-          "num_predicted": 14
+          "num_predicted": 14,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.24282659590244293,
+          "image_pred_similarity": 0.206014484167099,
+          "num_images_loaded": 1
         },
         {
           "object_id": 19,
-          "similarity_score": 0.9511095762252808,
-          "similarity_std": 0.015369454297613137,
+          "similarity_score": 0.9543674230575562,
+          "similarity_std": 0.01759304841517715,
           "ground_truth_text": "drywall, flat, large, off-white, painted surface, partitioning space, rectangular, smooth",
           "predicted_text": "drywall, flat, large, off-white, painted surface, partitioning space, rectangular, smooth, white",
           "ground_truth_attrs": [
@@ -4811,22 +5504,30 @@
             "flat"
           ],
           "num_ground_truth": 8,
-          "num_predicted": 9
+          "num_predicted": 9,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.22908176481723785,
+          "image_pred_similarity": 0.23207548260688782,
+          "num_images_loaded": 1
         }
-      ]
+      ],
+      "average_image_gt_similarity": 0.24086632686001913,
+      "average_image_pred_similarity": 0.23633724344628199,
+      "objects_with_images": 14
     },
     {
       "scene_id": "scene0004_00",
       "dataset": "scannet",
       "validation_file": "data/validation_results/scannet/annotations_scene0004_00_1769670929534.json",
       "scene_graph_file": "data/scenegraphs_sampled/scannet/scene0004_00/scene_graph.json",
-      "average_similarity": 0.8158853888511657,
+      "average_similarity": 0.8154408386120429,
       "total_objects": 13,
       "per_object": [
         {
           "object_id": 0,
-          "similarity_score": 0.9340312123298645,
-          "similarity_std": 0.035476911935248746,
+          "similarity_score": 0.9167598783969879,
+          "similarity_std": 0.023670757433195095,
           "ground_truth_text": "for meetings, for placing items on, for placing objects on, for working at, light brown, medium, metal, modern, office, rectangular, smooth, wooden",
           "predicted_text": "black, for meetings, for placing items on, for placing objects on, for working at, large, light brown, medium, metal, modern, office, rectangular, smooth, wooden",
           "ground_truth_attrs": [
@@ -4860,12 +5561,17 @@
             "medium"
           ],
           "num_ground_truth": 12,
-          "num_predicted": 14
+          "num_predicted": 14,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.2834185063838959,
+          "image_pred_similarity": 0.2520371675491333,
+          "num_images_loaded": 1
         },
         {
           "object_id": 1,
-          "similarity_score": 0.947826337814331,
-          "similarity_std": 0.016319727794543968,
+          "similarity_score": 0.9525432407855987,
+          "similarity_std": 0.019827459321460593,
           "ground_truth_text": "for blocking sunlight, for letting light in, for providing privacy, for seeing outside, large, metal, rectangular, rectangular back, slatted, white",
           "predicted_text": "for blocking sunlight, for letting light in, for providing privacy, for seeing outside, large, light gray, metal, rectangular, rectangular back, slatted, smooth, white",
           "ground_truth_attrs": [
@@ -4895,7 +5601,12 @@
             "large"
           ],
           "num_ground_truth": 10,
-          "num_predicted": 12
+          "num_predicted": 12,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.25604426860809326,
+          "image_pred_similarity": 0.25132232904434204,
+          "num_images_loaded": 1
         },
         {
           "object_id": 2,
@@ -4914,12 +5625,15 @@
             "tall"
           ],
           "num_ground_truth": 0,
-          "num_predicted": 7
+          "num_predicted": 7,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_error": "No attributes to compare"
         },
         {
           "object_id": 3,
-          "similarity_score": 0.9137480080127716,
-          "similarity_std": 0.04343898868240199,
+          "similarity_score": 0.9286045908927918,
+          "similarity_std": 0.015328014137598404,
           "ground_truth_text": "clear, for blocking sunlight, for letting light in, for providing privacy, for seeing outside, glass, large, light blue, modern, office, rectangular",
           "predicted_text": "clear, for blocking sunlight, for letting light in, for providing privacy, for seeing outside, glass, large, light blue, metal, modern, office, rectangular, smooth, tall",
           "ground_truth_attrs": [
@@ -4952,12 +5666,17 @@
             "tall"
           ],
           "num_ground_truth": 11,
-          "num_predicted": 14
+          "num_predicted": 14,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.2539364695549011,
+          "image_pred_similarity": 0.24627837538719177,
+          "num_images_loaded": 1
         },
         {
           "object_id": 4,
-          "similarity_score": 0.9503451824188233,
-          "similarity_std": 0.015260742266291233,
+          "similarity_score": 0.9518462896347046,
+          "similarity_std": 0.009091091491523099,
           "ground_truth_text": "for placing items on, for placing objects on, light gray, metal base, modern, round, small, smooth",
           "predicted_text": "for placing items on, for placing objects on, light gray, medium, metal, metal base, modern, round, small, smooth",
           "ground_truth_attrs": [
@@ -4983,12 +5702,17 @@
             "medium"
           ],
           "num_ground_truth": 8,
-          "num_predicted": 10
+          "num_predicted": 10,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.26053744554519653,
+          "image_pred_similarity": 0.25613945722579956,
+          "num_images_loaded": 1
         },
         {
           "object_id": 5,
-          "similarity_score": 0.8933737814426422,
-          "similarity_std": 0.020780065378533195,
+          "similarity_score": 0.8795234858989716,
+          "similarity_std": 0.031723877272819015,
           "ground_truth_text": "blue, boxy, curved, dark gray, for sitting on, light blue, medium, modern, rectangular, rectangular back, smooth, upholstered",
           "predicted_text": "blue, boxy, curved, dark gray, dark teal, fabric, for sitting on, large, light blue, medium, modern, rectangular, rectangular back, smooth, upholstered",
           "ground_truth_attrs": [
@@ -5023,12 +5747,17 @@
             "large"
           ],
           "num_ground_truth": 12,
-          "num_predicted": 15
+          "num_predicted": 15,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.2675691246986389,
+          "image_pred_similarity": 0.25213298201560974,
+          "num_images_loaded": 1
         },
         {
           "object_id": 6,
-          "similarity_score": 0.8792321145534515,
-          "similarity_std": 0.02255697111231472,
+          "similarity_score": 0.8736471831798553,
+          "similarity_std": 0.03827584001771608,
           "ground_truth_text": "black, curved, curved lines, ergonomic, for sitting on, high-back, medium, mesh, mesh, metal base, modern, office, smooth",
           "predicted_text": "black, curved, curved lines, dark gray, ergonomic, for sitting on, high-back, medium, mesh, mesh, metal, metal base, modern, office, plastic, rectangular back, silver, smooth, upholstered",
           "ground_truth_attrs": [
@@ -5068,12 +5797,17 @@
             "medium"
           ],
           "num_ground_truth": 13,
-          "num_predicted": 19
+          "num_predicted": 19,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.3210044801235199,
+          "image_pred_similarity": 0.29155784845352173,
+          "num_images_loaded": 1
         },
         {
           "object_id": 7,
-          "similarity_score": 0.8569476842880249,
-          "similarity_std": 0.023552018240094574,
+          "similarity_score": 0.8286958336830139,
+          "similarity_std": 0.052767255511534716,
           "ground_truth_text": "curved, curved lines, dark gray, ergonomic, for sitting on, high-back, medium, metal, metal base, modern, office, smooth",
           "predicted_text": "curved, curved lines, dark gray, dark teal, ergonomic, for sitting on, high-back, large, leather or faux leather, medium, metal, metal base, modern, office, rectangular back, smooth",
           "ground_truth_attrs": [
@@ -5109,12 +5843,17 @@
             "medium"
           ],
           "num_ground_truth": 12,
-          "num_predicted": 16
+          "num_predicted": 16,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.2946016192436218,
+          "image_pred_similarity": 0.25804847478866577,
+          "num_images_loaded": 1
         },
         {
           "object_id": 8,
-          "similarity_score": 0.8823825240135192,
-          "similarity_std": 0.02263624151735045,
+          "similarity_score": 0.8755963623523713,
+          "similarity_std": 0.022573075405540793,
           "ground_truth_text": "black, curved, curved lines, ergonomic, for sitting on, high-back, medium, mesh, mesh, metal base, modern, office, smooth",
           "predicted_text": "black, curved, curved lines, dark gray, ergonomic, for sitting on, high-back, medium, mesh, mesh, metal, metal base, modern, office, plastic, rectangular back, silver, smooth, upholstered",
           "ground_truth_attrs": [
@@ -5154,12 +5893,17 @@
             "medium"
           ],
           "num_ground_truth": 13,
-          "num_predicted": 19
+          "num_predicted": 19,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.2816726863384247,
+          "image_pred_similarity": 0.26177892088890076,
+          "num_images_loaded": 1
         },
         {
           "object_id": 9,
-          "similarity_score": 0.8395741760730744,
-          "similarity_std": 0.03499641813618382,
+          "similarity_score": 0.8480032682418823,
+          "similarity_std": 0.04130152242240582,
           "ground_truth_text": "blue, boxy, curved, dark gray, for sitting on, medium, modern, rectangular back, smooth, upholstered",
           "predicted_text": "blue, boxy, curved, dark gray, dark teal, fabric, for sitting on, large, light blue, medium, modern, rectangular, rectangular back, smooth, upholstered",
           "ground_truth_attrs": [
@@ -5192,12 +5936,17 @@
             "large"
           ],
           "num_ground_truth": 10,
-          "num_predicted": 15
+          "num_predicted": 15,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.24480612576007843,
+          "image_pred_similarity": 0.23725254833698273,
+          "num_images_loaded": 1
         },
         {
           "object_id": 10,
-          "similarity_score": 0.8336911380290986,
-          "similarity_std": 0.029944377739296642,
+          "similarity_score": 0.8467275023460388,
+          "similarity_std": 0.024960695520243645,
           "ground_truth_text": "blue, boxy, curved, dark gray, for sitting on, medium, modern, rectangular back, smooth, upholstered",
           "predicted_text": "blue, boxy, curved, dark gray, dark teal, fabric, for sitting on, large, light blue, medium, modern, rectangular, rectangular back, smooth, upholstered",
           "ground_truth_attrs": [
@@ -5230,12 +5979,17 @@
             "large"
           ],
           "num_ground_truth": 10,
-          "num_predicted": 15
+          "num_predicted": 15,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.28431904315948486,
+          "image_pred_similarity": 0.2844107747077942,
+          "num_images_loaded": 1
         },
         {
           "object_id": 11,
-          "similarity_score": 0.820230370759964,
-          "similarity_std": 0.034907704972147485,
+          "similarity_score": 0.8549488723278046,
+          "similarity_std": 0.02002894599144114,
           "ground_truth_text": "blue, boxy, curved, dark gray, for sitting on, medium, modern, rectangular back, smooth, upholstered",
           "predicted_text": "blue, boxy, curved, dark gray, dark teal, fabric, for sitting on, large, light blue, medium, modern, rectangular, rectangular back, smooth, upholstered",
           "ground_truth_attrs": [
@@ -5268,12 +6022,17 @@
             "large"
           ],
           "num_ground_truth": 10,
-          "num_predicted": 15
+          "num_predicted": 15,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.28835102915763855,
+          "image_pred_similarity": 0.27480950951576233,
+          "num_images_loaded": 1
         },
         {
           "object_id": 12,
-          "similarity_score": 0.8551275253295898,
-          "similarity_std": 0.027068165872902887,
+          "similarity_score": 0.8438343942165375,
+          "similarity_std": 0.02754680196252835,
           "ground_truth_text": "curved, curved lines, dark gray, ergonomic, for sitting on, high-back, medium, metal base, modern, office, smooth",
           "predicted_text": "curved, curved lines, dark gray, dark teal, ergonomic, for sitting on, high-back, large, leather or faux leather, medium, metal, metal base, modern, office, rectangular back, smooth",
           "ground_truth_attrs": [
@@ -5308,22 +6067,30 @@
             "medium"
           ],
           "num_ground_truth": 11,
-          "num_predicted": 16
+          "num_predicted": 16,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.2709786891937256,
+          "image_pred_similarity": 0.2316034734249115,
+          "num_images_loaded": 1
         }
-      ]
+      ],
+      "average_image_gt_similarity": 0.2756032906472683,
+      "average_image_pred_similarity": 0.25811432177821797,
+      "objects_with_images": 13
     },
     {
       "scene_id": "scene0005_00",
       "dataset": "scannet",
       "validation_file": "data/validation_results/scannet/annotations_scene0005_00_1769667493094.json",
       "scene_graph_file": "data/scenegraphs_sampled/scannet/scene0005_00/scene_graph.json",
-      "average_similarity": 0.9309547330651963,
+      "average_similarity": 0.9299422247069221,
       "total_objects": 14,
       "per_object": [
         {
           "object_id": 0,
-          "similarity_score": 0.9748013496398926,
-          "similarity_std": 0.008353408294911392,
+          "similarity_score": 0.974517959356308,
+          "similarity_std": 0.009601691484142132,
           "ground_truth_text": "brown, flat, for sitting on, large, light brown, long, rectangular, smooth, wood, wooden",
           "predicted_text": "brown, flat, for sitting on, large, light brown, long, rectangular, smooth, wood, wooden",
           "ground_truth_attrs": [
@@ -5351,12 +6118,17 @@
             "large"
           ],
           "num_ground_truth": 10,
-          "num_predicted": 10
+          "num_predicted": 10,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.2907238006591797,
+          "image_pred_similarity": 0.2907238006591797,
+          "num_images_loaded": 1
         },
         {
           "object_id": 1,
-          "similarity_score": 0.9323188185691833,
-          "similarity_std": 0.03487454394751053,
+          "similarity_score": 0.9271627306938172,
+          "similarity_std": 0.032364827705342714,
           "ground_truth_text": "beige, for storage, for transporting books, medium, metal, rectangular, smooth, standing",
           "predicted_text": "beige, for storage, for transporting books, gray, large, medium, metal, rectangular, smooth, standing",
           "ground_truth_attrs": [
@@ -5382,12 +6154,17 @@
             "large"
           ],
           "num_ground_truth": 8,
-          "num_predicted": 10
+          "num_predicted": 10,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.20899470150470734,
+          "image_pred_similarity": 0.22857123613357544,
+          "num_images_loaded": 1
         },
         {
           "object_id": 2,
-          "similarity_score": 0.9584198892116547,
-          "similarity_std": 0.014357415301478044,
+          "similarity_score": 0.9635972023010254,
+          "similarity_std": 0.008420024133138183,
           "ground_truth_text": "flat, for displaying information, for dividing space, for posting items, large, light brown, long, rectangular, smooth",
           "predicted_text": "beige, flat, for displaying information, for dividing space, for posting items, large, light brown, long, rectangular, smooth",
           "ground_truth_attrs": [
@@ -5414,12 +6191,17 @@
             "long"
           ],
           "num_ground_truth": 9,
-          "num_predicted": 10
+          "num_predicted": 10,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.24901609122753143,
+          "image_pred_similarity": 0.2336186021566391,
+          "num_images_loaded": 1
         },
         {
           "object_id": 3,
-          "similarity_score": 0.9671009004116058,
-          "similarity_std": 0.01228892601447598,
+          "similarity_score": 0.9714229702949524,
+          "similarity_std": 0.011424796393066225,
           "ground_truth_text": "black, curved backrest, fabric, for sitting on, green, medium, metal, modern, padded seat, plastic, rectangular armrests, rectangular seat, smooth, smooth armrests and backrest, yellow, yellow-green",
           "predicted_text": "black, curved backrest, fabric, for sitting on, green, medium, metal, modern, padded seat, plastic, rectangular armrests, rectangular seat, small, smooth, smooth armrests and backrest, yellow, yellow-green",
           "ground_truth_attrs": [
@@ -5460,12 +6242,17 @@
             "small"
           ],
           "num_ground_truth": 16,
-          "num_predicted": 17
+          "num_predicted": 17,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.2759697437286377,
+          "image_pred_similarity": 0.27808332443237305,
+          "num_images_loaded": 1
         },
         {
           "object_id": 4,
-          "similarity_score": 0.9755775272846222,
-          "similarity_std": 0.011516363958949241,
+          "similarity_score": 0.9699022591114044,
+          "similarity_std": 0.011904026856000774,
           "ground_truth_text": "black, curved backrest, fabric, for sitting on, green, medium, metal, modern, padded seat, plastic, rectangular armrests, rectangular seat, smooth, smooth armrests and backrest, yellow, yellow-green",
           "predicted_text": "black, curved backrest, fabric, for sitting on, green, medium, metal, modern, padded seat, plastic, rectangular armrests, rectangular seat, small, smooth, smooth armrests and backrest, yellow, yellow-green",
           "ground_truth_attrs": [
@@ -5506,12 +6293,17 @@
             "small"
           ],
           "num_ground_truth": 16,
-          "num_predicted": 17
+          "num_predicted": 17,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.24714186787605286,
+          "image_pred_similarity": 0.24884657561779022,
+          "num_images_loaded": 1
         },
         {
           "object_id": 5,
-          "similarity_score": 0.9622826159000397,
-          "similarity_std": 0.02213211709604817,
+          "similarity_score": 0.9698811531066894,
+          "similarity_std": 0.017135574743021097,
           "ground_truth_text": "black, curved backrest, fabric, for sitting on, green, medium, metal, modern, padded seat, plastic, rectangular armrests, rectangular seat, smooth, smooth armrests and backrest, yellow, yellow-green",
           "predicted_text": "black, curved backrest, fabric, for sitting on, green, medium, metal, modern, padded seat, plastic, rectangular armrests, rectangular seat, small, smooth, smooth armrests and backrest, yellow, yellow-green",
           "ground_truth_attrs": [
@@ -5552,12 +6344,17 @@
             "small"
           ],
           "num_ground_truth": 16,
-          "num_predicted": 17
+          "num_predicted": 17,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.2463158369064331,
+          "image_pred_similarity": 0.24855490028858185,
+          "num_images_loaded": 1
         },
         {
           "object_id": 7,
-          "similarity_score": 0.973491108417511,
-          "similarity_std": 0.01129102076519215,
+          "similarity_score": 0.9807779133319855,
+          "similarity_std": 0.009995775768359517,
           "ground_truth_text": "black, flat, for displaying information, for displaying video, for watching television, glass, large, modern, plastic, rectangular, smooth",
           "predicted_text": "black, flat, for displaying information, for displaying video, for watching television, glass, large, modern, plastic, rectangular, smooth",
           "ground_truth_attrs": [
@@ -5587,12 +6384,17 @@
             "large"
           ],
           "num_ground_truth": 11,
-          "num_predicted": 11
+          "num_predicted": 11,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.28803354501724243,
+          "image_pred_similarity": 0.28803354501724243,
+          "num_images_loaded": 1
         },
         {
           "object_id": 9,
-          "similarity_score": 0.874603021144867,
-          "similarity_std": 0.06852128425099756,
+          "similarity_score": 0.8758880794048309,
+          "similarity_std": 0.03717638760019829,
           "ground_truth_text": "brown, dark brown, flat, for eating food on, for working on, large, modern, rectangular, smooth, standing, wood, wooden",
           "predicted_text": "brown, dark brown, flat, for eating food on, for working on, large, modern, rectangular, smooth, standing, wood, wooden, yellow-green",
           "ground_truth_attrs": [
@@ -5625,12 +6427,17 @@
             "large"
           ],
           "num_ground_truth": 12,
-          "num_predicted": 13
+          "num_predicted": 13,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.27295219898223877,
+          "image_pred_similarity": 0.24030719697475433,
+          "num_images_loaded": 1
         },
         {
           "object_id": 11,
-          "similarity_score": 0.8178099036216736,
-          "similarity_std": 0.032705271110853563,
+          "similarity_score": 0.7995481312274932,
+          "similarity_std": 0.023277314990155472,
           "ground_truth_text": "bent at base, flat, for displaying information, paper, plastic, rectangular, small, smooth, standing, white",
           "predicted_text": "bent at base, flat, for displaying information, gray, labeled 'Guest Access Policy', medium, paper, plastic, rectangular, small, smooth, standing, white",
           "ground_truth_attrs": [
@@ -5661,12 +6468,17 @@
             "medium"
           ],
           "num_ground_truth": 10,
-          "num_predicted": 13
+          "num_predicted": 13,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.25423380732536316,
+          "image_pred_similarity": 0.2575955390930176,
+          "num_images_loaded": 1
         },
         {
           "object_id": 12,
-          "similarity_score": 0.9473429083824157,
-          "similarity_std": 0.02338044288148125,
+          "similarity_score": 0.9422155737876892,
+          "similarity_std": 0.02435819128348445,
           "ground_truth_text": "beige, flat, for dividing space, for posting items, large, light brown, long, rectangular, smooth",
           "predicted_text": "beige, flat, for displaying information, for dividing space, for posting items, large, light brown, long, rectangular, smooth",
           "ground_truth_attrs": [
@@ -5693,12 +6505,17 @@
             "long"
           ],
           "num_ground_truth": 9,
-          "num_predicted": 10
+          "num_predicted": 10,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.253364622592926,
+          "image_pred_similarity": 0.2560051679611206,
+          "num_images_loaded": 1
         },
         {
           "object_id": 13,
-          "similarity_score": 0.9401458919048309,
-          "similarity_std": 0.023595674840160567,
+          "similarity_score": 0.9483232259750366,
+          "similarity_std": 0.024005983901456272,
           "ground_truth_text": "black, brown, closed, for dividing space, for entering and exiting a room, large, light brown, metal, modern, rectangular, smooth, wood, wooden",
           "predicted_text": "black, brown, closed, for dividing space, for entering and exiting a room, large, light brown, metal, modern, rectangular, silver, smooth, wood, wooden",
           "ground_truth_attrs": [
@@ -5733,12 +6550,17 @@
             "large"
           ],
           "num_ground_truth": 13,
-          "num_predicted": 14
+          "num_predicted": 14,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.2509266138076782,
+          "image_pred_similarity": 0.2620290517807007,
+          "num_images_loaded": 1
         },
         {
           "object_id": 14,
-          "similarity_score": 0.9373764634132385,
-          "similarity_std": 0.031257744113226106,
+          "similarity_score": 0.9645642161369323,
+          "similarity_std": 0.0199826360665668,
           "ground_truth_text": "flat, for dividing space, green, large, rectangular, smooth, yellow-green",
           "predicted_text": "flat, for dividing space, green, large, rectangular, smooth, yellow-green",
           "ground_truth_attrs": [
@@ -5760,12 +6582,17 @@
             "large"
           ],
           "num_ground_truth": 7,
-          "num_predicted": 7
+          "num_predicted": 7,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.2632184326648712,
+          "image_pred_similarity": 0.2632184326648712,
+          "num_images_loaded": 1
         },
         {
           "object_id": 15,
-          "similarity_score": 0.7967158675193786,
-          "similarity_std": 0.07191806003273893,
+          "similarity_score": 0.7542924642562866,
+          "similarity_std": 0.06381080388906105,
           "ground_truth_text": "flat, for dividing space, rectangular, smooth",
           "predicted_text": "flat, for dividing space, green, large, rectangular, smooth, yellow-green",
           "ground_truth_attrs": [
@@ -5784,12 +6611,17 @@
             "large"
           ],
           "num_ground_truth": 4,
-          "num_predicted": 7
+          "num_predicted": 7,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.2734762132167816,
+          "image_pred_similarity": 0.2595539093017578,
+          "num_images_loaded": 1
         },
         {
           "object_id": 16,
-          "similarity_score": 0.9753799974918366,
-          "similarity_std": 0.010098855971856743,
+          "similarity_score": 0.9770972669124603,
+          "similarity_std": 0.006840953352346711,
           "ground_truth_text": "black, curved backrest, fabric, for sitting on, green, medium, metal, modern, padded seat, plastic, rectangular armrests, rectangular seat, smooth, smooth armrests and backrest, yellow, yellow-green",
           "predicted_text": "black, curved backrest, fabric, for sitting on, green, medium, metal, modern, padded seat, plastic, rectangular armrests, rectangular seat, small, smooth, smooth armrests and backrest, yellow, yellow-green",
           "ground_truth_attrs": [
@@ -5830,22 +6662,30 @@
             "small"
           ],
           "num_ground_truth": 16,
-          "num_predicted": 17
+          "num_predicted": 17,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.2390022873878479,
+          "image_pred_similarity": 0.2418777346611023,
+          "num_images_loaded": 1
         }
-      ]
+      ],
+      "average_image_gt_similarity": 0.2580978402069637,
+      "average_image_pred_similarity": 0.25692992976733614,
+      "objects_with_images": 14
     },
     {
       "scene_id": "scene0006_00",
       "dataset": "scannet",
       "validation_file": "data/validation_results/scannet/annotations_scene0006_00_1769667731576.json",
       "scene_graph_file": "data/scenegraphs_sampled/scannet/scene0006_00/scene_graph.json",
-      "average_similarity": 0.9309421620198659,
+      "average_similarity": 0.9307159932596344,
       "total_objects": 14,
       "per_object": [
         {
           "object_id": 0,
-          "similarity_score": 0.7232741236686706,
-          "similarity_std": 0.11382565018886867,
+          "similarity_score": 0.7082048028707504,
+          "similarity_std": 0.15743886304788077,
           "ground_truth_text": "flat, for separating spaces, for supporting a room structure, for supporting structure, large, rectangular, slightly textured, smooth",
           "predicted_text": "flat, for separating spaces, for supporting a room structure, for supporting structure, green, large, olive green, rectangular, slightly textured, smooth",
           "ground_truth_attrs": [
@@ -5871,12 +6711,17 @@
             "rectangular"
           ],
           "num_ground_truth": 8,
-          "num_predicted": 10
+          "num_predicted": 10,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.20316965878009796,
+          "image_pred_similarity": 0.11010133475065231,
+          "num_images_loaded": 1
         },
         {
           "object_id": 1,
-          "similarity_score": 0.9320535123348236,
-          "similarity_std": 0.035941413166193835,
+          "similarity_score": 0.9358381927013397,
+          "similarity_std": 0.03325928683936542,
           "ground_truth_text": "fabric, for comfort, for keeping warm, for sleeping, for sleeping on, large, light gray, made, rectangular, simple, smooth, soft, unfolded, white, wood (headboard)",
           "predicted_text": "beige, fabric, for comfort, for keeping warm, for sleeping, for sleeping on, large, light blue, light gray, made, rectangular, simple, smooth, soft, unfolded, white, wood (headboard)",
           "ground_truth_attrs": [
@@ -5916,12 +6761,17 @@
             "rectangular"
           ],
           "num_ground_truth": 15,
-          "num_predicted": 17
+          "num_predicted": 17,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.25307396054267883,
+          "image_pred_similarity": 0.24377113580703735,
+          "num_images_loaded": 1
         },
         {
           "object_id": 2,
-          "similarity_score": 0.9201590716838837,
-          "similarity_std": 0.023291326457989207,
+          "similarity_score": 0.9355711162090301,
+          "similarity_std": 0.01883971048885957,
           "ground_truth_text": "fabric, for comfort, for keeping warm, for sleeping, for sleeping on, large, light gray, made, rectangular, simple, smooth, soft, unfolded, white, wood (headboard)",
           "predicted_text": "beige, fabric, for comfort, for keeping warm, for sleeping, for sleeping on, large, light blue, light gray, made, rectangular, simple, smooth, soft, unfolded, white, wood (headboard)",
           "ground_truth_attrs": [
@@ -5961,12 +6811,17 @@
             "rectangular"
           ],
           "num_ground_truth": 15,
-          "num_predicted": 17
+          "num_predicted": 17,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.27822956442832947,
+          "image_pred_similarity": 0.26698368787765503,
+          "num_images_loaded": 1
         },
         {
           "object_id": 5,
-          "similarity_score": 0.945635324716568,
-          "similarity_std": 0.016671672319429114,
+          "similarity_score": 0.9420609533786773,
+          "similarity_std": 0.022994401105479616,
           "ground_truth_text": "fabric, for comfort, for office or desk work, for sitting on, large, likely filled with synthetic fiber or foam, medium, olive green, rectangular backrest, rectangular seat, rounded edges, slightly textured, smooth, soft, tall backrest, wood",
           "predicted_text": "dark green, fabric, for comfort, for office or desk work, for sitting on, large, likely filled with synthetic fiber or foam, medium, modern, olive green, rectangular backrest, rectangular seat, rounded edges, slightly textured, smooth, soft, tall backrest, wood",
           "ground_truth_attrs": [
@@ -6008,12 +6863,17 @@
             "rounded edges"
           ],
           "num_ground_truth": 16,
-          "num_predicted": 18
+          "num_predicted": 18,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.24167302250862122,
+          "image_pred_similarity": 0.24409076571464539,
+          "num_images_loaded": 1
         },
         {
           "object_id": 6,
-          "similarity_score": 0.9559656202793121,
-          "similarity_std": 0.017787721215931585,
+          "similarity_score": 0.9395232021808624,
+          "similarity_std": 0.02579605957832551,
           "ground_truth_text": "fabric, for comfort, for office or desk work, for sitting on, large, likely filled with synthetic fiber or foam, medium, olive green, rectangular backrest, rectangular seat, rounded edges, slightly textured, smooth, soft, tall backrest, wood",
           "predicted_text": "dark green, fabric, for comfort, for office or desk work, for sitting on, large, likely filled with synthetic fiber or foam, medium, modern, olive green, rectangular backrest, rectangular seat, rounded edges, slightly textured, smooth, soft, tall backrest, wood",
           "ground_truth_attrs": [
@@ -6055,12 +6915,17 @@
             "rounded edges"
           ],
           "num_ground_truth": 16,
-          "num_predicted": 18
+          "num_predicted": 18,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.21798473596572876,
+          "image_pred_similarity": 0.21940836310386658,
+          "num_images_loaded": 1
         },
         {
           "object_id": 7,
-          "similarity_score": 0.9717379927635192,
-          "similarity_std": 0.007654914443868838,
+          "similarity_score": 0.964596939086914,
+          "similarity_std": 0.021981789333159654,
           "ground_truth_text": "brown, dark brown, fabric, five-legged base, for comfort, for office or desk work, for sitting on, likely filled with synthetic fiber or foam, medium, metal, rectangular backrest, rounded, rounded edges, smooth, soft, tall backrest",
           "predicted_text": "black, brown, dark brown, fabric, five-legged base, for comfort, for office or desk work, for sitting on, large, likely filled with synthetic fiber or foam, medium, metal, modern, plastic, rectangular backrest, rounded, rounded edges, smooth, soft, tall backrest",
           "ground_truth_attrs": [
@@ -6104,12 +6969,17 @@
             "rounded"
           ],
           "num_ground_truth": 16,
-          "num_predicted": 20
+          "num_predicted": 20,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.23794835805892944,
+          "image_pred_similarity": 0.22919981181621552,
+          "num_images_loaded": 1
         },
         {
           "object_id": 9,
-          "similarity_score": 0.967815762758255,
-          "similarity_std": 0.011098053426954324,
+          "similarity_score": 0.9722454786300659,
+          "similarity_std": 0.011471285567830461,
           "ground_truth_text": "black, black (handle), flat, for displaying art or images, for displaying video, glass, large, modern, plastic, rectangular, smooth",
           "predicted_text": "black, black (handle), flat, for displaying art or images, for displaying video, glass, large, modern, plastic, rectangular, smooth",
           "ground_truth_attrs": [
@@ -6139,12 +7009,17 @@
             "flat"
           ],
           "num_ground_truth": 11,
-          "num_predicted": 11
+          "num_predicted": 11,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.21098542213439941,
+          "image_pred_similarity": 0.21098542213439941,
+          "num_images_loaded": 1
         },
         {
           "object_id": 15,
-          "similarity_score": 0.9730413615703583,
-          "similarity_std": 0.011524327472861574,
+          "similarity_score": 0.974769651889801,
+          "similarity_std": 0.013732514099146484,
           "ground_truth_text": "beige, fabric, for lighting, for providing light, medium, metal, modern, on, rectangular, simple, smooth, tall, white",
           "predicted_text": "beige, fabric, for lighting, for providing light, medium, metal, modern, on, rectangular, simple, smooth, tall, white",
           "ground_truth_attrs": [
@@ -6178,12 +7053,17 @@
             "rectangular"
           ],
           "num_ground_truth": 13,
-          "num_predicted": 13
+          "num_predicted": 13,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.24055011570453644,
+          "image_pred_similarity": 0.24055011570453644,
+          "num_images_loaded": 1
         },
         {
           "object_id": 16,
-          "similarity_score": 0.9464477717876434,
-          "similarity_std": 0.012429186305360626,
+          "similarity_score": 0.9511704027652741,
+          "similarity_std": 0.021038566079508193,
           "ground_truth_text": "black, black (handle), for holding items, for making phone calls, modern, plastic, rectangular, small, smooth",
           "predicted_text": "black, black (handle), for holding items, for making phone calls, medium, modern, plastic, rectangular, small, smooth, white",
           "ground_truth_attrs": [
@@ -6211,12 +7091,17 @@
             "rectangular"
           ],
           "num_ground_truth": 9,
-          "num_predicted": 11
+          "num_predicted": 11,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.2195122390985489,
+          "image_pred_similarity": 0.21599513292312622,
+          "num_images_loaded": 1
         },
         {
           "object_id": 18,
-          "similarity_score": 0.9358775794506073,
-          "similarity_std": 0.02282495013152172,
+          "similarity_score": 0.946858948469162,
+          "similarity_std": 0.015223710037236023,
           "ground_truth_text": "fabric, for comfort, for resting head, for sleeping, for sleeping on, for supporting head or body, large, likely filled with synthetic or down material, rectangular, smooth, soft, white",
           "predicted_text": "fabric, for comfort, for resting head, for sleeping, for sleeping on, for supporting head or body, large, light blue, light gray, likely filled with synthetic or down material, medium, rectangular, slightly textured, smooth, soft, white",
           "ground_truth_attrs": [
@@ -6252,12 +7137,17 @@
             "rectangular"
           ],
           "num_ground_truth": 12,
-          "num_predicted": 16
+          "num_predicted": 16,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.2645103335380554,
+          "image_pred_similarity": 0.23917993903160095,
+          "num_images_loaded": 1
         },
         {
           "object_id": 28,
-          "similarity_score": 0.9527192533016204,
-          "similarity_std": 0.015430108683155523,
+          "similarity_score": 0.9688832819461822,
+          "similarity_std": 0.013517431873506684,
           "ground_truth_text": "black, black (handle), closed, for carrying clothes and personal items, for carrying items, for carrying personal items, medium, metal (handle), plastic, rectangular, slightly textured, smooth",
           "predicted_text": "black, black (handle), closed, fabric, for carrying clothes and personal items, for carrying items, for carrying personal items, medium, metal (handle), plastic, rectangular, slightly textured, smooth",
           "ground_truth_attrs": [
@@ -6290,12 +7180,17 @@
             "rectangular"
           ],
           "num_ground_truth": 12,
-          "num_predicted": 13
+          "num_predicted": 13,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.23271021246910095,
+          "image_pred_similarity": 0.22250767052173615,
+          "num_images_loaded": 1
         },
         {
           "object_id": 34,
-          "similarity_score": 0.9181090533733368,
-          "similarity_std": 0.014917428746205495,
+          "similarity_score": 0.9136689603328705,
+          "similarity_std": 0.014757432194022447,
           "ground_truth_text": "blue, crumpled, dark blue, fabric, for comfort, for keeping warm, for wearing, irregular, medium, slightly textured, soft",
           "predicted_text": "blue, crumpled, dark blue, fabric, folded, folded, for comfort, for keeping warm, for wearing, green, irregular, medium, slightly textured, soft",
           "ground_truth_attrs": [
@@ -6328,12 +7223,17 @@
             "folded"
           ],
           "num_ground_truth": 11,
-          "num_predicted": 14
+          "num_predicted": 14,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.2820815443992615,
+          "image_pred_similarity": 0.25968876481056213,
+          "num_images_loaded": 1
         },
         {
           "object_id": 39,
-          "similarity_score": 0.9706637144088746,
-          "similarity_std": 0.01074925877037538,
+          "similarity_score": 0.959329628944397,
+          "similarity_std": 0.011539226856427692,
           "ground_truth_text": "black, black (handle), cylindrical, for disposing trash, for holding items, plastic, rounded, simple, small, smooth",
           "predicted_text": "black, black (handle), cylindrical, for disposing trash, for holding items, medium, plastic, rounded, simple, small, smooth",
           "ground_truth_attrs": [
@@ -6362,12 +7262,17 @@
             "rounded"
           ],
           "num_ground_truth": 10,
-          "num_predicted": 11
+          "num_predicted": 11,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.22159229218959808,
+          "image_pred_similarity": 0.22025853395462036,
+          "num_images_loaded": 1
         },
         {
           "object_id": 42,
-          "similarity_score": 0.9196901261806488,
-          "similarity_std": 0.03192774607456523,
+          "similarity_score": 0.9173023462295532,
+          "similarity_std": 0.02785517902948597,
           "ground_truth_text": "beige, flat, for dividing room, for supporting a room structure, for supporting structure, large, rectangular, slightly textured, smooth",
           "predicted_text": "beige, brown, flat, for dividing room, for supporting a room structure, for supporting structure, large, light brown, rectangular, slightly textured, smooth",
           "ground_truth_attrs": [
@@ -6395,22 +7300,30 @@
             "flat"
           ],
           "num_ground_truth": 9,
-          "num_predicted": 11
+          "num_predicted": 11,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.23240695893764496,
+          "image_pred_similarity": 0.24255052208900452,
+          "num_images_loaded": 1
         }
-      ]
+      ],
+      "average_image_gt_similarity": 0.2383163156253951,
+      "average_image_pred_similarity": 0.22609080001711845,
+      "objects_with_images": 14
     },
     {
       "scene_id": "scene0008_00",
       "dataset": "scannet",
       "validation_file": "data/validation_results/scannet/annotations_scene0008_00_1769641574467.json",
       "scene_graph_file": "data/scenegraphs_sampled/scannet/scene0008_00/scene_graph.json",
-      "average_similarity": 0.8843357173601786,
+      "average_similarity": 0.8905041158199312,
       "total_objects": 15,
       "per_object": [
         {
           "object_id": 0,
-          "similarity_score": 0.8484116137027741,
-          "similarity_std": 0.03471402041638398,
+          "similarity_score": 0.8670750737190247,
+          "similarity_std": 0.04154926416391098,
           "ground_truth_text": "boxy, comfortable, flat, for comfort, for sitting on, for supporting head or back, large, leather, medium, modern, rectangular, smooth, soft, upholstered, wide backrest",
           "predicted_text": "boxy, comfortable, flat, for comfort, for sitting on, for supporting head or back, large, leather, light gray, light green, medium, modern, rectangular, smooth, soft, upholstered, wide backrest",
           "ground_truth_attrs": [
@@ -6450,12 +7363,17 @@
             "light gray"
           ],
           "num_ground_truth": 15,
-          "num_predicted": 17
+          "num_predicted": 17,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.23423254489898682,
+          "image_pred_similarity": 0.2333199381828308,
+          "num_images_loaded": 1
         },
         {
           "object_id": 1,
-          "similarity_score": 0.8505376577377319,
-          "similarity_std": 0.045236032928729124,
+          "similarity_score": 0.8598384261131287,
+          "similarity_std": 0.039248034068010765,
           "ground_truth_text": "boxy, comfortable, flat, for comfort, for sitting on, for supporting head or back, large, leather, medium, modern, rectangular, smooth, soft, upholstered, wide backrest",
           "predicted_text": "boxy, comfortable, flat, for comfort, for sitting on, for supporting head or back, large, leather, light gray, light green, medium, modern, rectangular, smooth, soft, upholstered, wide backrest",
           "ground_truth_attrs": [
@@ -6495,12 +7413,17 @@
             "light gray"
           ],
           "num_ground_truth": 15,
-          "num_predicted": 17
+          "num_predicted": 17,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.19995325803756714,
+          "image_pred_similarity": 0.20132261514663696,
+          "num_images_loaded": 1
         },
         {
           "object_id": 3,
-          "similarity_score": 0.8596251368522644,
-          "similarity_std": 0.04194701995168994,
+          "similarity_score": 0.8920976936817169,
+          "similarity_std": 0.044723980763747985,
           "ground_truth_text": "comfortable, curved armrests, for comfort, for sitting on, for supporting head or back, leather, metal (legs), modern, rounded, smooth, soft, upholstered, wide",
           "predicted_text": "comfortable, curved armrests, for comfort, for sitting on, for supporting head or back, large, leather, light gray, light green, metal (legs), modern, rounded, smooth, soft, upholstered, wide, wide backrest",
           "ground_truth_attrs": [
@@ -6538,12 +7461,17 @@
             "light green"
           ],
           "num_ground_truth": 13,
-          "num_predicted": 17
+          "num_predicted": 17,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.24236780405044556,
+          "image_pred_similarity": 0.24288934469223022,
+          "num_images_loaded": 1
         },
         {
           "object_id": 4,
-          "similarity_score": 0.8795565366744995,
-          "similarity_std": 0.047553853236039785,
+          "similarity_score": 0.8935416400432586,
+          "similarity_std": 0.03386371299530102,
           "ground_truth_text": "beige, boxy, comfortable, fabric, for comfort, for sitting on, for supporting head or back, modern, rectangular, smooth, soft, upholstered, wide, wide backrest",
           "predicted_text": "beige, boxy, comfortable, curved armrests, fabric, for comfort, for sitting on, for supporting head or back, large, light gray, light green, modern, rectangular, smooth, soft, upholstered, wide, wide backrest",
           "ground_truth_attrs": [
@@ -6583,12 +7511,17 @@
             "light gray"
           ],
           "num_ground_truth": 14,
-          "num_predicted": 18
+          "num_predicted": 18,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.226999431848526,
+          "image_pred_similarity": 0.22012078762054443,
+          "num_images_loaded": 1
         },
         {
           "object_id": 5,
-          "similarity_score": 0.8888804376125335,
-          "similarity_std": 0.03763526575540632,
+          "similarity_score": 0.8893702983856201,
+          "similarity_std": 0.04490251104863556,
           "ground_truth_text": "comfortable, curved armrests, for comfort, for sitting on, for supporting head or back, leather, metal (legs), modern, rounded, smooth, soft, upholstered, wide",
           "predicted_text": "comfortable, curved armrests, for comfort, for sitting on, for supporting head or back, large, leather, light gray, light green, metal (legs), modern, rounded, smooth, soft, upholstered, wide, wide backrest",
           "ground_truth_attrs": [
@@ -6626,12 +7559,17 @@
             "light green"
           ],
           "num_ground_truth": 13,
-          "num_predicted": 17
+          "num_predicted": 17,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.23672357201576233,
+          "image_pred_similarity": 0.2353401780128479,
+          "num_images_loaded": 1
         },
         {
           "object_id": 8,
-          "similarity_score": 0.8705822885036468,
-          "similarity_std": 0.01613356573798984,
+          "similarity_score": 0.8813507676124572,
+          "similarity_std": 0.02466619505311676,
           "ground_truth_text": "boxy, flat, for placing items on, for resting feet on, large, leather, rectangular, short, smooth, soft, square, upholstered",
           "predicted_text": "boxy, dark green, flat, for placing items on, for resting feet on, greenish, large, leather, rectangular, short, smooth, soft, square, upholstered",
           "ground_truth_attrs": [
@@ -6665,12 +7603,17 @@
             "greenish"
           ],
           "num_ground_truth": 12,
-          "num_predicted": 14
+          "num_predicted": 14,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.2572728395462036,
+          "image_pred_similarity": 0.2524571120738983,
+          "num_images_loaded": 1
         },
         {
           "object_id": 9,
-          "similarity_score": 0.8886362910270691,
-          "similarity_std": 0.03822269686076849,
+          "similarity_score": 0.8948923110961914,
+          "similarity_std": 0.039432432343244984,
           "ground_truth_text": "boxy, flat, for placing items on, for placing objects near a window, medium, modern, rectangular, smooth, square, wood, wooden",
           "predicted_text": "black, boxy, flat, for placing items on, for placing objects near a window, light blue, medium, modern, rectangular, smooth, square, wood, wooden",
           "ground_truth_attrs": [
@@ -6702,12 +7645,17 @@
             "light blue"
           ],
           "num_ground_truth": 11,
-          "num_predicted": 13
+          "num_predicted": 13,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.27054646611213684,
+          "image_pred_similarity": 0.25658118724823,
+          "num_images_loaded": 1
         },
         {
           "object_id": 14,
-          "similarity_score": 0.8731853127479553,
-          "similarity_std": 0.04414899503063541,
+          "similarity_score": 0.8882363617420197,
+          "similarity_std": 0.02793635260827512,
           "ground_truth_text": "boxy, flat, for placing items on, for placing objects near a window, medium, modern, rectangular, square, wood, wooden",
           "predicted_text": "black, boxy, flat, for placing items on, for placing objects near a window, light blue, medium, modern, rectangular, smooth, square, wood, wooden",
           "ground_truth_attrs": [
@@ -6738,12 +7686,17 @@
             "light blue"
           ],
           "num_ground_truth": 10,
-          "num_predicted": 13
+          "num_predicted": 13,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.24409298598766327,
+          "image_pred_similarity": 0.20800289511680603,
+          "num_images_loaded": 1
         },
         {
           "object_id": 18,
-          "similarity_score": 0.9673321485519409,
-          "similarity_std": 0.009859623576354476,
+          "similarity_score": 0.9628210425376892,
+          "similarity_std": 0.0157745955249196,
           "ground_truth_text": "black, flat, for displaying video, glass, medium, modern, plastic, rectangular, smooth, wide",
           "predicted_text": "black, flat, for displaying video, glass, large, medium, modern, plastic, rectangular, smooth, wide",
           "ground_truth_attrs": [
@@ -6772,12 +7725,17 @@
             "black"
           ],
           "num_ground_truth": 10,
-          "num_predicted": 11
+          "num_predicted": 11,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.2788738012313843,
+          "image_pred_similarity": 0.2825579047203064,
+          "num_images_loaded": 1
         },
         {
           "object_id": 20,
-          "similarity_score": 0.9410443842411041,
-          "similarity_std": 0.02432670977334804,
+          "similarity_score": 0.9495923101902009,
+          "similarity_std": 0.017138943752760896,
           "ground_truth_text": "clear, closed, for letting light in, for seeing through walls, for viewing outside, glass, large, rectangular, smooth, square, wide",
           "predicted_text": "blue, clear, closed, for letting light in, for seeing through walls, for viewing outside, glass, large, rectangular, smooth, square, wide",
           "ground_truth_attrs": [
@@ -6808,12 +7766,17 @@
             "blue"
           ],
           "num_ground_truth": 11,
-          "num_predicted": 12
+          "num_predicted": 12,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.24579107761383057,
+          "image_pred_similarity": 0.2288355529308319,
+          "num_images_loaded": 1
         },
         {
           "object_id": 22,
-          "similarity_score": 0.7882102072238922,
-          "similarity_std": 0.04648375032704959,
+          "similarity_score": 0.7651632070541382,
+          "similarity_std": 0.07141675069814017,
           "ground_truth_text": "flat, for supporting fixtures, for supporting structure, large, rectangular, smooth",
           "predicted_text": "drywall, flat, for dividing rooms, for supporting fixtures, for supporting structure, large, light gray, light green, partitioning space, rectangular, smooth",
           "ground_truth_attrs": [
@@ -6838,12 +7801,17 @@
             "light gray"
           ],
           "num_ground_truth": 6,
-          "num_predicted": 11
+          "num_predicted": 11,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.22384080290794373,
+          "image_pred_similarity": 0.22107082605361938,
+          "num_images_loaded": 1
         },
         {
           "object_id": 23,
-          "similarity_score": 0.9615660071372986,
-          "similarity_std": 0.009795648329782627,
+          "similarity_score": 0.948905861377716,
+          "similarity_std": 0.011222382042619952,
           "ground_truth_text": "clear, for letting light in, for seeing through walls, for viewing outside, glass, medium, metal, rectangular, smooth, square, tall",
           "predicted_text": "blue, clear, for letting light in, for seeing through walls, for viewing outside, glass, medium, metal, rectangular, smooth, square, tall",
           "ground_truth_attrs": [
@@ -6874,12 +7842,17 @@
             "blue"
           ],
           "num_ground_truth": 11,
-          "num_predicted": 12
+          "num_predicted": 12,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.24324703216552734,
+          "image_pred_similarity": 0.23124392330646515,
+          "num_images_loaded": 1
         },
         {
           "object_id": 25,
-          "similarity_score": 0.9014515697956085,
-          "similarity_std": 0.014868948883904253,
+          "similarity_score": 0.9180929839611054,
+          "similarity_std": 0.009578460528380291,
           "ground_truth_text": "boxy, for providing light, medium, metal, modern, on, rectangular, smooth, white",
           "predicted_text": "black, boxy, fabric, flat, for letting light in, for providing light, light gray, medium, metal, modern, on, rectangular, smooth, white",
           "ground_truth_attrs": [
@@ -6910,12 +7883,17 @@
             "light gray"
           ],
           "num_ground_truth": 9,
-          "num_predicted": 14
+          "num_predicted": 14,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.22448554635047913,
+          "image_pred_similarity": 0.22166816890239716,
+          "num_images_loaded": 1
         },
         {
           "object_id": 27,
-          "similarity_score": 0.840562903881073,
-          "similarity_std": 0.020787298432786386,
+          "similarity_score": 0.8465795040130615,
+          "similarity_std": 0.02539453058245975,
           "ground_truth_text": "flat, for supporting structure, rectangular, smooth, tall",
           "predicted_text": "drywall, flat, for supporting structure, green, greenish, large, medium, partitioning space, rectangular, smooth, tall",
           "ground_truth_attrs": [
@@ -6939,12 +7917,17 @@
             "greenish"
           ],
           "num_ground_truth": 5,
-          "num_predicted": 11
+          "num_predicted": 11,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.2517426013946533,
+          "image_pred_similarity": 0.23533284664154053,
+          "num_images_loaded": 1
         },
         {
           "object_id": 31,
-          "similarity_score": 0.9054532647132874,
-          "similarity_std": 0.02042770333539426,
+          "similarity_score": 0.900004255771637,
+          "similarity_std": 0.019090496369448155,
           "ground_truth_text": "boxy, for providing light, medium, metal, on, rectangular, smooth, white",
           "predicted_text": "black, boxy, fabric, flat, for letting light in, for providing light, light gray, medium, metal, modern, on, rectangular, smooth, white",
           "ground_truth_attrs": [
@@ -6974,9 +7957,17 @@
             "light gray"
           ],
           "num_ground_truth": 8,
-          "num_predicted": 14
+          "num_predicted": 14,
+          "num_image_files": 1,
+          "has_images": true,
+          "image_gt_similarity": 0.21272768080234528,
+          "image_pred_similarity": 0.21169383823871613,
+          "num_images_loaded": 1
         }
-      ]
+      ],
+      "average_image_gt_similarity": 0.239526496330897,
+      "average_image_pred_similarity": 0.23216247459252676,
+      "objects_with_images": 15
     }
   ]
 }
