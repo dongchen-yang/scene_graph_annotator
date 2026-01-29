@@ -132,6 +132,41 @@ Per-scene breakdown showing ground truth vs predicted similarity pairs.
 
 ---
 
+### 0ad2d382-79e2-2212-98b3-641bf9d552c1
+
+**Validated Objects:** 14
+
+**Metrics:**
+- Ground Truth Pairs: 6
+- Predicted Pairs: 1
+- True Positives: 0
+- False Positives: 1
+- False Negatives: 6
+- Precision: 0.000
+- Recall: 0.000
+- F1 Score: 0.000
+
+**Ground Truth Pairs (6):**
+- `(3, 7)` ✗ MISSED
+- `(3, 18)` ✗ MISSED
+- `(3, 45)` ✗ MISSED
+- `(7, 18)` ✗ MISSED
+- `(7, 45)` ✗ MISSED
+- `(18, 45)` ✗ MISSED
+
+**Predicted Pairs (1):**
+- `(4, 8)` ✗ FALSE POSITIVE
+
+**Missed Pairs (False Negatives) (6):**
+- `(3, 7)`
+- `(3, 18)`
+- `(3, 45)`
+- `(7, 18)`
+- `(7, 45)`
+- `(18, 45)`
+
+---
+
 ## SCANNET
 
 ### scene0000_00
@@ -267,46 +302,24 @@ Per-scene breakdown showing ground truth vs predicted similarity pairs.
 **Validated Objects:** 13
 
 **Metrics:**
-- Ground Truth Pairs: 30
+- Ground Truth Pairs: 8
 - Predicted Pairs: 5
 - True Positives: 5
 - False Positives: 0
-- False Negatives: 25
+- False Negatives: 3
 - Precision: 1.000
-- Recall: 0.167
-- F1 Score: 0.286
+- Recall: 0.625
+- F1 Score: 0.769
 
-**Ground Truth Pairs (30):**
-- `(0, 4)` ✗ MISSED
-- `(1, 3)` ✗ MISSED
-- `(5, 6)` ✗ MISSED
-- `(5, 7)` ✗ MISSED
-- `(5, 8)` ✗ MISSED
+**Ground Truth Pairs (8):**
 - `(5, 9)` ✓ PREDICTED
 - `(5, 10)` ✓ PREDICTED
 - `(5, 11)` ✓ PREDICTED
-- `(5, 12)` ✗ MISSED
-- `(6, 7)` ✗ MISSED
 - `(6, 8)` ✓ PREDICTED
-- `(6, 9)` ✗ MISSED
-- `(6, 10)` ✗ MISSED
-- `(6, 11)` ✗ MISSED
-- `(6, 12)` ✗ MISSED
-- `(7, 8)` ✗ MISSED
-- `(7, 9)` ✗ MISSED
-- `(7, 10)` ✗ MISSED
-- `(7, 11)` ✗ MISSED
 - `(7, 12)` ✓ PREDICTED
-- `(8, 9)` ✗ MISSED
-- `(8, 10)` ✗ MISSED
-- `(8, 11)` ✗ MISSED
-- `(8, 12)` ✗ MISSED
 - `(9, 10)` ✗ MISSED
 - `(9, 11)` ✗ MISSED
-- `(9, 12)` ✗ MISSED
 - `(10, 11)` ✗ MISSED
-- `(10, 12)` ✗ MISSED
-- `(11, 12)` ✗ MISSED
 
 **Predicted Pairs (5):**
 - `(5, 9)` ✓ CORRECT
@@ -315,32 +328,10 @@ Per-scene breakdown showing ground truth vs predicted similarity pairs.
 - `(6, 8)` ✓ CORRECT
 - `(7, 12)` ✓ CORRECT
 
-**Missed Pairs (False Negatives) (25):**
-- `(0, 4)`
-- `(1, 3)`
-- `(5, 6)`
-- `(5, 7)`
-- `(5, 8)`
-- `(5, 12)`
-- `(6, 7)`
-- `(6, 9)`
-- `(6, 10)`
-- `(6, 11)`
-- `(6, 12)`
-- `(7, 8)`
-- `(7, 9)`
-- `(7, 10)`
-- `(7, 11)`
-- `(8, 9)`
-- `(8, 10)`
-- `(8, 11)`
-- `(8, 12)`
+**Missed Pairs (False Negatives) (3):**
 - `(9, 10)`
 - `(9, 11)`
-- `(9, 12)`
 - `(10, 11)`
-- `(10, 12)`
-- `(11, 12)`
 
 ---
 
@@ -438,14 +429,14 @@ Per-scene breakdown showing ground truth vs predicted similarity pairs.
 
 ## Overall Summary
 
-- **Total Scenes:** 13
-- **Total Ground Truth Pairs:** 76
-- **Total Predicted Pairs:** 30
+- **Total Scenes:** 14
+- **Total Ground Truth Pairs:** 60
+- **Total Predicted Pairs:** 31
 - **Total True Positives:** 26
-- **Total False Positives:** 4
-- **Total False Negatives:** 50
+- **Total False Positives:** 5
+- **Total False Negatives:** 34
 
 **Aggregate Metrics (micro-averaged):**
-- Precision: 0.867 (86.7%)
-- Recall: 0.342 (34.2%)
-- F1 Score: 0.491
+- Precision: 0.839 (83.9%)
+- Recall: 0.433 (43.3%)
+- F1 Score: 0.571

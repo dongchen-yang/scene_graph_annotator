@@ -853,6 +853,30 @@ HTML_TEMPLATE = """<!DOCTYPE html>
             color: #333;
         }
 
+        #annotations-container {
+            max-height: 300px;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        #annotations-container::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        #annotations-container::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 4px;
+        }
+
+        #annotations-container::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 4px;
+        }
+
+        #annotations-container::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+
         .annotation-item {
             padding: 8px;
             margin-bottom: 5px;
